@@ -19,7 +19,7 @@ repository.
 | 15 | [c15](c15/) | pending | TBD | TBD | pending |
 | 16 | [c16](c16/) | pending | TBD | TBD | pending |
 | 17 | [c17](c17/) | pending | TBD | TBD | pending |
-| 18 | [c18](c18/) | pending | TBD | TBD | pending |
+| 18 | [c18](c18/) | verified | 16 | 0 | [certificate.json](c18/certificate.json) |
 | 19 | [c19](c19/) | pending | TBD | TBD | pending |
 | 20 | [c20](c20/) | pending | TBD | TBD | pending |
 | 21 | [c21](c21/) | pending | TBD | TBD | pending |

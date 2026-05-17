@@ -1,0 +1,194 @@
+{
+  "chern_degree": 18,
+  "commands": {
+    "manifest": "/opt/anaconda3/bin/python /Users/siqingzhang/Documents/Playground/sp_invariant_fast_algorithm_v5/jk_only/cluster_rank_driver.py manifest --chern-degrees 18 --column-order cheap-probe --columns-per-task 16 --wave-size 64 --shard-mode task --source-degree 22 --w-degree 26 --output /Users/siqingzhang/Documents/Playground/jk_v5_runs/long_20260517T223207Z/c18/manifest.json",
+    "reduce": "/opt/anaconda3/bin/python /Users/siqingzhang/Documents/Playground/sp_invariant_fast_algorithm_v5/jk_only/cluster_rank_driver.py reduce --manifest /Users/siqingzhang/Documents/Playground/jk_v5_runs/long_20260517T223207Z/c18/manifest.json --shard-dir /Users/siqingzhang/Documents/Playground/jk_v5_runs/long_20260517T223207Z/c18/shards --shard-mode task --output /Users/siqingzhang/Documents/Playground/jk_v5_runs/long_20260517T223207Z/c18/reduce_final.json",
+    "verify_certificate": "/opt/anaconda3/bin/python /Users/siqingzhang/Documents/Playground/sp_invariant_fast_algorithm_v5/jk_only/cluster_rank_driver.py verify-certificate --manifest /Users/siqingzhang/Documents/Playground/jk_v5_runs/long_20260517T223207Z/c18/manifest.json --reduce-output /Users/siqingzhang/Documents/Playground/jk_v5_runs/long_20260517T223207Z/c18/reduce_final.json --second-prime 1000033 --output /Users/siqingzhang/Documents/Playground/jk_v5_runs/long_20260517T223207Z/c18/verification_final.json",
+    "worker": "/opt/anaconda3/bin/python /Users/siqingzhang/Documents/Playground/sp_invariant_fast_algorithm_v5/jk_only/cluster_rank_driver.py worker --manifest /Users/siqingzhang/Documents/Playground/jk_v5_runs/long_20260517T223207Z/c18/manifest.json --task-index '<task_index_spec>' --shard-dir /Users/siqingzhang/Documents/Playground/jk_v5_runs/long_20260517T223207Z/c18/shards --shard-mode task --no-repair-existing --output '<per-batch-worker-summary.json>'; exact per-batch commands are recorded in the raw strict-run ledger"
+  },
+  "elapsed_seconds": {
+    "manifest": 8.138855218887329,
+    "reduce": 2.9470789432525635,
+    "verify_certificate": 55.44078779220581,
+    "workers_total": null
+  },
+  "manifest_sha256": "f6dcbba58a7f7e5f2e6799d7e35285e6df7612090dac43681ae8d4af1a91ffe0",
+  "nullity": 0,
+  "prime": "2305843009213693951",
+  "rank": 16,
+  "raw_artifacts": {
+    "manifest": {
+      "label": "raw c18 manifest artifact, not committed",
+      "sha256": "f6dcbba58a7f7e5f2e6799d7e35285e6df7612090dac43681ae8d4af1a91ffe0"
+    },
+    "reduce": {
+      "label": "raw c18 final reduce artifact, not committed",
+      "sha256": "9fd494d96c55614c40828d3b60af5cc156ab174aeb603c17d457dac869e0b53c"
+    },
+    "run_ledger": {
+      "label": "raw c18 strict-run ledger publication snapshot, not committed",
+      "sha256": "842f9086d1f0ffd4f4a938047138f61ec51a570c7f0b2f75cf28decfd44cbc48"
+    },
+    "run_provenance": {
+      "label": "raw c18 strict-run provenance, not committed",
+      "sha256": "b32524b50e1ef930bcb597c50202fa332e3b893eff91aa1a2819ea3620bfb1ce"
+    },
+    "verification": {
+      "label": "raw c18 final verification artifact, not committed",
+      "sha256": "06917c01659e49d0947dee5083dda66c9593f946724b68f7bc37e34588918797"
+    }
+  },
+  "reduce_output_sha256": "9fd494d96c55614c40828d3b60af5cc156ab174aeb603c17d457dac869e0b53c",
+  "second_prime": "1000033",
+  "selected_columns": [
+    {
+      "w_index": 760,
+      "w_name": "f2^13"
+    },
+    {
+      "w_index": 306,
+      "w_name": "a2 f2^11"
+    },
+    {
+      "w_index": 525,
+      "w_name": "a3 f2^10"
+    },
+    {
+      "w_index": 112,
+      "w_name": "a2^2 f2^9"
+    },
+    {
+      "w_index": 644,
+      "w_name": "a4 f2^9"
+    },
+    {
+      "w_index": 206,
+      "w_name": "a2 a3 f2^8"
+    },
+    {
+      "w_index": 715,
+      "w_name": "a5 f2^8"
+    },
+    {
+      "w_index": 36,
+      "w_name": "a2^3 f2^7"
+    },
+    {
+      "w_index": 257,
+      "w_name": "a2 a4 f2^7"
+    },
+    {
+      "w_index": 462,
+      "w_name": "a3^2 f2^7"
+    },
+    {
+      "w_index": 73,
+      "w_name": "a2^2 a3 f2^6"
+    },
+    {
+      "w_index": 287,
+      "w_name": "a2 a5 f2^6"
+    },
+    {
+      "w_index": 494,
+      "w_name": "a3 a4 f2^6"
+    },
+    {
+      "w_index": 10,
+      "w_name": "a2^4 f2^5"
+    },
+    {
+      "w_index": 94,
+      "w_name": "a2^2 a4 f2^5"
+    },
+    {
+      "w_index": 826,
+      "w_name": "f2^4 gamma55"
+    }
+  ],
+  "selected_minor_determinant_mod_p": "1996658450193783560",
+  "selected_minor_matrix_sha256": "6e676b28775b24c581bad6dd41f710c4ccd51690f5e8cd2b74e31a271c9de3a2",
+  "selected_rows": [
+    {
+      "row_index": 0,
+      "row_name": "a2^2 f2^7"
+    },
+    {
+      "row_index": 1,
+      "row_name": "a2 f2^6 f4"
+    },
+    {
+      "row_index": 2,
+      "row_name": "a2 f2^6 gamma22"
+    },
+    {
+      "row_index": 3,
+      "row_name": "a2 f2^5 f3^2"
+    },
+    {
+      "row_index": 4,
+      "row_name": "a3 f2^6 f3"
+    },
+    {
+      "row_index": 5,
+      "row_name": "a4 f2^7"
+    },
+    {
+      "row_index": 6,
+      "row_name": "f2^6 gamma24"
+    },
+    {
+      "row_index": 8,
+      "row_name": "f2^5 f3 f5"
+    },
+    {
+      "row_index": 9,
+      "row_name": "f2^5 f3 gamma23"
+    },
+    {
+      "row_index": 10,
+      "row_name": "f2^5 f4^2"
+    },
+    {
+      "row_index": 11,
+      "row_name": "f2^5 f4 gamma22"
+    },
+    {
+      "row_index": 12,
+      "row_name": "f2^5 gamma22^2"
+    },
+    {
+      "row_index": 13,
+      "row_name": "f2^4 f3^2 f4"
+    },
+    {
+      "row_index": 14,
+      "row_name": "f2^4 f3^2 gamma22"
+    },
+    {
+      "row_index": 15,
+      "row_name": "f2^3 f3^4"
+    },
+    {
+      "row_index": 7,
+      "row_name": "f2^6 gamma33"
+    }
+  ],
+  "shard_mode": "task",
+  "source_basis_digest": "e18bf173f421693b1fefd95968d312fb513517ebe97e24112798c69e496ff2d2",
+  "source_dimension": 16,
+  "source_file_sha256": {
+    "GAMMA_CONVENTION.md": "8a1b9e6999245610ae8b579fbb3825fe725a18ff72f1d2dd4e30d8553fbcc4d8",
+    "JK_THEOREM_9_6_RANK5_G2.md": "9213054373640b6d29cf0e9f70f2892511569dfec9f7bc41c59316c8af78109b",
+    "basis.py": "2255929c964608fe52fd5b9b618b1dcfbfabc6a68348c3b85e747cfc7d45fa46",
+    "cluster_rank_driver.py": "7e3faaf7ab641dba30cd3e702728caee806efc2a121e5a8f2418a38e0c32c45d",
+    "fast_modular.py": "5cf9cc0277cf3ba4155c7bf014d67b6754d0636f07eae57011f60e93e16bbb63",
+    "jk_formula.py": "c951d805b542b835de232a223863f3a7e97ab40d71f8efebb0571d364394d6b6",
+    "modular_rank_search.py": "82bb5ae1a73ffe1214a6a3eca00e983dc5472b4c1fe8f91e4a2ea32745adae26"
+  },
+  "status": "verified",
+  "target_rank": 16,
+  "verification_output_sha256": "06917c01659e49d0947dee5083dda66c9593f946724b68f7bc37e34588918797",
+  "w_basis_digest": "6ea7a66c1bb34e5bd07fcf41cb6e7abd75ad4f654d87bb291b8cad2ad63e28fe",
+  "w_basis_dimension": 1039
+}
