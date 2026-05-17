@@ -1,0 +1,26 @@
+# Keep the public record small and reviewable.
+__pycache__/
+.DS_Store
+
+# Raw cluster output belongs in working storage, not in the clean milestone repo.
+raw/
+work/
+jk_v5_runs/
+shards/
+task_bundles/
+worker_summaries/
+reductions/
+verifications/
+waves/
+logs/
+cluster_column_shards/
+modular_column_cache*/
+*.pkl
+*.tmp
+
+# Large logs can be summarized into result folders after verification.
+*.log
+*.out
+*.err
+*.jsonl
+slurm-*
