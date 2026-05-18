@@ -327,17 +327,14 @@ coordinates equal.  The JK $W_4$ summation in this specialization
 permutes those first four coordinates, so the summands are identical and the
 Weyl sum contributes `24` terms with no additional signs or permutation
 factors.  This is the rank-5, degree-1 specialization recorded in the frozen
-formula ledger, not a general simplification of every JK residue.  The scalar
-prefactor is therefore
+formula ledger, not a general simplification of every JK residue.
+
+Here $n^g/n! = 5^2/5! = 25/120$, and the Weyl sum contributes the factor
+`24`.  The scalar prefactor is therefore
 
 $$
-\frac{n^g}{n!}\cdot \#W_4
-=
-\frac{5^2}{5!}\cdot 24
-=
 \frac{25}{120}\cdot 24
-=
-5.
+=5.
 $$
 
 The sign is positive because $n_+(g-1)=10$.
