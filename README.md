@@ -7,10 +7,12 @@ Rows are Sp-invariant source classes of fixed Chern degree.  Columns are the
 Sp-invariant `W26` test basis.  Entries are Jeffrey-Kirwan pairings.  For the
 full-rank degrees, the proof object is a verified nonzero selected minor modulo
 the recorded prime, with a second-prime consistency check.  For `c12`, the
-target object is different: a corank-one modular relation certificate, followed
-later by exact rational reconstruction.
+current object is different: a theorem-assisted candidate line, not a full-W
+annihilation certificate.
 
 For a guided reading path, see [How to read this repository](docs/HOW_TO_READ.md).
+For the formula dictionary and implementation checks, see
+[JK formula implementation checks](docs/JK_VERIFICATION.md).
 
 ## Status
 
@@ -22,10 +24,10 @@ certificate is complete.
 | Chern degree | Folder | Status | Rank | Nullity | Computed W columns | Full W? | Certificate |
 |---:|---|---|---:|---:|---:|:---:|---|
 | 11 | [c11](c11/) | verified | 7 | 0 | 8/1039 | no | [certificate.json](c11/certificate.json) |
-| 12 | [c12](c12/) | pending relation | TBD | TBD | TBD | TBD | pending |
-| 13 | [c13](c13/) | pending | TBD | TBD | TBD | TBD | pending |
-| 14 | [c14](c14/) | pending | TBD | TBD | TBD | TBD | pending |
-| 15 | [c15](c15/) | pending | TBD | TBD | TBD | TBD | pending |
+| 12 | [c12](c12/) | theorem-assisted candidate | 43 | 1 | 784/1039 | no | [theorem_assisted_candidate.json](c12/theorem_assisted_candidate.json) |
+| 13 | [c13](c13/) | verified | 94 | 0 | 208/1039 | no | [certificate.json](c13/certificate.json) |
+| 14 | [c14](c14/) | verified | 111 | 0 | 208/1039 | no | [certificate.json](c14/certificate.json) |
+| 15 | [c15](c15/) | verified | 81 | 0 | 96/1039 | no | [certificate.json](c15/certificate.json) |
 | 16 | [c16](c16/) | verified | 53 | 0 | 128/1039 | no | [certificate.json](c16/certificate.json) |
 | 17 | [c17](c17/) | verified | 28 | 0 | 64/1039 | no | [certificate.json](c17/certificate.json) |
 | 18 | [c18](c18/) | verified | 16 | 0 | 64/1039 | no | [certificate.json](c18/certificate.json) |
@@ -34,10 +36,12 @@ certificate is complete.
 | 21 | [c21](c21/) | verified | 1 | 0 | 8/1039 | no | [certificate.json](c21/certificate.json) |
 | 22 | [c22](c22/) | verified | 1 | 0 | 8/1039 | no | [certificate.json](c22/certificate.json) |
 
-`Computed W columns` records the committed modular columns, not necessarily the
-full pairing matrix.  For full-rank certificates, `Full W? = no` is not a
-defect: a verified nonzero selected minor is enough to certify the displayed
-rank.  The machine-readable version of this table is [summary.json](summary.json).
+`Computed W columns` records committed modular columns for verified full-rank
+degrees.  For `c12`, it records the loaded columns checked by the
+theorem-assisted candidate artifact.  `Full W? = no` is not a defect for a
+full-rank certificate: a verified nonzero selected minor is enough to certify
+the displayed rank.  The machine-readable version of this table is
+[summary.json](summary.json).
 
 ## Mathematical Scope
 
@@ -53,23 +57,21 @@ determinant modulo a certified prime, then a direct recomputation of that minor
 from the JK evaluator.  A second prime is used as an additional guard against
 bad-prime accidents or arithmetic mistakes.
 
-For `c12`, the expected object is different: a corank-one relation line.  The
-planned modular certificate will record a nonzero rank-43 minor, a normalized
-left kernel vector, and a direct verification that this vector annihilates
-every `W26` column modulo the recorded prime.  The separate Higgs-moduli theorem
-should be stated separately: it reduces the Higgs relation in `H^22` to the
-corresponding invariant Chern-degree-12 candidate line.  Publishing literal
-rational coefficients requires an additional reconstruction/exact-verification
-artifact.
+For `c12`, the current object is a theorem-assisted candidate line.  The
+external Higgs-moduli theorem says the relevant `H^22` relation is a unique
+line in the invariant Chern-degree-12 source.  The JK computation identifies
+that line by finding a nonzero rank-43 selected minor in the 44-dimensional
+source and a one-dimensional selected left kernel.  This does not claim a full
+annihilation check against all `1039` `W26` columns.
 
 ## Source Code
 
 - [`src/jk_only_v5_c16_frozen`](src/jk_only_v5_c16_frozen/) is the frozen
   source copy used for the verified `c16`, `c17`, and `c18` milestones.
 - [`src/jk_only_v5_relation_frozen`](src/jk_only_v5_relation_frozen/) is the
-  relation-capable source copy used for the verified `c11`, `c19`, `c20`,
-  `c21`, and `c22` milestones, and prepared for the `c12` corank-one
-  certificate.
+  relation-capable source copy used for the verified `c11`, `c13`, `c15`,
+  `c19`, `c20`, `c21`, and `c22` milestones, and for the `c12`
+  theorem-assisted candidate extractor.
 
 The frozen source folders are intended to be runnable snapshots as well as hash
 references.  A reader may either run from the original workspace layout or copy
@@ -106,8 +108,12 @@ python sp_invariant_fast_algorithm_v5/jk_only/strict_degree_runner.py run-degree
   --extract-publication
 ```
 
-For the c12 relation certificate, use the relation runner after the source has
-been reviewed:
+For the c12 theorem-assisted candidate, inspect
+[`c12/theorem_assisted_candidate.json`](c12/theorem_assisted_candidate.json)
+and
+[`docs/C12_THEOREM_ASSISTED_CANDIDATE.md`](docs/C12_THEOREM_ASSISTED_CANDIDATE.md).
+The stronger full relation-certificate runner remains available if one wants
+to check all `1039` `W26` columns:
 
 ```bash
 python sp_invariant_fast_algorithm_v5/jk_only/strict_relation_runner.py run-relation \
@@ -124,8 +130,10 @@ python sp_invariant_fast_algorithm_v5/jk_only/strict_relation_runner.py run-rela
 ## More Details
 
 - [How to read this repository](docs/HOW_TO_READ.md)
+- [JK formula implementation checks](docs/JK_VERIFICATION.md)
+- [c12 theorem-assisted candidate](docs/C12_THEOREM_ASSISTED_CANDIDATE.md)
 - [Result schema](docs/RESULT_SCHEMA.md)
-- [Relation verification notes](docs/RELATION_CERTIFICATE.md)
+- [Full relation certificate notes](docs/RELATION_CERTIFICATE.md)
 - [Cluster reproduction notes](docs/CLUSTER.md)
 
 ## Provenance Notes

@@ -74,10 +74,17 @@ After extracting a new verified full-rank degree, the publication sequence is:
 This keeps the root table, summary, degree README, certificate, and computed
 column export in sync.
 
-For c12, publish the modular relation certificate separately from any later
-rational/integer relation coefficient artifact.  The relation folder should
-also get a relation-compatible committed column export so readers can inspect
-the modular annihilation data without rerunning the full computation.
+For the current c12 theorem-assisted milestone, publish
+`c12/theorem_assisted_candidate.json` separately from any later full modular
+relation certificate.  The c12 folder should say explicitly that the artifact
+identifies the candidate line using the external uniqueness theorem and does
+not check all `1039` `W26` columns.
+
+If a later full c12 modular relation certificate is produced, publish it
+separately from any rational/integer relation coefficient artifact.  The
+relation folder should also get a relation-compatible committed column export
+so readers can inspect the modular annihilation data without rerunning the full
+computation.
 
 Use `validate_publication.py` for a lightweight check of the committed public
 record:

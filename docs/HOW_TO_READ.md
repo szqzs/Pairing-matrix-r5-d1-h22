@@ -11,6 +11,11 @@ classes of Chern degree `c`.  The columns are the Sp-invariant `W26` test
 basis.  A matrix entry is the Jeffrey-Kirwan pairing of one row with one test
 class, evaluated in the JK conventions used by the frozen source code.
 
+For the formula dictionary and implementation checks, read
+[`JK_VERIFICATION.md`](JK_VERIFICATION.md).  That page explains how the code
+specializes Jeffrey-Kirwan's formula and how the source path is guarded against
+legacy convention changes.
+
 ## What A Verified Full-Rank Degree Proves
 
 For a verified full-rank degree, `certificate.json` records a selected square
@@ -66,14 +71,18 @@ not a full JK recomputation.
 ## Why c12 Is Different
 
 The `c12` calculation is a relation calculation, not a full-rank calculation.
-The intended modular certificate has rank `43` in a `44`-dimensional source
-space, plus a normalized left-kernel vector that annihilates all `W26` columns
-modulo the recorded prime.
+The current public object is a theorem-assisted candidate line, not the full
+modular relation certificate.
 
-That modular vector identifies the finite-field relation line.  It is not, by
-itself, the final rational relation.  The rational/integer coefficients should
-be published only after exact reconstruction and exact JK annihilation
-verification over `Q`.
+The external theorem says that the relevant Higgs-moduli relation is a unique
+line in this invariant Chern-degree-12 source space.  The JK computation then
+identifies that line by finding a rank-43 selected submatrix in the
+44-dimensional source.  This is enough for the theorem-assisted identification,
+but it is not the same as checking annihilation against all `1039` `W26`
+columns.
+
+The rational/integer coefficients should still be read with the exact scope
+recorded in the c12 artifact.
 
 ## Where The Engineering Details Live
 
@@ -82,5 +91,7 @@ planning, shard mechanics, and longer provenance conventions live in the
 specialized docs:
 
 - [`RESULT_SCHEMA.md`](RESULT_SCHEMA.md)
+- [`JK_VERIFICATION.md`](JK_VERIFICATION.md)
+- [`C12_THEOREM_ASSISTED_CANDIDATE.md`](C12_THEOREM_ASSISTED_CANDIDATE.md)
 - [`RELATION_CERTIFICATE.md`](RELATION_CERTIFICATE.md)
 - [`CLUSTER.md`](CLUSTER.md)

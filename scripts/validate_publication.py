@@ -135,6 +135,41 @@ def validate_computed_columns(repo: Path, item: Dict[str, Any]) -> None:
     require(len(payload.get("columns", [])) == int(item["computed_w_columns"]), f"c{cdegree} column list count mismatch")
 
 
+def validate_theorem_assisted_candidate(repo: Path, item: Dict[str, Any]) -> None:
+    cdegree = int(item["chern_degree"])
+    require(cdegree == 12, "theorem-assisted candidate validation is currently only defined for c12")
+    path = repo / str(item["certificate"])
+    require(path.exists(), f"missing c12 candidate artifact: {path}")
+    payload = load_json(path)
+    require(payload.get("kind") == "jk_only_theorem_assisted_c12_candidate", "c12 candidate kind mismatch")
+    require(payload.get("status") == "theorem_assisted_candidate", "c12 candidate status mismatch")
+    require(payload.get("not_full_relation_certificate") is True, "c12 candidate must explicitly say it is not a full certificate")
+    for key in ("chern_degree", "rank", "nullity", "source_dimension", "w_basis_dimension"):
+        require(int(payload[key]) == int(item[key]), f"c12 candidate {key} mismatch")
+    require(str(payload.get("primary_prime")) == str(item["primary_prime"]), "c12 candidate primary prime mismatch")
+    require(str(payload.get("second_prime")) == str(item["second_prime"]), "c12 candidate second prime mismatch")
+    require(int(payload["loaded_column_check"]["loaded_column_count"]) == int(item["computed_w_columns"]), "c12 loaded column count mismatch")
+    require(bool(item["full_w_basis_covered"]) is False, "c12 should not claim full W-basis coverage")
+    require(len(payload.get("selected_rows", [])) == int(item["rank"]), "c12 selected row count mismatch")
+    require(len(payload.get("selected_columns", [])) == int(item["rank"]), "c12 selected column count mismatch")
+    require(len(payload.get("kernel_vector_mod_p", [])) == int(item["source_dimension"]), "c12 kernel vector length mismatch")
+    require(payload.get("loaded_column_check", {}).get("passed") is True, "c12 loaded-column check did not pass")
+    require(payload.get("rational_reconstruction", {}).get("status") == "passed", "c12 rational reconstruction did not pass")
+    hashes = payload.get("hashes", {})
+    run_postprocessor_hash = hashes.get("postprocessor_file_sha256")
+    if isinstance(run_postprocessor_hash, dict):
+        run_postprocessor_hash = run_postprocessor_hash.get("theorem_assisted_c12_candidate.py")
+    require(
+        hashes.get("frozen_postprocessor_file_sha256") == run_postprocessor_hash,
+        "c12 frozen postprocessor hash does not match recorded run postprocessor hash",
+    )
+    second = payload.get("second_prime_selected_minor_check", {})
+    require(second.get("nonzero_selected_minor") is True, "c12 second-prime selected minor was not nonzero")
+    comparison = second.get("reconstructed_rational_vector_comparison", {})
+    require(comparison.get("passed") is True, "c12 second-prime rational vector comparison did not pass")
+    require(payload.get("theorem_assumptions_required"), "c12 theorem assumptions must be recorded")
+
+
 def validate_degree_readme(repo: Path, item: Dict[str, Any]) -> None:
     cdegree = int(item["chern_degree"])
     readme = repo / f"c{cdegree}" / "README.md"
@@ -179,6 +214,8 @@ def validate(repo: Path) -> Dict[str, Any]:
             verified_count += 1
             validate_certificate(repo, item)
             validate_computed_columns(repo, item)
+        elif item.get("certificate_type") == "theorem_assisted_candidate":
+            validate_theorem_assisted_candidate(repo, item)
         else:
             if item.get("source_snapshot"):
                 require((repo / str(item["source_snapshot"])).is_dir(), f"c{cdegree} listed source snapshot is missing")

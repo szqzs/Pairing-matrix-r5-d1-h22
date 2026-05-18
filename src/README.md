@@ -11,8 +11,8 @@ implementation.
   and `c18`.
 - [`jk_only_v5_relation_frozen`](jk_only_v5_relation_frozen/) is the
   relation-capable source snapshot used for the verified `c11`, `c19`, `c20`,
-  `c21`, and `c22` milestones, and prepared for the `c12` corank-one modular
-  certificate.
+  `c21`, and `c22` milestones, and for the `c12` theorem-assisted candidate
+  extractor.
 
 These snapshots are not raw run folders.  Raw manifests, logs, and shards live
 outside this repository unless a compact publication artifact explicitly records

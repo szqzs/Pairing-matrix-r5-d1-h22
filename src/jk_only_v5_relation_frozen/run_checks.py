@@ -45,6 +45,7 @@ CERTIFICATE_FILES = (
     "speed_probe.py",
     "strict_degree_runner.py",
     "strict_relation_runner.py",
+    "theorem_assisted_c12_candidate.py",
     "run_checks.py",
 )
 ALLOWED_IMPORT_ROOTS = {

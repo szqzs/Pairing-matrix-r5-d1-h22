@@ -58,6 +58,9 @@ The current files are the foundation for replacing the previous setup kernels:
   absolutely, runs task-bundle batches instead of `--all-tasks`, reduces and
   verifies after each batch, and publishes only after a final second-prime
   certificate check.
+- `theorem_assisted_c12_candidate.py` extracts the current theorem-assisted
+  c12 candidate line from loaded c12 shards.  It deliberately does not claim a
+  full-W relation certificate.
 - `run_checks.py` runs structural and guardrail checks for this folder.
 
 The default checks intentionally avoid large rank computations. They verify the

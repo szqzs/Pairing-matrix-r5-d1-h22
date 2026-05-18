@@ -1,0 +1,994 @@
+{
+  "chern_degree": 12,
+  "claim_type": "theorem_assisted_candidate_line",
+  "commands": {
+    "candidate_extractor": "/Users/siqingzhang/Documents/Playground/sp_invariant_fast_algorithm_v5/jk_only/theorem_assisted_c12_candidate.py --check-all-loaded --second-prime 1000033 --output /Users/siqingzhang/Documents/Playground/jk_v5_runs/c12_relation_20260518T023317Z/c12/theorem_assisted_c12_candidate.second_prime.json"
+  },
+  "hashes": {
+    "frozen_postprocessor_file_sha256": "d2fc8052c6a4dbf62e52ca0e789ae0d7453f382c06ab30b14cb0f082ba059335",
+    "kernel_vector_sha256_primary_prime": "362c1d1804ab658f9f3e4ea00444b5025ee687beb3298f3fd6b15bbd6d71293e",
+    "kernel_vector_sha256_second_prime": "8b987f27af75973b542ab4c0ac4bec5d1ef467cc53c9926f181a2b2fbcff6d4a",
+    "manifest_sha256": "4100871eb2f45e949d45f74a8fc6103302099375e505ab5a3d2d3c4c246657f2",
+    "postprocessor_file_sha256": {
+      "theorem_assisted_c12_candidate.py": "d2fc8052c6a4dbf62e52ca0e789ae0d7453f382c06ab30b14cb0f082ba059335"
+    },
+    "raw_candidate_artifact_sha256": "0e69db7caec8d64657898ccec3b7140d75756e8313b92113fce6e67dfbdfa266",
+    "source_basis_digest": "659413b9546359c0fe824b7b4b58061518989ddee02bbb61c121ed8189c02a82",
+    "w_basis_digest": "6ea7a66c1bb34e5bd07fcf41cb6e7abd75ad4f654d87bb291b8cad2ad63e28fe"
+  },
+  "kernel_vector_mod_p": [
+    {
+      "coefficient_mod_p": "1813929833914772575",
+      "row_index": 0,
+      "row_name": "a2^5 f2",
+      "signed_representative": "-491913175298921376"
+    },
+    {
+      "coefficient_mod_p": "737869762948382064",
+      "row_index": 1,
+      "row_name": "a2^4 f4",
+      "signed_representative": "737869762948382064"
+    },
+    {
+      "coefficient_mod_p": "245956587649460688",
+      "row_index": 2,
+      "row_name": "a2^4 gamma22",
+      "signed_representative": "245956587649460688"
+    },
+    {
+      "coefficient_mod_p": "891592630229294993",
+      "row_index": 3,
+      "row_name": "a2^3 a3 f3",
+      "signed_representative": "891592630229294993"
+    },
+    {
+      "coefficient_mod_p": "645636042579834305",
+      "row_index": 4,
+      "row_name": "a2^3 a4 f2",
+      "signed_representative": "645636042579834305"
+    },
+    {
+      "coefficient_mod_p": "0",
+      "row_index": 5,
+      "row_name": "a2^3 gamma24",
+      "signed_representative": "0"
+    },
+    {
+      "coefficient_mod_p": "2244353862301328779",
+      "row_index": 6,
+      "row_name": "a2^3 gamma33",
+      "signed_representative": "-61489146912365172"
+    },
+    {
+      "coefficient_mod_p": "184467440737095514",
+      "row_index": 7,
+      "row_name": "a2^2 a3^2 f2",
+      "signed_representative": "184467440737095514"
+    },
+    {
+      "coefficient_mod_p": "922337203685477582",
+      "row_index": 8,
+      "row_name": "a2^2 a3 f5",
+      "signed_representative": "922337203685477582"
+    },
+    {
+      "coefficient_mod_p": "891592630229294995",
+      "row_index": 9,
+      "row_name": "a2^2 a3 gamma23",
+      "signed_representative": "891592630229294995"
+    },
+    {
+      "coefficient_mod_p": "676380616036016894",
+      "row_index": 10,
+      "row_name": "a2^2 a4 f4",
+      "signed_representative": "676380616036016894"
+    },
+    {
+      "coefficient_mod_p": "830103483316929823",
+      "row_index": 11,
+      "row_name": "a2^2 a4 gamma22",
+      "signed_representative": "830103483316929823"
+    },
+    {
+      "coefficient_mod_p": "922337203685477582",
+      "row_index": 12,
+      "row_name": "a2^2 a5 f3",
+      "signed_representative": "922337203685477582"
+    },
+    {
+      "coefficient_mod_p": "1690951540090042231",
+      "row_index": 13,
+      "row_name": "a2^2 gamma35",
+      "signed_representative": "-614891469123651720"
+    },
+    {
+      "coefficient_mod_p": "2059886421564233263",
+      "row_index": 14,
+      "row_name": "a2^2 gamma44",
+      "signed_representative": "-245956587649460688"
+    },
+    {
+      "coefficient_mod_p": "184467440737095518",
+      "row_index": 15,
+      "row_name": "a2 a3^2 f4",
+      "signed_representative": "184467440737095518"
+    },
+    {
+      "coefficient_mod_p": "968454063869751460",
+      "row_index": 16,
+      "row_name": "a2 a3^2 gamma22",
+      "signed_representative": "968454063869751460"
+    },
+    {
+      "coefficient_mod_p": "368934881474191036",
+      "row_index": 17,
+      "row_name": "a2 a3 a4 f3",
+      "signed_representative": "368934881474191036"
+    },
+    {
+      "coefficient_mod_p": "1844674407370955164",
+      "row_index": 18,
+      "row_name": "a2 a3 a5 f2",
+      "signed_representative": "-461168601842738787"
+    },
+    {
+      "coefficient_mod_p": "1383505805528216371",
+      "row_index": 19,
+      "row_name": "a2 a3 gamma25",
+      "signed_representative": "-922337203685477580"
+    },
+    {
+      "coefficient_mod_p": "2121375568476598435",
+      "row_index": 20,
+      "row_name": "a2 a3 gamma34",
+      "signed_representative": "-184467440737095516"
+    },
+    {
+      "coefficient_mod_p": "676380616036016894",
+      "row_index": 21,
+      "row_name": "a2 a4^2 f2",
+      "signed_representative": "676380616036016894"
+    },
+    {
+      "coefficient_mod_p": "983826350597842752",
+      "row_index": 22,
+      "row_name": "a2 a4 gamma24",
+      "signed_representative": "983826350597842752"
+    },
+    {
+      "coefficient_mod_p": "737869762948382064",
+      "row_index": 23,
+      "row_name": "a2 a4 gamma33",
+      "signed_representative": "737869762948382064"
+    },
+    {
+      "coefficient_mod_p": "1537228672809129299",
+      "row_index": 24,
+      "row_name": "a2 a5 f5",
+      "signed_representative": "-768614336404564652"
+    },
+    {
+      "coefficient_mod_p": "1076060070966390509",
+      "row_index": 25,
+      "row_name": "a2 a5 gamma23",
+      "signed_representative": "1076060070966390509"
+    },
+    {
+      "coefficient_mod_p": "538030035483195255",
+      "row_index": 26,
+      "row_name": "a2 gamma55",
+      "signed_representative": "538030035483195255"
+    },
+    {
+      "coefficient_mod_p": "645636042579834307",
+      "row_index": 27,
+      "row_name": "a3^3 f3",
+      "signed_representative": "645636042579834307"
+    },
+    {
+      "coefficient_mod_p": "184467440737095518",
+      "row_index": 28,
+      "row_name": "a3^2 a4 f2",
+      "signed_representative": "184467440737095518"
+    },
+    {
+      "coefficient_mod_p": "276701161105643274",
+      "row_index": 29,
+      "row_name": "a3^2 gamma24",
+      "signed_representative": "276701161105643274"
+    },
+    {
+      "coefficient_mod_p": "276701161105643274",
+      "row_index": 30,
+      "row_name": "a3^2 gamma33",
+      "signed_representative": "276701161105643274"
+    },
+    {
+      "coefficient_mod_p": "2305843009213693948",
+      "row_index": 31,
+      "row_name": "a3 a4 f5",
+      "signed_representative": "-3"
+    },
+    {
+      "coefficient_mod_p": "276701161105643273",
+      "row_index": 32,
+      "row_name": "a3 a4 gamma23",
+      "signed_representative": "276701161105643273"
+    },
+    {
+      "coefficient_mod_p": "2305843009213693948",
+      "row_index": 33,
+      "row_name": "a3 a5 f4",
+      "signed_representative": "-3"
+    },
+    {
+      "coefficient_mod_p": "2305843009213693950",
+      "row_index": 34,
+      "row_name": "a3 a5 gamma22",
+      "signed_representative": "-1"
+    },
+    {
+      "coefficient_mod_p": "1383505805528216370",
+      "row_index": 35,
+      "row_name": "a3 gamma45",
+      "signed_representative": "-922337203685477581"
+    },
+    {
+      "coefficient_mod_p": "1614090106449585764",
+      "row_index": 36,
+      "row_name": "a4^2 f4",
+      "signed_representative": "-691752902764108187"
+    },
+    {
+      "coefficient_mod_p": "983826350597842752",
+      "row_index": 37,
+      "row_name": "a4^2 gamma22",
+      "signed_representative": "983826350597842752"
+    },
+    {
+      "coefficient_mod_p": "2305843009213693948",
+      "row_index": 38,
+      "row_name": "a4 a5 f3",
+      "signed_representative": "-3"
+    },
+    {
+      "coefficient_mod_p": "461168601842738790",
+      "row_index": 39,
+      "row_name": "a4 gamma35",
+      "signed_representative": "461168601842738790"
+    },
+    {
+      "coefficient_mod_p": "0",
+      "row_index": 40,
+      "row_name": "a4 gamma44",
+      "signed_representative": "0"
+    },
+    {
+      "coefficient_mod_p": "1921535841011411625",
+      "row_index": 41,
+      "row_name": "a5^2 f2",
+      "signed_representative": "-384307168202282326"
+    },
+    {
+      "coefficient_mod_p": "1537228672809129301",
+      "row_index": 42,
+      "row_name": "a5 gamma25",
+      "signed_representative": "-768614336404564650"
+    },
+    {
+      "coefficient_mod_p": "1",
+      "row_index": 43,
+      "row_name": "a5 gamma34",
+      "signed_representative": "1"
+    }
+  ],
+  "kind": "jk_only_theorem_assisted_c12_candidate",
+  "loaded_column_check": {
+    "loaded_column_count": 784,
+    "loaded_task_range": "0-48",
+    "missing_or_unloaded_task_range": "49-64",
+    "nonselected_loaded_column_count": 741,
+    "nonzero_dot_count": 0,
+    "passed": true,
+    "selected_column_count": 43,
+    "zero_dot_count": 784
+  },
+  "mathematical_scope_note": "This artifact identifies the c12 candidate line using the external theorem that the relevant Higgs-moduli relation is a unique invariant Chern-homogeneous line in this source space. It is not a full 1039-column JK annihilation certificate.",
+  "not_full_relation_certificate": true,
+  "nullity": 1,
+  "ordinary_source_degree": 22,
+  "ordinary_w_degree": 26,
+  "primary_prime": "2305843009213693951",
+  "primitive_integer_relation": [
+    {
+      "coefficient": "16/75",
+      "primitive_integer_coefficient": "32",
+      "row_index": 0,
+      "row_name": "a2^5 f2"
+    },
+    {
+      "coefficient": "-8/25",
+      "primitive_integer_coefficient": "-48",
+      "row_index": 1,
+      "row_name": "a2^4 f4"
+    },
+    {
+      "coefficient": "-8/75",
+      "primitive_integer_coefficient": "-16",
+      "row_index": 2,
+      "row_name": "a2^4 gamma22"
+    },
+    {
+      "coefficient": "-104/75",
+      "primitive_integer_coefficient": "-208",
+      "row_index": 3,
+      "row_name": "a2^3 a3 f3"
+    },
+    {
+      "coefficient": "-32/25",
+      "primitive_integer_coefficient": "-192",
+      "row_index": 4,
+      "row_name": "a2^3 a4 f2"
+    },
+    {
+      "coefficient": "0",
+      "primitive_integer_coefficient": "0",
+      "row_index": 5,
+      "row_name": "a2^3 gamma24"
+    },
+    {
+      "coefficient": "2/75",
+      "primitive_integer_coefficient": "4",
+      "row_index": 6,
+      "row_name": "a2^3 gamma33"
+    },
+    {
+      "coefficient": "-52/25",
+      "primitive_integer_coefficient": "-312",
+      "row_index": 7,
+      "row_name": "a2^2 a3^2 f2"
+    },
+    {
+      "coefficient": "8/5",
+      "primitive_integer_coefficient": "240",
+      "row_index": 8,
+      "row_name": "a2^2 a3 f5"
+    },
+    {
+      "coefficient": "46/75",
+      "primitive_integer_coefficient": "92",
+      "row_index": 9,
+      "row_name": "a2^2 a3 gamma23"
+    },
+    {
+      "coefficient": "128/75",
+      "primitive_integer_coefficient": "256",
+      "row_index": 10,
+      "row_name": "a2^2 a4 f4"
+    },
+    {
+      "coefficient": "16/25",
+      "primitive_integer_coefficient": "96",
+      "row_index": 11,
+      "row_name": "a2^2 a4 gamma22"
+    },
+    {
+      "coefficient": "8/5",
+      "primitive_integer_coefficient": "240",
+      "row_index": 12,
+      "row_name": "a2^2 a5 f3"
+    },
+    {
+      "coefficient": "4/15",
+      "primitive_integer_coefficient": "40",
+      "row_index": 13,
+      "row_name": "a2^2 gamma35"
+    },
+    {
+      "coefficient": "8/75",
+      "primitive_integer_coefficient": "16",
+      "row_index": 14,
+      "row_name": "a2^2 gamma44"
+    },
+    {
+      "coefficient": "48/25",
+      "primitive_integer_coefficient": "288",
+      "row_index": 15,
+      "row_name": "a2 a3^2 f4"
+    },
+    {
+      "coefficient": "29/50",
+      "primitive_integer_coefficient": "87",
+      "row_index": 16,
+      "row_name": "a2 a3^2 gamma22"
+    },
+    {
+      "coefficient": "96/25",
+      "primitive_integer_coefficient": "576",
+      "row_index": 17,
+      "row_name": "a2 a3 a4 f3"
+    },
+    {
+      "coefficient": "16/5",
+      "primitive_integer_coefficient": "480",
+      "row_index": 18,
+      "row_name": "a2 a3 a5 f2"
+    },
+    {
+      "coefficient": "2/5",
+      "primitive_integer_coefficient": "60",
+      "row_index": 19,
+      "row_name": "a2 a3 gamma25"
+    },
+    {
+      "coefficient": "2/25",
+      "primitive_integer_coefficient": "12",
+      "row_index": 20,
+      "row_name": "a2 a3 gamma34"
+    },
+    {
+      "coefficient": "128/75",
+      "primitive_integer_coefficient": "256",
+      "row_index": 21,
+      "row_name": "a2 a4^2 f2"
+    },
+    {
+      "coefficient": "-32/75",
+      "primitive_integer_coefficient": "-64",
+      "row_index": 22,
+      "row_name": "a2 a4 gamma24"
+    },
+    {
+      "coefficient": "-8/25",
+      "primitive_integer_coefficient": "-48",
+      "row_index": 23,
+      "row_name": "a2 a4 gamma33"
+    },
+    {
+      "coefficient": "-5/3",
+      "primitive_integer_coefficient": "-250",
+      "row_index": 24,
+      "row_name": "a2 a5 f5"
+    },
+    {
+      "coefficient": "-22/15",
+      "primitive_integer_coefficient": "-220",
+      "row_index": 25,
+      "row_name": "a2 a5 gamma23"
+    },
+    {
+      "coefficient": "-7/30",
+      "primitive_integer_coefficient": "-35",
+      "row_index": 26,
+      "row_name": "a2 gamma55"
+    },
+    {
+      "coefficient": "18/25",
+      "primitive_integer_coefficient": "108",
+      "row_index": 27,
+      "row_name": "a3^3 f3"
+    },
+    {
+      "coefficient": "48/25",
+      "primitive_integer_coefficient": "288",
+      "row_index": 28,
+      "row_name": "a3^2 a4 f2"
+    },
+    {
+      "coefficient": "-3/25",
+      "primitive_integer_coefficient": "-18",
+      "row_index": 29,
+      "row_name": "a3^2 gamma24"
+    },
+    {
+      "coefficient": "-3/25",
+      "primitive_integer_coefficient": "-18",
+      "row_index": 30,
+      "row_name": "a3^2 gamma33"
+    },
+    {
+      "coefficient": "-3",
+      "primitive_integer_coefficient": "-450",
+      "row_index": 31,
+      "row_name": "a3 a4 f5"
+    },
+    {
+      "coefficient": "-28/25",
+      "primitive_integer_coefficient": "-168",
+      "row_index": 32,
+      "row_name": "a3 a4 gamma23"
+    },
+    {
+      "coefficient": "-3",
+      "primitive_integer_coefficient": "-450",
+      "row_index": 33,
+      "row_name": "a3 a5 f4"
+    },
+    {
+      "coefficient": "-1",
+      "primitive_integer_coefficient": "-150",
+      "row_index": 34,
+      "row_name": "a3 a5 gamma22"
+    },
+    {
+      "coefficient": "-3/5",
+      "primitive_integer_coefficient": "-90",
+      "row_index": 35,
+      "row_name": "a3 gamma45"
+    },
+    {
+      "coefficient": "-17/10",
+      "primitive_integer_coefficient": "-255",
+      "row_index": 36,
+      "row_name": "a4^2 f4"
+    },
+    {
+      "coefficient": "-32/75",
+      "primitive_integer_coefficient": "-64",
+      "row_index": 37,
+      "row_name": "a4^2 gamma22"
+    },
+    {
+      "coefficient": "-3",
+      "primitive_integer_coefficient": "-450",
+      "row_index": 38,
+      "row_name": "a4 a5 f3"
+    },
+    {
+      "coefficient": "-1/5",
+      "primitive_integer_coefficient": "-30",
+      "row_index": 39,
+      "row_name": "a4 gamma35"
+    },
+    {
+      "coefficient": "0",
+      "primitive_integer_coefficient": "0",
+      "row_index": 40,
+      "row_name": "a4 gamma44"
+    },
+    {
+      "coefficient": "-5/6",
+      "primitive_integer_coefficient": "-125",
+      "row_index": 41,
+      "row_name": "a5^2 f2"
+    },
+    {
+      "coefficient": "1/3",
+      "primitive_integer_coefficient": "50",
+      "row_index": 42,
+      "row_name": "a5 gamma25"
+    },
+    {
+      "coefficient": "1",
+      "primitive_integer_coefficient": "150",
+      "row_index": 43,
+      "row_name": "a5 gamma34"
+    }
+  ],
+  "rank": 43,
+  "rational_reconstruction": {
+    "all_residue_checks_passed": true,
+    "common_denominator_before_primitive_gcd": "150",
+    "mathematical_note": "This is the small rational lift of the selected-minor modular kernel. The selected minor and the reconstructed line were checked at the second prime recorded here; an exact-over-Q annihilation check would be a separate stronger artifact.",
+    "max_abs_primitive_integer_coefficient": "576",
+    "method": "single_prime_rational_reconstruction",
+    "nonzero_primitive_integer_coefficient_count": 42,
+    "prime": "2305843009213693951",
+    "primitive_denominator_scale": "150",
+    "primitive_gcd": "1",
+    "status": "passed"
+  },
+  "raw_artifacts": {
+    "candidate_extractor_output": {
+      "label": "raw theorem-assisted candidate output, not committed",
+      "sha256": "0e69db7caec8d64657898ccec3b7140d75756e8313b92113fce6e67dfbdfa266"
+    }
+  },
+  "schema_version": 1,
+  "second_prime": "1000033",
+  "second_prime_selected_minor_check": {
+    "elapsed_seconds": 84.912424325943,
+    "nonzero_selected_minor": true,
+    "prime": "1000033",
+    "reconstructed_rational_vector_comparison": {
+      "available": true,
+      "failure_records": [],
+      "matches_second_prime_kernel": true,
+      "passed": true,
+      "second_prime_kernel_sha256": "8b987f27af75973b542ab4c0ac4bec5d1ef467cc53c9926f181a2b2fbcff6d4a",
+      "selected_column_nonzero_dot_count": 0,
+      "selected_column_zero_dot_count": 43,
+      "vector_sha256_mod_second_prime": "8b987f27af75973b542ab4c0ac4bec5d1ef467cc53c9926f181a2b2fbcff6d4a"
+    },
+    "selected_column_check": {
+      "failure_records": [],
+      "nonzero_dot_count": 0,
+      "passed": true,
+      "zero_dot_count": 43
+    },
+    "selected_minor_determinant_mod_p": "801046"
+  },
+  "selected_at": {
+    "loaded_column_count": 74,
+    "task_index": 4,
+    "w_index": 315,
+    "w_name": "a2 f2^6 gamma24"
+  },
+  "selected_columns": [
+    {
+      "w_index": 760,
+      "w_name": "f2^13"
+    },
+    {
+      "w_index": 306,
+      "w_name": "a2 f2^11"
+    },
+    {
+      "w_index": 525,
+      "w_name": "a3 f2^10"
+    },
+    {
+      "w_index": 112,
+      "w_name": "a2^2 f2^9"
+    },
+    {
+      "w_index": 644,
+      "w_name": "a4 f2^9"
+    },
+    {
+      "w_index": 206,
+      "w_name": "a2 a3 f2^8"
+    },
+    {
+      "w_index": 715,
+      "w_name": "a5 f2^8"
+    },
+    {
+      "w_index": 36,
+      "w_name": "a2^3 f2^7"
+    },
+    {
+      "w_index": 257,
+      "w_name": "a2 a4 f2^7"
+    },
+    {
+      "w_index": 462,
+      "w_name": "a3^2 f2^7"
+    },
+    {
+      "w_index": 73,
+      "w_name": "a2^2 a3 f2^6"
+    },
+    {
+      "w_index": 287,
+      "w_name": "a2 a5 f2^6"
+    },
+    {
+      "w_index": 494,
+      "w_name": "a3 a4 f2^6"
+    },
+    {
+      "w_index": 10,
+      "w_name": "a2^4 f2^5"
+    },
+    {
+      "w_index": 94,
+      "w_name": "a2^2 a4 f2^5"
+    },
+    {
+      "w_index": 183,
+      "w_name": "a2 a3^2 f2^5"
+    },
+    {
+      "w_index": 514,
+      "w_name": "a3 a5 f2^5"
+    },
+    {
+      "w_index": 626,
+      "w_name": "a4^2 f2^5"
+    },
+    {
+      "w_index": 23,
+      "w_name": "a2^3 a3 f2^4"
+    },
+    {
+      "w_index": 105,
+      "w_name": "a2^2 a5 f2^4"
+    },
+    {
+      "w_index": 195,
+      "w_name": "a2 a3 a4 f2^4"
+    },
+    {
+      "w_index": 449,
+      "w_name": "a3^3 f2^4"
+    },
+    {
+      "w_index": 637,
+      "w_name": "a4 a5 f2^4"
+    },
+    {
+      "w_index": 2,
+      "w_name": "a2^5 f2^3"
+    },
+    {
+      "w_index": 30,
+      "w_name": "a2^3 a4 f2^3"
+    },
+    {
+      "w_index": 66,
+      "w_name": "a2^2 a3^2 f2^3"
+    },
+    {
+      "w_index": 826,
+      "w_name": "f2^4 gamma55"
+    },
+    {
+      "w_index": 804,
+      "w_name": "f2^5 gamma45"
+    },
+    {
+      "w_index": 787,
+      "w_name": "f2^6 gamma35"
+    },
+    {
+      "w_index": 788,
+      "w_name": "f2^6 gamma44"
+    },
+    {
+      "w_index": 777,
+      "w_name": "f2^7 gamma25"
+    },
+    {
+      "w_index": 778,
+      "w_name": "f2^7 gamma34"
+    },
+    {
+      "w_index": 769,
+      "w_name": "f2^8 gamma24"
+    },
+    {
+      "w_index": 770,
+      "w_name": "f2^8 gamma33"
+    },
+    {
+      "w_index": 766,
+      "w_name": "f2^9 gamma23"
+    },
+    {
+      "w_index": 763,
+      "w_name": "f2^10 gamma22"
+    },
+    {
+      "w_index": 372,
+      "w_name": "a2 f2^2 gamma55"
+    },
+    {
+      "w_index": 350,
+      "w_name": "a2 f2^3 gamma45"
+    },
+    {
+      "w_index": 333,
+      "w_name": "a2 f2^4 gamma35"
+    },
+    {
+      "w_index": 334,
+      "w_name": "a2 f2^4 gamma44"
+    },
+    {
+      "w_index": 323,
+      "w_name": "a2 f2^5 gamma25"
+    },
+    {
+      "w_index": 324,
+      "w_name": "a2 f2^5 gamma34"
+    },
+    {
+      "w_index": 315,
+      "w_name": "a2 f2^6 gamma24"
+    }
+  ],
+  "selected_minor": {
+    "determinant_mod_primary_prime": "967594684064583508",
+    "determinant_mod_second_prime": "801046",
+    "matrix_sha256_primary_prime": "daaaa18c9efdb839b4853994d960979a17d7b38cdd48c0125111c215b033d10c",
+    "matrix_sha256_second_prime": "30bfdc9e3dfd24eaa1489f70866463652d3cbcf10d3031b33f0ed7eaa237aca9",
+    "second_prime_nonzero": true,
+    "selected_column_count": 43,
+    "selected_row_count": 43
+  },
+  "selected_rows": [
+    {
+      "row_index": 0,
+      "row_name": "a2^5 f2"
+    },
+    {
+      "row_index": 1,
+      "row_name": "a2^4 f4"
+    },
+    {
+      "row_index": 2,
+      "row_name": "a2^4 gamma22"
+    },
+    {
+      "row_index": 3,
+      "row_name": "a2^3 a3 f3"
+    },
+    {
+      "row_index": 4,
+      "row_name": "a2^3 a4 f2"
+    },
+    {
+      "row_index": 5,
+      "row_name": "a2^3 gamma24"
+    },
+    {
+      "row_index": 7,
+      "row_name": "a2^2 a3^2 f2"
+    },
+    {
+      "row_index": 8,
+      "row_name": "a2^2 a3 f5"
+    },
+    {
+      "row_index": 9,
+      "row_name": "a2^2 a3 gamma23"
+    },
+    {
+      "row_index": 10,
+      "row_name": "a2^2 a4 f4"
+    },
+    {
+      "row_index": 12,
+      "row_name": "a2^2 a5 f3"
+    },
+    {
+      "row_index": 15,
+      "row_name": "a2 a3^2 f4"
+    },
+    {
+      "row_index": 17,
+      "row_name": "a2 a3 a4 f3"
+    },
+    {
+      "row_index": 18,
+      "row_name": "a2 a3 a5 f2"
+    },
+    {
+      "row_index": 19,
+      "row_name": "a2 a3 gamma25"
+    },
+    {
+      "row_index": 21,
+      "row_name": "a2 a4^2 f2"
+    },
+    {
+      "row_index": 22,
+      "row_name": "a2 a4 gamma24"
+    },
+    {
+      "row_index": 24,
+      "row_name": "a2 a5 f5"
+    },
+    {
+      "row_index": 27,
+      "row_name": "a3^3 f3"
+    },
+    {
+      "row_index": 28,
+      "row_name": "a3^2 a4 f2"
+    },
+    {
+      "row_index": 29,
+      "row_name": "a3^2 gamma24"
+    },
+    {
+      "row_index": 31,
+      "row_name": "a3 a4 f5"
+    },
+    {
+      "row_index": 33,
+      "row_name": "a3 a5 f4"
+    },
+    {
+      "row_index": 36,
+      "row_name": "a4^2 f4"
+    },
+    {
+      "row_index": 38,
+      "row_name": "a4 a5 f3"
+    },
+    {
+      "row_index": 41,
+      "row_name": "a5^2 f2"
+    },
+    {
+      "row_index": 6,
+      "row_name": "a2^3 gamma33"
+    },
+    {
+      "row_index": 11,
+      "row_name": "a2^2 a4 gamma22"
+    },
+    {
+      "row_index": 13,
+      "row_name": "a2^2 gamma35"
+    },
+    {
+      "row_index": 14,
+      "row_name": "a2^2 gamma44"
+    },
+    {
+      "row_index": 16,
+      "row_name": "a2 a3^2 gamma22"
+    },
+    {
+      "row_index": 20,
+      "row_name": "a2 a3 gamma34"
+    },
+    {
+      "row_index": 23,
+      "row_name": "a2 a4 gamma33"
+    },
+    {
+      "row_index": 25,
+      "row_name": "a2 a5 gamma23"
+    },
+    {
+      "row_index": 26,
+      "row_name": "a2 gamma55"
+    },
+    {
+      "row_index": 30,
+      "row_name": "a3^2 gamma33"
+    },
+    {
+      "row_index": 32,
+      "row_name": "a3 a4 gamma23"
+    },
+    {
+      "row_index": 34,
+      "row_name": "a3 a5 gamma22"
+    },
+    {
+      "row_index": 35,
+      "row_name": "a3 gamma45"
+    },
+    {
+      "row_index": 37,
+      "row_name": "a4^2 gamma22"
+    },
+    {
+      "row_index": 39,
+      "row_name": "a4 gamma35"
+    },
+    {
+      "row_index": 40,
+      "row_name": "a4 gamma44"
+    },
+    {
+      "row_index": 42,
+      "row_name": "a5 gamma25"
+    }
+  ],
+  "source_dimension": 44,
+  "source_file_sha256": {
+    "GAMMA_CONVENTION.md": "8a1b9e6999245610ae8b579fbb3825fe725a18ff72f1d2dd4e30d8553fbcc4d8",
+    "JK_THEOREM_9_6_RANK5_G2.md": "9213054373640b6d29cf0e9f70f2892511569dfec9f7bc41c59316c8af78109b",
+    "basis.py": "2255929c964608fe52fd5b9b618b1dcfbfabc6a68348c3b85e747cfc7d45fa46",
+    "cluster_rank_driver.py": "4745d415522d1bd60eac33da6b8f7b92867cfa59ce6b0f0b2a2148fa230aa120",
+    "fast_modular.py": "5cf9cc0277cf3ba4155c7bf014d67b6754d0636f07eae57011f60e93e16bbb63",
+    "jk_formula.py": "c951d805b542b835de232a223863f3a7e97ab40d71f8efebb0571d364394d6b6",
+    "modular_rank_search.py": "c2687d433d64d5bd09ac6510560bc06e9cd8cc2cbe362dc766d274c94d613282",
+    "strict_degree_runner.py": "3122cf7313d3723d787d4899aa2ea9dc258dbac93c44c23eed9f0e60f28ed957",
+    "strict_relation_runner.py": "7ebf93c1de53a0ae03e6ce73f767faddd0b37e24b4340732eab1c59662c27789"
+  },
+  "status": "theorem_assisted_candidate",
+  "theorem_assumptions_required": [
+    "The relevant c12 relation space is nonzero and one-dimensional.",
+    "The relation lies in the recorded 44-dimensional Sp-invariant, Chern-homogeneous source basis.",
+    "Genuine relations pair to zero under the Jeffrey-Kirwan pairing against every W26 test class.",
+    "No hidden sector outside this c12 source space contributes to the relation being identified."
+  ],
+  "w_basis_dimension": 1039
+}

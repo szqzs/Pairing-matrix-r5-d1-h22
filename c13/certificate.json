@@ -1,0 +1,820 @@
+{
+  "chern_degree": 13,
+  "commands": {
+    "manifest": "/opt/anaconda3/bin/python /Users/siqingzhang/Documents/Playground/sp_invariant_fast_algorithm_v5/jk_only/cluster_rank_driver.py manifest --chern-degrees 13 --column-order cheap-probe --columns-per-task 16 --wave-size 64 --shard-mode task --source-degree 22 --w-degree 26 --output /Users/siqingzhang/Documents/Playground/jk_v5_runs/c13_c15_parallel_20260518T045321Z/c13/manifest.json",
+    "reduce": "/opt/anaconda3/bin/python /Users/siqingzhang/Documents/Playground/sp_invariant_fast_algorithm_v5/jk_only/cluster_rank_driver.py reduce --manifest /Users/siqingzhang/Documents/Playground/jk_v5_runs/c13_c15_parallel_20260518T045321Z/c13/manifest.json --shard-dir /Users/siqingzhang/Documents/Playground/jk_v5_runs/c13_c15_parallel_20260518T045321Z/c13/shards --shard-mode task --output /Users/siqingzhang/Documents/Playground/jk_v5_runs/c13_c15_parallel_20260518T045321Z/c13/reduce_final.json",
+    "verify_certificate": "/opt/anaconda3/bin/python /Users/siqingzhang/Documents/Playground/sp_invariant_fast_algorithm_v5/jk_only/cluster_rank_driver.py verify-certificate --manifest /Users/siqingzhang/Documents/Playground/jk_v5_runs/c13_c15_parallel_20260518T045321Z/c13/manifest.json --reduce-output /Users/siqingzhang/Documents/Playground/jk_v5_runs/c13_c15_parallel_20260518T045321Z/c13/reduce_final.json --second-prime 1000033 --output /Users/siqingzhang/Documents/Playground/jk_v5_runs/c13_c15_parallel_20260518T045321Z/c13/verification_final.json",
+    "worker": "/opt/anaconda3/bin/python /Users/siqingzhang/Documents/Playground/sp_invariant_fast_algorithm_v5/jk_only/cluster_rank_driver.py worker --manifest /Users/siqingzhang/Documents/Playground/jk_v5_runs/c13_c15_parallel_20260518T045321Z/c13/manifest.json --task-index '<task_index_spec>' --shard-dir /Users/siqingzhang/Documents/Playground/jk_v5_runs/c13_c15_parallel_20260518T045321Z/c13/shards --shard-mode task --no-repair-existing --output '<per-batch-worker-summary.json>'; exact per-batch commands are recorded in the raw strict-run ledger"
+  },
+  "elapsed_seconds": {
+    "manifest": 3.655225992202759,
+    "reduce": 3.1128549575805664,
+    "verify_certificate": 4242.793192863464,
+    "workers_total": null
+  },
+  "manifest_sha256": "e8d14b931ef8cadb5bbb6d0948b4e2ef5acc5743d07a74b3ae700212d61a7622",
+  "nullity": 0,
+  "prime": "2305843009213693951",
+  "rank": 94,
+  "raw_artifacts": {
+    "manifest": {
+      "label": "raw c13 manifest artifact, not committed",
+      "sha256": "e8d14b931ef8cadb5bbb6d0948b4e2ef5acc5743d07a74b3ae700212d61a7622"
+    },
+    "reduce": {
+      "label": "raw c13 final reduce artifact, not committed",
+      "sha256": "1a7d8f62840730baf53b77dbe6e18abc3b886d3329ec5294338ce907b00cc800"
+    },
+    "run_ledger": {
+      "label": "raw c13 strict-run ledger publication snapshot, not committed",
+      "sha256": "0cf22272ca706fc5701a9b131cdca16e1819c1b67137a029231e097117d043df"
+    },
+    "run_provenance": {
+      "label": "raw c13 strict-run provenance, not committed",
+      "sha256": "569d3416536b69d89005afa685b9c87d4b1efd3e3bad8a44104259433ef2b373"
+    },
+    "verification": {
+      "label": "raw c13 final verification artifact, not committed",
+      "sha256": "c92d0a8db40b90b9caae15f4c4de7fb733325fc5a118301681a3e98ca35620c3"
+    }
+  },
+  "reduce_output_sha256": "1a7d8f62840730baf53b77dbe6e18abc3b886d3329ec5294338ce907b00cc800",
+  "second_prime": "1000033",
+  "selected_columns": [
+    {
+      "w_index": 760,
+      "w_name": "f2^13"
+    },
+    {
+      "w_index": 306,
+      "w_name": "a2 f2^11"
+    },
+    {
+      "w_index": 525,
+      "w_name": "a3 f2^10"
+    },
+    {
+      "w_index": 112,
+      "w_name": "a2^2 f2^9"
+    },
+    {
+      "w_index": 644,
+      "w_name": "a4 f2^9"
+    },
+    {
+      "w_index": 206,
+      "w_name": "a2 a3 f2^8"
+    },
+    {
+      "w_index": 715,
+      "w_name": "a5 f2^8"
+    },
+    {
+      "w_index": 36,
+      "w_name": "a2^3 f2^7"
+    },
+    {
+      "w_index": 257,
+      "w_name": "a2 a4 f2^7"
+    },
+    {
+      "w_index": 462,
+      "w_name": "a3^2 f2^7"
+    },
+    {
+      "w_index": 73,
+      "w_name": "a2^2 a3 f2^6"
+    },
+    {
+      "w_index": 287,
+      "w_name": "a2 a5 f2^6"
+    },
+    {
+      "w_index": 494,
+      "w_name": "a3 a4 f2^6"
+    },
+    {
+      "w_index": 10,
+      "w_name": "a2^4 f2^5"
+    },
+    {
+      "w_index": 94,
+      "w_name": "a2^2 a4 f2^5"
+    },
+    {
+      "w_index": 183,
+      "w_name": "a2 a3^2 f2^5"
+    },
+    {
+      "w_index": 514,
+      "w_name": "a3 a5 f2^5"
+    },
+    {
+      "w_index": 626,
+      "w_name": "a4^2 f2^5"
+    },
+    {
+      "w_index": 23,
+      "w_name": "a2^3 a3 f2^4"
+    },
+    {
+      "w_index": 105,
+      "w_name": "a2^2 a5 f2^4"
+    },
+    {
+      "w_index": 195,
+      "w_name": "a2 a3 a4 f2^4"
+    },
+    {
+      "w_index": 449,
+      "w_name": "a3^3 f2^4"
+    },
+    {
+      "w_index": 637,
+      "w_name": "a4 a5 f2^4"
+    },
+    {
+      "w_index": 2,
+      "w_name": "a2^5 f2^3"
+    },
+    {
+      "w_index": 30,
+      "w_name": "a2^3 a4 f2^3"
+    },
+    {
+      "w_index": 66,
+      "w_name": "a2^2 a3^2 f2^3"
+    },
+    {
+      "w_index": 202,
+      "w_name": "a2 a3 a5 f2^3"
+    },
+    {
+      "w_index": 251,
+      "w_name": "a2 a4^2 f2^3"
+    },
+    {
+      "w_index": 456,
+      "w_name": "a3^2 a4 f2^3"
+    },
+    {
+      "w_index": 711,
+      "w_name": "a5^2 f2^3"
+    },
+    {
+      "w_index": 6,
+      "w_name": "a2^4 a3 f2^2"
+    },
+    {
+      "w_index": 34,
+      "w_name": "a2^3 a5 f2^2"
+    },
+    {
+      "w_index": 70,
+      "w_name": "a2^2 a3 a4 f2^2"
+    },
+    {
+      "w_index": 179,
+      "w_name": "a2 a3^3 f2^2"
+    },
+    {
+      "w_index": 255,
+      "w_name": "a2 a4 a5 f2^2"
+    },
+    {
+      "w_index": 460,
+      "w_name": "a3^2 a5 f2^2"
+    },
+    {
+      "w_index": 491,
+      "w_name": "a3 a4^2 f2^2"
+    },
+    {
+      "w_index": 826,
+      "w_name": "f2^4 gamma55"
+    },
+    {
+      "w_index": 804,
+      "w_name": "f2^5 gamma45"
+    },
+    {
+      "w_index": 787,
+      "w_name": "f2^6 gamma35"
+    },
+    {
+      "w_index": 788,
+      "w_name": "f2^6 gamma44"
+    },
+    {
+      "w_index": 777,
+      "w_name": "f2^7 gamma25"
+    },
+    {
+      "w_index": 778,
+      "w_name": "f2^7 gamma34"
+    },
+    {
+      "w_index": 769,
+      "w_name": "f2^8 gamma24"
+    },
+    {
+      "w_index": 770,
+      "w_name": "f2^8 gamma33"
+    },
+    {
+      "w_index": 766,
+      "w_name": "f2^9 gamma23"
+    },
+    {
+      "w_index": 763,
+      "w_name": "f2^10 gamma22"
+    },
+    {
+      "w_index": 372,
+      "w_name": "a2 f2^2 gamma55"
+    },
+    {
+      "w_index": 350,
+      "w_name": "a2 f2^3 gamma45"
+    },
+    {
+      "w_index": 333,
+      "w_name": "a2 f2^4 gamma35"
+    },
+    {
+      "w_index": 334,
+      "w_name": "a2 f2^4 gamma44"
+    },
+    {
+      "w_index": 323,
+      "w_name": "a2 f2^5 gamma25"
+    },
+    {
+      "w_index": 324,
+      "w_name": "a2 f2^5 gamma34"
+    },
+    {
+      "w_index": 315,
+      "w_name": "a2 f2^6 gamma24"
+    },
+    {
+      "w_index": 316,
+      "w_name": "a2 f2^6 gamma33"
+    },
+    {
+      "w_index": 312,
+      "w_name": "a2 f2^7 gamma23"
+    },
+    {
+      "w_index": 309,
+      "w_name": "a2 f2^8 gamma22"
+    },
+    {
+      "w_index": 591,
+      "w_name": "a3 f2 gamma55"
+    },
+    {
+      "w_index": 569,
+      "w_name": "a3 f2^2 gamma45"
+    },
+    {
+      "w_index": 552,
+      "w_name": "a3 f2^3 gamma35"
+    },
+    {
+      "w_index": 553,
+      "w_name": "a3 f2^3 gamma44"
+    },
+    {
+      "w_index": 542,
+      "w_name": "a3 f2^4 gamma25"
+    },
+    {
+      "w_index": 543,
+      "w_name": "a3 f2^4 gamma34"
+    },
+    {
+      "w_index": 534,
+      "w_name": "a3 f2^5 gamma24"
+    },
+    {
+      "w_index": 535,
+      "w_name": "a3 f2^5 gamma33"
+    },
+    {
+      "w_index": 531,
+      "w_name": "a3 f2^6 gamma23"
+    },
+    {
+      "w_index": 528,
+      "w_name": "a3 f2^7 gamma22"
+    },
+    {
+      "w_index": 156,
+      "w_name": "a2^2 f2 gamma45"
+    },
+    {
+      "w_index": 688,
+      "w_name": "a4 f2 gamma45"
+    },
+    {
+      "w_index": 139,
+      "w_name": "a2^2 f2^2 gamma35"
+    },
+    {
+      "w_index": 140,
+      "w_name": "a2^2 f2^2 gamma44"
+    },
+    {
+      "w_index": 671,
+      "w_name": "a4 f2^2 gamma35"
+    },
+    {
+      "w_index": 672,
+      "w_name": "a4 f2^2 gamma44"
+    },
+    {
+      "w_index": 129,
+      "w_name": "a2^2 f2^3 gamma25"
+    },
+    {
+      "w_index": 130,
+      "w_name": "a2^2 f2^3 gamma34"
+    },
+    {
+      "w_index": 661,
+      "w_name": "a4 f2^3 gamma25"
+    },
+    {
+      "w_index": 662,
+      "w_name": "a4 f2^3 gamma34"
+    },
+    {
+      "w_index": 121,
+      "w_name": "a2^2 f2^4 gamma24"
+    },
+    {
+      "w_index": 122,
+      "w_name": "a2^2 f2^4 gamma33"
+    },
+    {
+      "w_index": 653,
+      "w_name": "a4 f2^4 gamma24"
+    },
+    {
+      "w_index": 654,
+      "w_name": "a4 f2^4 gamma33"
+    },
+    {
+      "w_index": 118,
+      "w_name": "a2^2 f2^5 gamma23"
+    },
+    {
+      "w_index": 650,
+      "w_name": "a4 f2^5 gamma23"
+    },
+    {
+      "w_index": 115,
+      "w_name": "a2^2 f2^6 gamma22"
+    },
+    {
+      "w_index": 647,
+      "w_name": "a4 f2^6 gamma22"
+    },
+    {
+      "w_index": 233,
+      "w_name": "a2 a3 f2 gamma35"
+    },
+    {
+      "w_index": 234,
+      "w_name": "a2 a3 f2 gamma44"
+    },
+    {
+      "w_index": 742,
+      "w_name": "a5 f2 gamma35"
+    },
+    {
+      "w_index": 743,
+      "w_name": "a5 f2 gamma44"
+    },
+    {
+      "w_index": 223,
+      "w_name": "a2 a3 f2^2 gamma25"
+    },
+    {
+      "w_index": 224,
+      "w_name": "a2 a3 f2^2 gamma34"
+    },
+    {
+      "w_index": 732,
+      "w_name": "a5 f2^2 gamma25"
+    },
+    {
+      "w_index": 1032,
+      "w_name": "gamma23 gamma55"
+    },
+    {
+      "w_index": 1033,
+      "w_name": "gamma24 gamma45"
+    }
+  ],
+  "selected_minor_determinant_mod_p": "1268914876423577257",
+  "selected_minor_matrix_sha256": "2456323d082230b9b048a5298341dc4a1739db91d6937d66c6e9f9049d078c4a",
+  "selected_rows": [
+    {
+      "row_index": 0,
+      "row_name": "a2^4 f2 f3"
+    },
+    {
+      "row_index": 1,
+      "row_name": "a2^3 a3 f2^2"
+    },
+    {
+      "row_index": 2,
+      "row_name": "a2^3 f2 f5"
+    },
+    {
+      "row_index": 3,
+      "row_name": "a2^3 f2 gamma23"
+    },
+    {
+      "row_index": 4,
+      "row_name": "a2^3 f3 f4"
+    },
+    {
+      "row_index": 5,
+      "row_name": "a2^3 f3 gamma22"
+    },
+    {
+      "row_index": 6,
+      "row_name": "a2^2 a3 f2 f4"
+    },
+    {
+      "row_index": 8,
+      "row_name": "a2^2 a3 f3^2"
+    },
+    {
+      "row_index": 9,
+      "row_name": "a2^2 a4 f2 f3"
+    },
+    {
+      "row_index": 10,
+      "row_name": "a2^2 a5 f2^2"
+    },
+    {
+      "row_index": 11,
+      "row_name": "a2^2 f2 gamma25"
+    },
+    {
+      "row_index": 13,
+      "row_name": "a2^2 f3 gamma24"
+    },
+    {
+      "row_index": 15,
+      "row_name": "a2^2 f4 f5"
+    },
+    {
+      "row_index": 16,
+      "row_name": "a2^2 f4 gamma23"
+    },
+    {
+      "row_index": 17,
+      "row_name": "a2^2 f5 gamma22"
+    },
+    {
+      "row_index": 18,
+      "row_name": "a2^2 gamma22 gamma23"
+    },
+    {
+      "row_index": 19,
+      "row_name": "a2 a3^2 f2 f3"
+    },
+    {
+      "row_index": 20,
+      "row_name": "a2 a3 a4 f2^2"
+    },
+    {
+      "row_index": 21,
+      "row_name": "a2 a3 f2 gamma24"
+    },
+    {
+      "row_index": 23,
+      "row_name": "a2 a3 f3 f5"
+    },
+    {
+      "row_index": 24,
+      "row_name": "a2 a3 f3 gamma23"
+    },
+    {
+      "row_index": 25,
+      "row_name": "a2 a3 f4^2"
+    },
+    {
+      "row_index": 26,
+      "row_name": "a2 a3 f4 gamma22"
+    },
+    {
+      "row_index": 28,
+      "row_name": "a2 a4 f2 f5"
+    },
+    {
+      "row_index": 30,
+      "row_name": "a2 a4 f3 f4"
+    },
+    {
+      "row_index": 32,
+      "row_name": "a2 a5 f2 f4"
+    },
+    {
+      "row_index": 34,
+      "row_name": "a2 a5 f3^2"
+    },
+    {
+      "row_index": 38,
+      "row_name": "a2 f4 gamma25"
+    },
+    {
+      "row_index": 40,
+      "row_name": "a2 f5 gamma24"
+    },
+    {
+      "row_index": 42,
+      "row_name": "a2 gamma22 gamma25"
+    },
+    {
+      "row_index": 46,
+      "row_name": "a3^3 f2^2"
+    },
+    {
+      "row_index": 47,
+      "row_name": "a3^2 f2 f5"
+    },
+    {
+      "row_index": 48,
+      "row_name": "a3^2 f2 gamma23"
+    },
+    {
+      "row_index": 49,
+      "row_name": "a3^2 f3 f4"
+    },
+    {
+      "row_index": 50,
+      "row_name": "a3^2 f3 gamma22"
+    },
+    {
+      "row_index": 51,
+      "row_name": "a3 a4 f2 f4"
+    },
+    {
+      "row_index": 53,
+      "row_name": "a3 a4 f3^2"
+    },
+    {
+      "row_index": 7,
+      "row_name": "a2^2 a3 f2 gamma22"
+    },
+    {
+      "row_index": 12,
+      "row_name": "a2^2 f2 gamma34"
+    },
+    {
+      "row_index": 14,
+      "row_name": "a2^2 f3 gamma33"
+    },
+    {
+      "row_index": 22,
+      "row_name": "a2 a3 f2 gamma33"
+    },
+    {
+      "row_index": 27,
+      "row_name": "a2 a3 gamma22^2"
+    },
+    {
+      "row_index": 29,
+      "row_name": "a2 a4 f2 gamma23"
+    },
+    {
+      "row_index": 31,
+      "row_name": "a2 a4 f3 gamma22"
+    },
+    {
+      "row_index": 33,
+      "row_name": "a2 a5 f2 gamma22"
+    },
+    {
+      "row_index": 35,
+      "row_name": "a2 f2 gamma45"
+    },
+    {
+      "row_index": 36,
+      "row_name": "a2 f3 gamma35"
+    },
+    {
+      "row_index": 37,
+      "row_name": "a2 f3 gamma44"
+    },
+    {
+      "row_index": 39,
+      "row_name": "a2 f4 gamma34"
+    },
+    {
+      "row_index": 41,
+      "row_name": "a2 f5 gamma33"
+    },
+    {
+      "row_index": 43,
+      "row_name": "a2 gamma22 gamma34"
+    },
+    {
+      "row_index": 44,
+      "row_name": "a2 gamma23 gamma24"
+    },
+    {
+      "row_index": 45,
+      "row_name": "a2 gamma23 gamma33"
+    },
+    {
+      "row_index": 52,
+      "row_name": "a3 a4 f2 gamma22"
+    },
+    {
+      "row_index": 54,
+      "row_name": "a3 a5 f2 f3"
+    },
+    {
+      "row_index": 55,
+      "row_name": "a3 f2 gamma35"
+    },
+    {
+      "row_index": 56,
+      "row_name": "a3 f2 gamma44"
+    },
+    {
+      "row_index": 57,
+      "row_name": "a3 f3 gamma25"
+    },
+    {
+      "row_index": 58,
+      "row_name": "a3 f3 gamma34"
+    },
+    {
+      "row_index": 59,
+      "row_name": "a3 f4 gamma24"
+    },
+    {
+      "row_index": 60,
+      "row_name": "a3 f4 gamma33"
+    },
+    {
+      "row_index": 61,
+      "row_name": "a3 f5^2"
+    },
+    {
+      "row_index": 62,
+      "row_name": "a3 f5 gamma23"
+    },
+    {
+      "row_index": 63,
+      "row_name": "a3 gamma22 gamma24"
+    },
+    {
+      "row_index": 64,
+      "row_name": "a3 gamma22 gamma33"
+    },
+    {
+      "row_index": 66,
+      "row_name": "a4^2 f2 f3"
+    },
+    {
+      "row_index": 67,
+      "row_name": "a4 a5 f2^2"
+    },
+    {
+      "row_index": 68,
+      "row_name": "a4 f2 gamma25"
+    },
+    {
+      "row_index": 69,
+      "row_name": "a4 f2 gamma34"
+    },
+    {
+      "row_index": 70,
+      "row_name": "a4 f3 gamma24"
+    },
+    {
+      "row_index": 71,
+      "row_name": "a4 f3 gamma33"
+    },
+    {
+      "row_index": 72,
+      "row_name": "a4 f4 f5"
+    },
+    {
+      "row_index": 73,
+      "row_name": "a4 f4 gamma23"
+    },
+    {
+      "row_index": 74,
+      "row_name": "a4 f5 gamma22"
+    },
+    {
+      "row_index": 75,
+      "row_name": "a4 gamma22 gamma23"
+    },
+    {
+      "row_index": 76,
+      "row_name": "a5 f2 gamma24"
+    },
+    {
+      "row_index": 77,
+      "row_name": "a5 f2 gamma33"
+    },
+    {
+      "row_index": 78,
+      "row_name": "a5 f3 f5"
+    },
+    {
+      "row_index": 79,
+      "row_name": "a5 f3 gamma23"
+    },
+    {
+      "row_index": 80,
+      "row_name": "a5 f4^2"
+    },
+    {
+      "row_index": 81,
+      "row_name": "a5 f4 gamma22"
+    },
+    {
+      "row_index": 82,
+      "row_name": "a5 gamma22^2"
+    },
+    {
+      "row_index": 83,
+      "row_name": "f3 gamma55"
+    },
+    {
+      "row_index": 84,
+      "row_name": "f4 gamma45"
+    },
+    {
+      "row_index": 85,
+      "row_name": "f5 gamma35"
+    },
+    {
+      "row_index": 86,
+      "row_name": "f5 gamma44"
+    },
+    {
+      "row_index": 87,
+      "row_name": "gamma22 gamma45"
+    },
+    {
+      "row_index": 88,
+      "row_name": "gamma23 gamma35"
+    },
+    {
+      "row_index": 89,
+      "row_name": "gamma23 gamma44"
+    },
+    {
+      "row_index": 90,
+      "row_name": "gamma24 gamma25"
+    },
+    {
+      "row_index": 91,
+      "row_name": "gamma24 gamma34"
+    },
+    {
+      "row_index": 92,
+      "row_name": "gamma25 gamma33"
+    },
+    {
+      "row_index": 65,
+      "row_name": "a3 gamma23^2"
+    },
+    {
+      "row_index": 93,
+      "row_name": "gamma33 gamma34"
+    }
+  ],
+  "shard_mode": "task",
+  "source_basis_digest": "0db8fdc0c81696fd47252a4f6ef9fec2fe75ae8d34710fc6ccb63125a51d41da",
+  "source_dimension": 94,
+  "source_file_sha256": {
+    "GAMMA_CONVENTION.md": "8a1b9e6999245610ae8b579fbb3825fe725a18ff72f1d2dd4e30d8553fbcc4d8",
+    "JK_THEOREM_9_6_RANK5_G2.md": "9213054373640b6d29cf0e9f70f2892511569dfec9f7bc41c59316c8af78109b",
+    "basis.py": "2255929c964608fe52fd5b9b618b1dcfbfabc6a68348c3b85e747cfc7d45fa46",
+    "cluster_rank_driver.py": "4745d415522d1bd60eac33da6b8f7b92867cfa59ce6b0f0b2a2148fa230aa120",
+    "fast_modular.py": "5cf9cc0277cf3ba4155c7bf014d67b6754d0636f07eae57011f60e93e16bbb63",
+    "jk_formula.py": "c951d805b542b835de232a223863f3a7e97ab40d71f8efebb0571d364394d6b6",
+    "modular_rank_search.py": "c2687d433d64d5bd09ac6510560bc06e9cd8cc2cbe362dc766d274c94d613282",
+    "strict_degree_runner.py": "3122cf7313d3723d787d4899aa2ea9dc258dbac93c44c23eed9f0e60f28ed957",
+    "strict_relation_runner.py": "7ebf93c1de53a0ae03e6ce73f767faddd0b37e24b4340732eab1c59662c27789"
+  },
+  "status": "verified",
+  "target_rank": 94,
+  "verification_output_sha256": "c92d0a8db40b90b9caae15f4c4de7fb733325fc5a118301681a3e98ca35620c3",
+  "w_basis_digest": "6ea7a66c1bb34e5bd07fcf41cb6e7abd75ad4f654d87bb291b8cad2ad63e28fe",
+  "w_basis_dimension": 1039
+}
