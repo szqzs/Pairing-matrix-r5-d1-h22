@@ -22,7 +22,7 @@ from typing import Any, Dict, List, Optional
 TABLE_RE = re.compile(
     r"^\|\s*(?P<c>\d+)\s*\|\s*\[(?P<label>c\d+)\]\((?P<folder>c\d+/)\)\s*\|"
     r"\s*(?P<status>[^|]+?)\s*\|\s*(?P<rank>[^|]+?)\s*\|\s*(?P<nullity>[^|]+?)\s*\|"
-    r"\s*(?P<computed>[^|]+?)\s*\|\s*(?P<full>[^|]+?)\s*\|\s*(?P<certificate>[^|]+?)\s*\|"
+    r"\s*(?P<computed>[^|]+?)\s*\|\s*(?P<certificate>[^|]+?)\s*\|"
 )
 
 
@@ -76,10 +76,6 @@ def expected_table_values(item: Dict[str, Any]) -> Dict[str, str]:
         computed = "TBD"
     else:
         computed = f"{int(item['computed_w_columns'])}/{int(item['w_basis_dimension'])}"
-    if item.get("full_w_basis_covered") is None:
-        full = "TBD"
-    else:
-        full = "yes" if item["full_w_basis_covered"] else "no"
     if item.get("certificate"):
         cert_path = str(item["certificate"])
         certificate = f"[{Path(cert_path).name}]({cert_path})"
@@ -90,7 +86,6 @@ def expected_table_values(item: Dict[str, Any]) -> Dict[str, str]:
         "rank": rank,
         "nullity": nullity,
         "computed": computed,
-        "full": full,
         "certificate": certificate,
     }
 

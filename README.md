@@ -17,31 +17,28 @@ For the formula dictionary and implementation checks, see
 ## Status
 
 In this table, `verified` means a verified modular certificate over the
-recorded prime(s), and `Nullity` means source-side/left nullity.  `Full W?`
-refers to the committed matrix-column export, not to whether the rank
-certificate is complete.
+recorded prime(s), and `Nullity` means source-side/left nullity.
 
-| Chern degree | Folder | Status | Rank | Nullity | Computed W columns | Full W? | Certificate |
-|---:|---|---|---:|---:|---:|:---:|---|
-| 11 | [c11](c11/) | verified | 7 | 0 | 8/1039 | no | [certificate.json](c11/certificate.json) |
-| 12 | [c12](c12/) | theorem-assisted candidate | 43 | 1 | 784/1039 | no | [theorem_assisted_candidate.json](c12/theorem_assisted_candidate.json) |
-| 13 | [c13](c13/) | verified | 94 | 0 | 208/1039 | no | [certificate.json](c13/certificate.json) |
-| 14 | [c14](c14/) | verified | 111 | 0 | 208/1039 | no | [certificate.json](c14/certificate.json) |
-| 15 | [c15](c15/) | verified | 81 | 0 | 96/1039 | no | [certificate.json](c15/certificate.json) |
-| 16 | [c16](c16/) | verified | 53 | 0 | 128/1039 | no | [certificate.json](c16/certificate.json) |
-| 17 | [c17](c17/) | verified | 28 | 0 | 64/1039 | no | [certificate.json](c17/certificate.json) |
-| 18 | [c18](c18/) | verified | 16 | 0 | 64/1039 | no | [certificate.json](c18/certificate.json) |
-| 19 | [c19](c19/) | verified | 7 | 0 | 8/1039 | no | [certificate.json](c19/certificate.json) |
-| 20 | [c20](c20/) | verified | 4 | 0 | 8/1039 | no | [certificate.json](c20/certificate.json) |
-| 21 | [c21](c21/) | verified | 1 | 0 | 8/1039 | no | [certificate.json](c21/certificate.json) |
-| 22 | [c22](c22/) | verified | 1 | 0 | 8/1039 | no | [certificate.json](c22/certificate.json) |
+| Chern degree | Folder | Status | Rank | Nullity | Computed W columns | Certificate |
+|---:|---|---|---:|---:|---:|---|
+| 11 | [c11](c11/) | verified | 7 | 0 | 8/1039 | [certificate.json](c11/certificate.json) |
+| 12 | [c12](c12/) | theorem-assisted candidate | 43 | 1 | 784/1039 | [theorem_assisted_candidate.json](c12/theorem_assisted_candidate.json) |
+| 13 | [c13](c13/) | verified | 94 | 0 | 208/1039 | [certificate.json](c13/certificate.json) |
+| 14 | [c14](c14/) | verified | 111 | 0 | 208/1039 | [certificate.json](c14/certificate.json) |
+| 15 | [c15](c15/) | verified | 81 | 0 | 96/1039 | [certificate.json](c15/certificate.json) |
+| 16 | [c16](c16/) | verified | 53 | 0 | 128/1039 | [certificate.json](c16/certificate.json) |
+| 17 | [c17](c17/) | verified | 28 | 0 | 64/1039 | [certificate.json](c17/certificate.json) |
+| 18 | [c18](c18/) | verified | 16 | 0 | 64/1039 | [certificate.json](c18/certificate.json) |
+| 19 | [c19](c19/) | verified | 7 | 0 | 8/1039 | [certificate.json](c19/certificate.json) |
+| 20 | [c20](c20/) | verified | 4 | 0 | 8/1039 | [certificate.json](c20/certificate.json) |
+| 21 | [c21](c21/) | verified | 1 | 0 | 8/1039 | [certificate.json](c21/certificate.json) |
+| 22 | [c22](c22/) | verified | 1 | 0 | 8/1039 | [certificate.json](c22/certificate.json) |
 
 `Computed W columns` records committed modular columns for verified full-rank
 degrees.  For `c12`, it records the loaded columns checked by the
-theorem-assisted candidate artifact.  `Full W? = no` is not a defect for a
-full-rank certificate: a verified nonzero selected minor is enough to certify
-the displayed rank.  The machine-readable version of this table is
-[summary.json](summary.json).
+theorem-assisted candidate artifact.  These columns are not automatically the
+full pairing matrix; each degree folder records the exact export scope.  The
+machine-readable version of this table is [summary.json](summary.json).
 
 ## Mathematical Scope
 

@@ -37,8 +37,9 @@ step described for `c12`.
 
 `computed_columns_mod_p.json.gz` records the modular pairing columns actually
 computed during the certificate run.  It is not automatically a full matrix.
-Use the `Computed W columns` and `Full W?` fields in the status table to see
-the scope.
+Use the `Computed W columns` field in the status table for a quick count.  The
+per-degree folder records whether the committed column export covers the full
+`W26` basis.
 
 Each column stores:
 
