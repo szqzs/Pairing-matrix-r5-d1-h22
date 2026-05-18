@@ -25,7 +25,7 @@ $$
 =\{X=(x_1,\ldots,x_n)\in\mathbb C^n:x_1+\cdots+x_n=0\}.
 $$
 
-- `X` is the residue variable: a formal point of
+- `X` is the residue variable: a point of
   `\mathfrak t_{\mathbb C}`.  Writing
   `X=(x_1,\ldots,x_n)` means that `x_i` is the `i`th coordinate function
   evaluated on this variable point.  Thus the `x_i` are not fixed numbers;
