@@ -1,0 +1,76 @@
+{
+  "chern_degree": 21,
+  "commands": {
+    "manifest": "/opt/anaconda3/bin/python /Users/siqingzhang/Documents/Playground/sp_invariant_fast_algorithm_v5/jk_only/cluster_rank_driver.py manifest --chern-degrees 21 --column-order cheap-probe --columns-per-task 8 --wave-size 32 --shard-mode task --source-degree 22 --w-degree 26 --output /Users/siqingzhang/Documents/Playground/jk_v5_runs/easy_degrees_20260518T035205Z/c21/manifest.json",
+    "reduce": "/opt/anaconda3/bin/python /Users/siqingzhang/Documents/Playground/sp_invariant_fast_algorithm_v5/jk_only/cluster_rank_driver.py reduce --manifest /Users/siqingzhang/Documents/Playground/jk_v5_runs/easy_degrees_20260518T035205Z/c21/manifest.json --shard-dir /Users/siqingzhang/Documents/Playground/jk_v5_runs/easy_degrees_20260518T035205Z/c21/shards --shard-mode task --output /Users/siqingzhang/Documents/Playground/jk_v5_runs/easy_degrees_20260518T035205Z/c21/reduce_final.json",
+    "verify_certificate": "/opt/anaconda3/bin/python /Users/siqingzhang/Documents/Playground/sp_invariant_fast_algorithm_v5/jk_only/cluster_rank_driver.py verify-certificate --manifest /Users/siqingzhang/Documents/Playground/jk_v5_runs/easy_degrees_20260518T035205Z/c21/manifest.json --reduce-output /Users/siqingzhang/Documents/Playground/jk_v5_runs/easy_degrees_20260518T035205Z/c21/reduce_final.json --second-prime 1000033 --output /Users/siqingzhang/Documents/Playground/jk_v5_runs/easy_degrees_20260518T035205Z/c21/verification_final.json",
+    "worker": "/opt/anaconda3/bin/python /Users/siqingzhang/Documents/Playground/sp_invariant_fast_algorithm_v5/jk_only/cluster_rank_driver.py worker --manifest /Users/siqingzhang/Documents/Playground/jk_v5_runs/easy_degrees_20260518T035205Z/c21/manifest.json --task-index '<task_index_spec>' --shard-dir /Users/siqingzhang/Documents/Playground/jk_v5_runs/easy_degrees_20260518T035205Z/c21/shards --shard-mode task --no-repair-existing --output '<per-batch-worker-summary.json>'; exact per-batch commands are recorded in the raw strict-run ledger"
+  },
+  "elapsed_seconds": {
+    "manifest": 3.0842812061309814,
+    "reduce": 2.9364991188049316,
+    "verify_certificate": 2.9895620346069336,
+    "workers_total": null
+  },
+  "manifest_sha256": "4541bdb6050e72efd77c89913cdd93312e28cde62a4dbb2a7cbbbfa260a8708d",
+  "nullity": 0,
+  "prime": "2305843009213693951",
+  "rank": 1,
+  "raw_artifacts": {
+    "manifest": {
+      "label": "raw c21 manifest artifact, not committed",
+      "sha256": "4541bdb6050e72efd77c89913cdd93312e28cde62a4dbb2a7cbbbfa260a8708d"
+    },
+    "reduce": {
+      "label": "raw c21 final reduce artifact, not committed",
+      "sha256": "e77025e57ea6c0524d778dcbe6f22836939a7febd78090277947532aced871c7"
+    },
+    "run_ledger": {
+      "label": "raw c21 strict-run ledger publication snapshot, not committed",
+      "sha256": "6a8b49ce157f4cff0e5d7ea2e68eaaab5e444d32a05ba1752810cc6b3883e05f"
+    },
+    "run_provenance": {
+      "label": "raw c21 strict-run provenance, not committed",
+      "sha256": "a657dda50be2ba795dc224f69755565d5f96149924a712cb150808e6d6e998db"
+    },
+    "verification": {
+      "label": "raw c21 final verification artifact, not committed",
+      "sha256": "3c2c665e645c47a0693bfd116e73dcfa62405541423d69b45e2edcff7b530cf5"
+    }
+  },
+  "reduce_output_sha256": "e77025e57ea6c0524d778dcbe6f22836939a7febd78090277947532aced871c7",
+  "second_prime": "1000033",
+  "selected_columns": [
+    {
+      "w_index": 306,
+      "w_name": "a2 f2^11"
+    }
+  ],
+  "selected_minor_determinant_mod_p": "1438514327499689729",
+  "selected_minor_matrix_sha256": "c25030962cc4d8d2e44abc2d9cc48676a01bd867ad7260a8bd3a9ddbe9147571",
+  "selected_rows": [
+    {
+      "row_index": 0,
+      "row_name": "f2^9 f3"
+    }
+  ],
+  "shard_mode": "task",
+  "source_basis_digest": "87768525e31931a70367f28337630e2ced1fe796961c153f029503abed238c38",
+  "source_dimension": 1,
+  "source_file_sha256": {
+    "GAMMA_CONVENTION.md": "8a1b9e6999245610ae8b579fbb3825fe725a18ff72f1d2dd4e30d8553fbcc4d8",
+    "JK_THEOREM_9_6_RANK5_G2.md": "9213054373640b6d29cf0e9f70f2892511569dfec9f7bc41c59316c8af78109b",
+    "basis.py": "2255929c964608fe52fd5b9b618b1dcfbfabc6a68348c3b85e747cfc7d45fa46",
+    "cluster_rank_driver.py": "4745d415522d1bd60eac33da6b8f7b92867cfa59ce6b0f0b2a2148fa230aa120",
+    "fast_modular.py": "5cf9cc0277cf3ba4155c7bf014d67b6754d0636f07eae57011f60e93e16bbb63",
+    "jk_formula.py": "c951d805b542b835de232a223863f3a7e97ab40d71f8efebb0571d364394d6b6",
+    "modular_rank_search.py": "c2687d433d64d5bd09ac6510560bc06e9cd8cc2cbe362dc766d274c94d613282",
+    "strict_degree_runner.py": "3122cf7313d3723d787d4899aa2ea9dc258dbac93c44c23eed9f0e60f28ed957",
+    "strict_relation_runner.py": "7ebf93c1de53a0ae03e6ce73f767faddd0b37e24b4340732eab1c59662c27789"
+  },
+  "status": "verified",
+  "target_rank": 1,
+  "verification_output_sha256": "3c2c665e645c47a0693bfd116e73dcfa62405541423d69b45e2edcff7b530cf5",
+  "w_basis_digest": "6ea7a66c1bb34e5bd07fcf41cb6e7abd75ad4f654d87bb291b8cad2ad63e28fe",
+  "w_basis_dimension": 1039
+}

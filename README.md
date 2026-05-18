@@ -11,7 +11,7 @@ the same certificate locally or on a cluster.
 
 | Chern degree | Folder | Status | Rank | Nullity | Computed W columns | Full W? | Certificate |
 |---:|---|---|---:|---:|---:|:---:|---|
-| 11 | [c11](c11/) | pending | TBD | TBD | TBD | TBD | pending |
+| 11 | [c11](c11/) | verified | 7 | 0 | 8/1039 | no | [certificate.json](c11/certificate.json) |
 | 12 | [c12](c12/) | pending relation | TBD | TBD | TBD | TBD | pending |
 | 13 | [c13](c13/) | pending | TBD | TBD | TBD | TBD | pending |
 | 14 | [c14](c14/) | pending | TBD | TBD | TBD | TBD | pending |
@@ -19,10 +19,10 @@ the same certificate locally or on a cluster.
 | 16 | [c16](c16/) | verified | 53 | 0 | 128/1039 | no | [certificate.json](c16/certificate.json) |
 | 17 | [c17](c17/) | verified | 28 | 0 | 64/1039 | no | [certificate.json](c17/certificate.json) |
 | 18 | [c18](c18/) | verified | 16 | 0 | 64/1039 | no | [certificate.json](c18/certificate.json) |
-| 19 | [c19](c19/) | pending | TBD | TBD | TBD | TBD | pending |
-| 20 | [c20](c20/) | pending | TBD | TBD | TBD | TBD | pending |
-| 21 | [c21](c21/) | pending | TBD | TBD | TBD | TBD | pending |
-| 22 | [c22](c22/) | pending | TBD | TBD | TBD | TBD | pending |
+| 19 | [c19](c19/) | verified | 7 | 0 | 8/1039 | no | [certificate.json](c19/certificate.json) |
+| 20 | [c20](c20/) | verified | 4 | 0 | 8/1039 | no | [certificate.json](c20/certificate.json) |
+| 21 | [c21](c21/) | verified | 1 | 0 | 8/1039 | no | [certificate.json](c21/certificate.json) |
+| 22 | [c22](c22/) | verified | 1 | 0 | 8/1039 | no | [certificate.json](c22/certificate.json) |
 
 ## Mathematical Scope
 
