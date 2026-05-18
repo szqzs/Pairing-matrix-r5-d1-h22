@@ -80,7 +80,7 @@ $$
 a_r\in H^{2r},\qquad b_r^k\in H^{2r-1},\qquad f_r\in H^{2r-2}.
 $$
 
-  The exponents $m_r$, $p_{r,k}$, and $\nu_r$ below record a monomial in
+- The exponents $m_r$, $p_{r,k}$, and $\nu_r$ below record a monomial in
   those classes.  The exponent $p_{r,k}$ records whether the odd class
   $b_r^k$ is present.  Since $b_r^k$ is an odd exterior class, surviving terms
   have $p_{r,k}=0$ or $1$: exponent `0` means that factor is omitted, and
