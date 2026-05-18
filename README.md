@@ -14,6 +14,22 @@ For a guided reading path, see [How to read this repository](docs/HOW_TO_READ.md
 For the formula dictionary and implementation checks, see
 [JK formula dictionary and implementation checks](docs/JK_VERIFICATION.md).
 
+## C12 Relation Candidate
+
+The theorem-assisted `c12` relation candidate is the main relation artifact in
+this repository.  The easiest entry point is the human-readable coefficient
+list:
+
+- [c12 relation coefficients](c12/relation_coefficients.md)
+- [c12 folder summary](c12/)
+- [machine-readable c12 candidate artifact](c12/theorem_assisted_candidate.json)
+- [logical status of the theorem-assisted candidate](docs/C12_THEOREM_ASSISTED_CANDIDATE.md)
+
+The primitive integer vector is normalized by `a5 gamma34 = 150`, equivalently
+by `a5 gamma34 = 1` in the rational normalization recorded in the JSON file.
+This is a theorem-assisted candidate line, not a full `1039`-column
+annihilation certificate.
+
 ## Status
 
 In this table, `verified` means a verified modular certificate over the
