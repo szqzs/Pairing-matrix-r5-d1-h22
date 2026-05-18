@@ -3,11 +3,22 @@
 This is a small browser notebook for line-by-line human checking of the
 Jeffrey-Kirwan implementation.
 
-Open:
+Readers can use it in either of two ways.
+
+Online, use the GitHub Pages version:
+
+```text
+https://szqzs.github.io/Pairing-matrix-r5-d1-h22/audit_notebook/
+```
+
+Locally, after cloning or downloading the repository, open:
 
 ```text
 audit_notebook/index.html
 ```
+
+GitHub's ordinary file viewer shows HTML source code instead of running the
+notebook, so use the Pages link or open the downloaded HTML file in a browser.
 
 The notebook saves progress in your browser's local storage.  Use the export
 buttons regularly to save a JSON backup or a Markdown audit log.

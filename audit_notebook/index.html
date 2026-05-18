@@ -818,6 +818,7 @@
   <script>
     const TASKS = JSON.parse(document.getElementById("task-data").textContent);
     const STORAGE_KEY = "jk-human-audit-notebook-v1";
+    const REPO_BLOB_BASE = "https://github.com/szqzs/Pairing-matrix-r5-d1-h22/blob/main/";
     const STATUS_LABELS = {
       "not-started": "Not started",
       "reading": "Reading",
@@ -891,6 +892,14 @@
         "\"": "&quot;",
         "'": "&#039;"
       })[char]);
+    }
+
+    function linkTarget(path) {
+      if (!path || path === "#") return "#";
+      if (!location.hostname.endsWith("github.io")) return path;
+      const [base, hash] = path.split("#");
+      const normalized = base.replace(/^(\.\.\/)+/, "");
+      return REPO_BLOB_BASE + normalized + (hash ? "#" + hash : "");
     }
 
     function taskState(taskId) {
@@ -1008,7 +1017,7 @@
       if (saved.status === "needs-discussion") article.classList.add("needs");
 
       const files = task.files.map((file) => (
-        "<li><a href='" + escapeHtml(file.path) + "' target='_blank' rel='noreferrer'>" +
+        "<li><a href='" + escapeHtml(linkTarget(file.path)) + "' target='_blank' rel='noreferrer'>" +
         escapeHtml(file.label) + "</a></li>"
       )).join("");
 

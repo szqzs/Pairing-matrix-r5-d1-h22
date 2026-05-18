@@ -14,8 +14,9 @@ annihilation certificate against every degree-26 test class.
 For a guided reading path, see [How to read this repository](docs/HOW_TO_READ.md).
 For the formula dictionary and implementation checks, see
 [JK formula dictionary and implementation checks](docs/JK_VERIFICATION.md).
-For a personal checklist while reading the code, open the
-[human audit notebook](audit_notebook/).
+For a personal checklist while reading the code, use the
+[online human audit notebook](https://szqzs.github.io/Pairing-matrix-r5-d1-h22/audit_notebook/)
+or the [notebook folder](audit_notebook/) after downloading the repository.
 
 ## C12 Relation Candidate
 
