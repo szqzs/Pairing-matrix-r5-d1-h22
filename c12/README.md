@@ -16,6 +16,5 @@ Status: pending
 | Exact command | TBD |
 | Elapsed time | TBD |
 
-Verified milestone files will be added here after the c12 run passes
-`verify-certificate`.
-
+Verified relation files will be added here after the c12 run passes
+`relation-reduce` and `verify-relation-certificate`.

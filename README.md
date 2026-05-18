@@ -1,67 +1,73 @@
-# Pairing Matrix Records for Rank 5, Degree 1, Genus 2, Ordinary Degree 22
+# Rank 5, Genus 2 JK Pairing Records in Ordinary Degree 22
 
-This repository is the clean public record for the JK-only reproduction of the
-pairing-matrix rank computations for the cohomology ring of the moduli space of
-rank 5, genus 2 vector bundles in determinant degree 1.
+This repository is the clean public record for Jeffrey-Kirwan pairing
+computations in ordinary degree 22 for rank 5, genus 2, determinant degree 1.
 
-Only verified milestones should be committed here. Raw worker shards, local
-caches, ledgers, logs, and exploratory dumps should stay outside this
-repository.
+The main purpose is reader verification: every committed milestone should have
+enough code, hashes, commands, and compact data for another reader to reproduce
+the same certificate locally or on a cluster.
 
 ## Status
 
-| Chern degree | Folder | Status | Rank | Nullity | Certificate |
-|---:|---|---|---:|---:|---|
-| 11 | [c11](c11/) | pending | TBD | TBD | pending |
-| 12 | [c12](c12/) | pending | TBD | TBD | pending |
-| 13 | [c13](c13/) | pending | TBD | TBD | pending |
-| 14 | [c14](c14/) | pending | TBD | TBD | pending |
-| 15 | [c15](c15/) | pending | TBD | TBD | pending |
-| 16 | [c16](c16/) | verified | 53 | 0 | [certificate.json](c16/certificate.json) |
-| 17 | [c17](c17/) | verified | 28 | 0 | [certificate.json](c17/certificate.json) |
-| 18 | [c18](c18/) | verified | 16 | 0 | [certificate.json](c18/certificate.json) |
-| 19 | [c19](c19/) | pending | TBD | TBD | pending |
-| 20 | [c20](c20/) | pending | TBD | TBD | pending |
-| 21 | [c21](c21/) | pending | TBD | TBD | pending |
-| 22 | [c22](c22/) | pending | TBD | TBD | pending |
+| Chern degree | Folder | Status | Rank | Nullity | Computed W columns | Full W? | Certificate |
+|---:|---|---|---:|---:|---:|:---:|---|
+| 11 | [c11](c11/) | pending | TBD | TBD | TBD | TBD | pending |
+| 12 | [c12](c12/) | pending relation | TBD | TBD | TBD | TBD | pending |
+| 13 | [c13](c13/) | pending | TBD | TBD | TBD | TBD | pending |
+| 14 | [c14](c14/) | pending | TBD | TBD | TBD | TBD | pending |
+| 15 | [c15](c15/) | pending | TBD | TBD | TBD | TBD | pending |
+| 16 | [c16](c16/) | verified | 53 | 0 | 128/1039 | no | [certificate.json](c16/certificate.json) |
+| 17 | [c17](c17/) | verified | 28 | 0 | 64/1039 | no | [certificate.json](c17/certificate.json) |
+| 18 | [c18](c18/) | verified | 16 | 0 | 64/1039 | no | [certificate.json](c18/certificate.json) |
+| 19 | [c19](c19/) | pending | TBD | TBD | TBD | TBD | pending |
+| 20 | [c20](c20/) | pending | TBD | TBD | TBD | TBD | pending |
+| 21 | [c21](c21/) | pending | TBD | TBD | TBD | TBD | pending |
+| 22 | [c22](c22/) | pending | TBD | TBD | TBD | TBD | pending |
 
-## JK-Only Algorithm Summary
+## Mathematical Scope
 
-The computation uses only the Jeffrey-Kirwan formula from Theorem 9.6 and
-Lemma 9.10 of Jeffrey-Kirwan, specialized to rank 5, genus 2, determinant
-degree 1.
+The code evaluates the Jeffrey-Kirwan pairing directly from the JK formula,
+using the JK variables and conventions recorded in the source documents.  For
+each Chern degree `c`, the source rows are the Sp-invariant ordinary-degree-22
+classes of Chern degree `c`, and the columns are the Sp-invariant `W26` test
+basis.  A matrix entry is the JK pairing of one source row with one test
+column.
 
-For each Chern degree `c`, the code builds the JK Sp-invariant source basis in
-ordinary degree 22 and pairs it against the JK Sp-invariant `W26` test basis.
-Each entry is evaluated modulo a certified large prime. Columns are ordered by
-a cheap workload score or by a small JK probe, then row-reduced incrementally.
-A rank claim is accepted only after a selected square minor has nonzero
-determinant modulo the prime.
+For full-rank degrees, the certificate is a selected square minor with nonzero
+determinant modulo a certified prime, then a direct recomputation of that minor
+from the JK evaluator.  A second prime is used as an independent guard against
+bad-prime or implementation mistakes.
 
-The distributed workflow is:
+For `c12`, the expected object is different: a corank-one relation line.  The
+planned modular certificate will record a nonzero rank-43 minor, a normalized
+left kernel vector, and a direct verification that this vector annihilates
+every `W26` column modulo the recorded prime.  The separate Higgs-moduli theorem
+should be stated separately: it reduces the Higgs relation in `H^22` to the
+corresponding invariant Chern-degree-12 candidate line.  Publishing literal
+rational coefficients requires an additional reconstruction/exact-verification
+artifact.
 
-1. Build a manifest that records the exact formula/code hashes, basis digests,
-   prime, task order, and shard mode.
-2. Compute task-bundle shards for the manifest.
-3. Reduce verified shards to a selected-minor certificate.
-4. Run `verify-certificate`, which recomputes the selected minor directly from
-   the JK evaluator and checks the determinant and matrix hash. A second prime
-   may be supplied as an additional nonvanishing check.
-5. Extract the compact result only from the final reduce and final
-   `verify-certificate` artifact. Intermediate `--allow-in-progress`
-   verification artifacts are continuation gates only.
-6. Commit only the compact verified summary for that Chern degree.
+## Source Code
 
-The planned staged order is `c18`, `c17`, then `c16,c15,c13,c14`, then
-`c19,c20,c21,c22`, and finally `c12,c11`. The order does not affect the
-certificate, but it keeps the canaries and hardest middle cases separated.
+- [`src/jk_only_v5_c16_frozen`](src/jk_only_v5_c16_frozen/) is the frozen
+  source copy used for the verified `c16`, `c17`, and `c18` milestones.
+- [`src/jk_only_v5_relation_frozen`](src/jk_only_v5_relation_frozen/) is the
+  relation-capable source copy prepared for the c12 corank-one certificate.
 
-## Local Reproduction
+The frozen source folders are intended to be runnable snapshots as well as hash
+references.  A reader may either run from the original workspace layout or copy
+one frozen folder into a local source tree and run the same scripts there.
 
-Run from the workspace that contains both the v5 implementation checkout and
-this publication repository. The strict runner writes raw artifacts into an
-absolute timestamped run directory and records the exact per-batch commands in
-its ledger:
+## Computed Entries
+
+The files named `computed_columns_mod_p.json.gz` contain the pairing columns
+actually computed for a certificate.  They are not automatically full pairing
+matrices.  Each degree folder states whether the full `W26` basis was covered.
+
+## Reproduce Locally
+
+From the workspace containing this repository and the v5 source tree, or from a
+copy of the appropriate frozen source folder:
 
 ```bash
 RUN_ROOT="/absolute/path/to/jk_v5_runs/$(date -u +%Y%m%dT%H%M%SZ)"
@@ -77,83 +83,34 @@ python sp_invariant_fast_algorithm_v5/jk_only/strict_degree_runner.py run-degree
   --extract-publication
 ```
 
-The runner reduces and verifies after each small task batch. It publishes to
-the matching `cXX/` folder only after the final reduce has status `passed` and
-the final certificate verification has passed with the second prime.
-
-## Cluster Reproduction
-
-Use absolute paths in every command. Never rely on the driver defaults for
-`--manifest`, `--shard-dir`, or `--output`.
-
-Create a wave plan:
+For the c12 relation certificate, use the relation runner after the source has
+been reviewed:
 
 ```bash
-python sp_invariant_fast_algorithm_v5/jk_only/cluster_rank_driver.py wave \
-  --manifest "$RUN_ROOT/c18/manifest.json" \
-  --wave-index 0 \
-  --chern-degrees 18 \
-  --output "$RUN_ROOT/c18/waves/wave_000.json"
-```
-
-Submit one SLURM array task per planned manifest task, or a small explicit
-task range:
-
-```bash
-python sp_invariant_fast_algorithm_v5/jk_only/cluster_rank_driver.py worker \
-  --manifest "$RUN_ROOT/c18/manifest.json" \
-  --task-index "$SLURM_ARRAY_TASK_ID" \
-  --shard-dir "$RUN_ROOT/c18/shards" \
-  --shard-mode task \
-  --no-repair-existing \
-  --output "$RUN_ROOT/c18/worker_summaries/task_${SLURM_ARRAY_TASK_ID}.json"
-```
-
-Reduce and verify after each submitted batch:
-
-```bash
-python sp_invariant_fast_algorithm_v5/jk_only/cluster_rank_driver.py reduce \
-  --manifest "$RUN_ROOT/c18/manifest.json" \
-  --shard-dir "$RUN_ROOT/c18/shards" \
-  --shard-mode task \
-  --output "$RUN_ROOT/c18/reductions/reduce_wave000_batch000.json"
-
-python sp_invariant_fast_algorithm_v5/jk_only/cluster_rank_driver.py verify-certificate \
-  --manifest "$RUN_ROOT/c18/manifest.json" \
-  --reduce-output "$RUN_ROOT/c18/reductions/reduce_wave000_batch000.json" \
-  --allow-in-progress \
-  --output "$RUN_ROOT/c18/verifications/verification_wave000_batch000.json"
-```
-
-For the final publication certificate, omit `--allow-in-progress` and supply
-the second prime:
-
-```bash
-python sp_invariant_fast_algorithm_v5/jk_only/cluster_rank_driver.py verify-certificate \
-  --manifest "$RUN_ROOT/c18/manifest.json" \
-  --reduce-output "$RUN_ROOT/c18/reduce_final.json" \
+python sp_invariant_fast_algorithm_v5/jk_only/strict_relation_runner.py run-relation \
+  --chern-degree 12 \
+  --run-root "$RUN_ROOT" \
+  --column-order cheap-probe \
+  --columns-per-task 16 \
+  --wave-size 64 \
+  --task-batch-size 4 \
   --second-prime 1000033 \
-  --output "$RUN_ROOT/c18/verification_final.json"
+  --extract-publication
 ```
 
-For later waves, provide both the prior reduce output and its verification
-artifact:
+## More Details
 
-```bash
-python sp_invariant_fast_algorithm_v5/jk_only/cluster_rank_driver.py wave \
-  --manifest "$RUN_ROOT/c18/manifest.json" \
-  --wave-index 1 \
-  --previous-reduce "$RUN_ROOT/c18/reductions/reduce_wave000_batch000.json" \
-  --previous-verification "$RUN_ROOT/c18/verifications/verification_wave000_batch000.json" \
-  --output "$RUN_ROOT/c18/waves/wave_001.json"
-```
+- [Result schema](docs/RESULT_SCHEMA.md)
+- [Relation verification notes](docs/RELATION_CERTIFICATE.md)
+- [Cluster reproduction notes](docs/CLUSTER.md)
 
-## Result Folder Contents
+## Provenance Notes
 
-Each `cXX/` folder should contain:
+Committed certificates preserve the exact commands from the original run, so
+some command strings contain absolute local paths.  Use those commands as
+provenance records and replace the roots when reproducing on another machine.
 
-- `README.md`: compact human-readable rank/nullity and command record.
-- `certificate.json`: compact selected-minor certificate and provenance.
-- optional `notes.md`: short comments about retries or environment issues.
-
-Do not commit raw shards, large caches, full matrices, or exploratory logs.
+The c16/c17/c18 certificates were extracted before the later relation-specific
+publication helpers were added.  Their computational source is frozen in
+`src/jk_only_v5_c16_frozen/`; later extractor script changes do not change the
+recorded selected-minor certificates.
