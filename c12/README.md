@@ -25,6 +25,19 @@ finding a rank-43 selected submatrix inside the 44-dimensional source space.
 | Candidate artifact | [theorem_assisted_candidate.json](theorem_assisted_candidate.json) |
 | Coefficients | [relation_coefficients.md](relation_coefficients.md) |
 
+## Paused Full-Column Checkpoint
+
+A later primary-prime full-column run was intentionally paused after `880` of
+the `1039` degree-26 `W26` columns had been computed.  That checkpoint is
+published separately so the partial data is not lost:
+
+- [partial checkpoint summary](partial_880_columns.README.md)
+- [partial checkpoint metadata](partial_880_columns_checkpoint.json)
+- [partial modular column vectors](partial_880_columns_mod_p.json.gz)
+
+This checkpoint is not a full relation certificate and does not change the
+theorem-assisted status recorded above.
+
 ## What This Identifies
 
 The selected `43 x 43` JK minor is nonzero modulo the primary prime.  Its left

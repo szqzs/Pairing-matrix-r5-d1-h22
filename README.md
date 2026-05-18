@@ -28,11 +28,14 @@ list:
 - [c12 folder summary](c12/)
 - [machine-readable c12 candidate artifact](c12/theorem_assisted_candidate.json)
 - [logical status of the theorem-assisted candidate](docs/C12_THEOREM_ASSISTED_CANDIDATE.md)
+- [paused 880-column primary-prime checkpoint](c12/partial_880_columns.README.md)
 
 The primitive integer vector is normalized by `a5 gamma34 = 150`, equivalently
 by `a5 gamma34 = 1` in the rational normalization recorded in the JSON file.
 This is a theorem-assisted candidate line, not a full `1039`-column
 annihilation certificate against all degree-26 test classes.
+The 880-column checkpoint is only a saved partial full-column run, not a new
+certificate claim.
 
 ## Status
 
