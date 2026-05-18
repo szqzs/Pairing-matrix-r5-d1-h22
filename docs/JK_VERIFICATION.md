@@ -81,8 +81,10 @@ a_r\in H^{2r},\qquad b_r^k\in H^{2r-1},\qquad f_r\in H^{2r-2}.
 $$
 
   The exponents $m_r$, $p_{r,k}$, and $\nu_r$ below record a monomial in
-  those classes.  In the odd $b$ sector, $p_{r,k}$ is effectively `0` or `1`
-  after exterior-algebra reduction.
+  those classes.  The exponent $p_{r,k}$ records whether the odd class
+  $b_r^k$ is present.  Since $b_r^k$ is an odd exterior class, surviving terms
+  have $p_{r,k}=0$ or $1$: exponent `0` means that factor is omitted, and
+  exponent `1` inserts the corresponding linear form in the $\zeta$ variables.
 - $\delta_r$ is a formal even parameter used to extract powers of $f_r$.
   It is not a cohomology class; it is the bookkeeping variable dual to $f_r$
   in the exponential generating function.  Algebraically, the formula is
@@ -180,13 +182,6 @@ D(X)^{2g-2}
 \Biggr].
 \end{aligned}
 $$
-
-The final exponent $p_{r,k}$ in the rightmost product is the same exponent as
-the one on $(b_r^k)^{p_{r,k}}$ on the left side.  It records whether the odd
-class $b_r^k$ is present in the monomial being paired.  Since $b_r^k$ is an odd
-exterior class, surviving terms have $p_{r,k}=0$ or $1$: exponent `0` means
-that factor is omitted, and exponent `1` inserts the displayed linear form in
-the $\zeta$ variables.
 
 We write the iterated residue in the same order as the paper.  In code the
 same nested iterated residue operator is applied inside-out, so the rank-5
