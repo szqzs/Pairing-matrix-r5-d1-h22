@@ -4,11 +4,12 @@ This repository is the clean public record for Jeffrey-Kirwan pairing
 computations in ordinary degree 22 for rank 5, genus 2, determinant degree 1.
 
 Rows are Sp-invariant source classes of fixed Chern degree.  Columns are the
-Sp-invariant `W26` test basis.  Entries are Jeffrey-Kirwan pairings.  For the
-full-rank degrees, the proof object is a verified nonzero selected minor modulo
-the recorded prime, with a second-prime consistency check.  For `c12`, the
-current object is different: a theorem-assisted candidate line, not a full-W
-annihilation certificate.
+Sp-invariant test classes in ordinary degree `26`; in the files these columns
+are called the `W26` basis.  Entries are Jeffrey-Kirwan pairings.  For the
+full-rank degrees, the proof object is a verified nonzero selected minor
+modulo the recorded prime, with a second-prime consistency check.  For `c12`,
+the current object is different: a theorem-assisted candidate line, not a full
+annihilation certificate against every degree-26 test class.
 
 For a guided reading path, see [How to read this repository](docs/HOW_TO_READ.md).
 For the formula dictionary and implementation checks, see
@@ -28,14 +29,14 @@ list:
 The primitive integer vector is normalized by `a5 gamma34 = 150`, equivalently
 by `a5 gamma34 = 1` in the rational normalization recorded in the JSON file.
 This is a theorem-assisted candidate line, not a full `1039`-column
-annihilation certificate.
+annihilation certificate against all degree-26 test classes.
 
 ## Status
 
 In this table, `verified` means a verified modular certificate over the
 recorded prime(s), and `Nullity` means source-side/left nullity.
 
-| Chern degree | Folder | Status | Rank | Nullity | Computed W columns | Certificate |
+| Chern degree | Folder | Status | Rank | Nullity | Computed degree-26 columns | Certificate |
 |---:|---|---|---:|---:|---:|---|
 | 11 | [c11](c11/) | verified | 7 | 0 | 8/1039 | [certificate.json](c11/certificate.json) |
 | 12 | [c12](c12/) | theorem-assisted candidate | 43 | 1 | 784/1039 | [theorem_assisted_candidate.json](c12/theorem_assisted_candidate.json) |
@@ -50,10 +51,12 @@ recorded prime(s), and `Nullity` means source-side/left nullity.
 | 21 | [c21](c21/) | verified | 1 | 0 | 8/1039 | [certificate.json](c21/certificate.json) |
 | 22 | [c22](c22/) | verified | 1 | 0 | 8/1039 | [certificate.json](c22/certificate.json) |
 
-`Computed W columns` records committed modular columns for verified full-rank
-degrees.  For `c12`, it records the loaded columns checked by the
-theorem-assisted candidate artifact.  These columns are not automatically the
-full pairing matrix; each degree folder records the exact export scope.  The
+`Computed degree-26 columns` records how many columns from the `W26` basis have
+committed modular pairing entries.  Here `W26` is just the repository name for
+the Sp-invariant basis of ordinary-degree-26 test classes.  For `c12`, this
+field records the loaded degree-26 columns checked by the theorem-assisted
+candidate artifact.  These columns are not automatically the full pairing
+matrix; each degree folder records the exact export scope.  The
 machine-readable version of this table is [summary.json](summary.json).
 
 ## Mathematical Scope
@@ -61,9 +64,9 @@ machine-readable version of this table is [summary.json](summary.json).
 The code evaluates the Jeffrey-Kirwan pairing directly from the JK formula,
 using the JK variables and conventions recorded in the source documents.  For
 each Chern degree `c`, the source rows are the Sp-invariant ordinary-degree-22
-classes of Chern degree `c`, and the columns are the Sp-invariant `W26` test
-basis.  A matrix entry is the JK pairing of one source row with one test
-column.
+classes of Chern degree `c`, and the columns are the Sp-invariant
+ordinary-degree-26 test classes, called `W26` in the data files.  A matrix
+entry is the JK pairing of one source row with one degree-26 test class.
 
 For full-rank degrees, the certificate is a selected square minor with nonzero
 determinant modulo a certified prime, then a direct recomputation of that minor
@@ -75,7 +78,7 @@ external Higgs-moduli theorem says the relevant `H^22` relation is a unique
 line in the invariant Chern-degree-12 source.  The JK computation identifies
 that line by finding a nonzero rank-43 selected minor in the 44-dimensional
 source and a one-dimensional selected left kernel.  This does not claim a full
-annihilation check against all `1039` `W26` columns.
+annihilation check against all `1039` degree-26 `W26` columns.
 
 ## Source Code
 
@@ -94,7 +97,8 @@ one frozen folder into a local source tree and run the same scripts there.
 
 The files named `computed_columns_mod_p.json.gz` contain the pairing columns
 actually computed for a certificate.  They are not automatically full pairing
-matrices.  Each degree folder states whether the full `W26` basis was covered.
+matrices.  Each degree folder states whether the full degree-26 `W26` basis
+was covered.
 
 ## Reproduce Locally
 
@@ -126,7 +130,7 @@ For the c12 theorem-assisted candidate, inspect
 and
 [`docs/C12_THEOREM_ASSISTED_CANDIDATE.md`](docs/C12_THEOREM_ASSISTED_CANDIDATE.md).
 The stronger full relation-certificate runner remains available if one wants
-to check all `1039` `W26` columns:
+to check all `1039` degree-26 `W26` columns:
 
 ```bash
 python sp_invariant_fast_algorithm_v5/jk_only/strict_relation_runner.py run-relation \
