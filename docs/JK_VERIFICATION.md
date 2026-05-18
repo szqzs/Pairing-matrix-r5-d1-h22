@@ -10,18 +10,107 @@ arXiv:alg-geom/9608029, especially Theorem 9.6 and Lemma 9.10.  The frozen
 formula ledger is
 [`src/jk_only_v5_relation_frozen/JK_THEOREM_9_6_RANK5_G2.md`](../src/jk_only_v5_relation_frozen/JK_THEOREM_9_6_RANK5_G2.md).
 
+## Notation Before The Formula
+
+We first list the objects that occur in the Jeffrey-Kirwan residue formula.
+
+- `C` is a compact Riemann surface of genus `g`.
+- `\mathcal M(n,d)` is the fixed-determinant moduli space of stable bundles
+  of rank `n` and determinant degree `d`, with `gcd(n,d)=1`.
+- `T` is the maximal torus used in the JK localization calculation.  Its
+  complexified Lie algebra is the hyperplane
+
+$$
+\mathfrak t_{\mathbb C}
+=\{X=(x_1,\ldots,x_n)\in\mathbb C^n:x_1+\cdots+x_n=0\}.
+$$
+
+- `X` is a point of `\mathfrak t_{\mathbb C}`, and `x_i` is its `i`th
+  coordinate.
+- `Y_i` is the `i`th simple-root coordinate:
+
+$$
+Y_i=x_i-x_{i+1},\qquad i=1,\ldots,n-1.
+$$
+
+- `h_i` is the corresponding simple coroot direction:
+
+$$
+h_i=e_i-e_{i+1}\in\mathfrak t_{\mathbb C}.
+$$
+
+- `tau_r` is the `r`th elementary symmetric invariant polynomial in the
+  coordinates of `X`.  Thus `tau_r` is an element of the invariant polynomial
+  ring on `\mathfrak t_{\mathbb C}`:
+
+$$
+\tau_r(X)=e_r(x_1,\ldots,x_n),\qquad r=2,\ldots,n.
+$$
+
+- `a_r`, `b_r^k`, and `f_r` are the universal cohomology classes in the JK
+  paper:
+
+$$
+a_r\in H^{2r},\qquad b_r^k\in H^{2r-1},\qquad f_r\in H^{2r-2}.
+$$
+
+  The exponents `m_r`, `p_{r,k}`, and `nu_r` below record a monomial in
+  those classes.  In the odd `b` sector, `p_{r,k}` is effectively `0` or `1`
+  after exterior-algebra reduction.
+- `delta_r` is a formal even parameter used to extract powers of `f_r`.
+  It is not a cohomology class; it is the bookkeeping variable dual to `f_r`
+  in the exponential generating function.  Algebraically, the formula is
+  expanded in the formal polynomial variables `delta_3,...,delta_n`.
+- `q` is the formal invariant polynomial
+
+$$
+q(X)=\tau_2(X)+\delta_3\tau_3(X)+\cdots+\delta_n\tau_n(X).
+$$
+
+- `dq_X` is the cotangent vector obtained by differentiating `q` at `X`, so
+  `dq_X(v)` is the directional derivative of `q` in the tangent direction `v`.
+- `B_i(X)` is the JK simple-root denominator input:
+
+$$
+B_i(X)=-(dq)_X(h_i).
+$$
+
+- `D(X)` is the product of the positive roots, hence a polynomial function of
+  `X`:
+
+$$
+D(X)=\prod_{1\le i<j\le n}(x_i-x_j).
+$$
+
+- `n_+` is the number of positive roots:
+
+$$
+n_+=\frac{n(n-1)}2.
+$$
+
+- `W_{n-1}` is the symmetric group `S_{n-1}` that appears as the finite
+  Weyl-summation set in Theorem 9.6.  In our rank-5 specialization it has
+  `24` elements.
+- `c` records the determinant degree, and `\widetilde{w c}` is the JK lift of
+  the Weyl-translated determinant vector into the simple-root fundamental
+  domain.
+- `\hat u_a`, for `a=1,...,n-1`, is the tangent basis used by JK for the
+  Hessian and gradient terms.  In the code it is represented by the simple
+  coroot basis.
+- `H_q(X)` is the Hessian matrix of `q` at `X` in the `\hat u_a` basis, so it
+  is an `(n-1) x (n-1)` matrix with entries in the same formal coefficient
+  ring as `q`.
+- `\zeta_a^k` is an exterior variable on the torus factor `T^{2g}`, with
+  `a=1,...,n-1` and `k=1,...,2g`.
+- `s_r^k` is an auxiliary exterior variable used in Lemma 9.10.  It
+  represents the paper odd class `b_r^k` during coefficient extraction.
+- The symbol `\int_{T^{2g}}` in Theorem 9.6 is the exterior-algebra integral,
+  meaning the top-degree coefficient extraction in the `\zeta` variables.
+
 ## Full Formula First
 
-In Jeffrey-Kirwan notation, set
-
-$$
-q(X)=\tau_2(X)+\delta_3\tau_3(X)+\cdots+\delta_n\tau_n(X),
-\qquad
-B_j(X)=-(dq)_X(h_j),
-$$
-
-where `h_j=e_j-e_{j+1}` and `Y_j=X_j-X_{j+1}`.  For a monomial in the
-generators, Theorem 9.6 has the following residue form:
+With this notation fixed, Theorem 9.6 gives the following residue form for a
+monomial in the universal generators:
 
 $$
 \begin{aligned}
@@ -33,8 +122,8 @@ $$
 &\quad =
 \frac{(-1)^{n_+(g-1)}}{n!}
 \sum_{w\in W_{n-1}}
-\operatorname*{Res}_{Y_1=0}\cdots
-\operatorname*{Res}_{Y_{n-1}=0}
+\mathrm{Res}_{Y_1=0}\cdots
+\mathrm{Res}_{Y_{n-1}=0}
 \Biggl[
 \frac{
 e^{(dq)_X(\widetilde{w c})}
@@ -89,13 +178,13 @@ $$
 &\quad =
 \frac{(-1)^{n_+(g-1)}}{n!}
 \sum_{w\in W_{n-1}}
-\operatorname*{Res}_{Y_1=0}\cdots
-\operatorname*{Res}_{Y_{n-1}=0}
+\mathrm{Res}_{Y_1=0}\cdots
+\mathrm{Res}_{Y_{n-1}=0}
 \left[
 \frac{
 e^{(dq)_X(\widetilde{w c})}
 \prod_{r=2}^n \tau_r(X)^{m_r}
-\operatorname{Coeff}_{\prod(b_r^k)^{p_{r,k}}}
+\mathrm{Coeff}_{\prod(b_r^k)^{p_{r,k}}}
 \bigl(e^{\widehat{\tau}(X)}\bigr)
 }{
 D(X)^{2g-2}
@@ -143,13 +232,13 @@ $$
 &\quad =
 \frac{(-1)^{n_+(g-1)}}{n!}
 \sum_{w\in W_{n-1}}
-\operatorname*{Res}_{Y_1=0}\cdots
-\operatorname*{Res}_{Y_{n-1}=0}
+\mathrm{Res}_{Y_1=0}\cdots
+\mathrm{Res}_{Y_{n-1}=0}
 \left[
 \frac{
 \exp((dq)_X(\widetilde{w c}))
 \prod_r \tau_r(X)^{m_r}
-\operatorname{OddPart}(X,\delta,b)
+\mathrm{OddPart}(X,\delta,b)
 }{
 D(X)^{2g-2}
 \prod_{j=1}^{n-1}(1-\exp(-B_j(X)))
@@ -262,7 +351,7 @@ the implemented pairing is:
 
 $$
 \begin{aligned}
-\operatorname{JK}_{5,2,1}
+\mathrm{JK}_{5,2,1}
 \left(
 \prod_{r=2}^5 a_r^{m_r}
 \prod_{r=2}^5 f_r^{\nu_r}
@@ -273,10 +362,10 @@ $$
 [\delta_3^{\nu_3}\delta_4^{\nu_4}\delta_5^{\nu_5}]
 \\
 &\quad\cdot
-\operatorname*{Res}_{Y_1=0}
-\operatorname*{Res}_{Y_2=0}
-\operatorname*{Res}_{Y_3=0}
-\operatorname*{Res}_{Y_4=0}
+\mathrm{Res}_{Y_1=0}
+\mathrm{Res}_{Y_2=0}
+\mathrm{Res}_{Y_3=0}
+\mathrm{Res}_{Y_4=0}
 \\
 &\quad\cdot
 \left[
