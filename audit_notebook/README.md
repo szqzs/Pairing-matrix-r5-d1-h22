@@ -5,10 +5,10 @@ Jeffrey-Kirwan implementation.
 
 Readers can use it in either of two ways.
 
-Online, use the GitHub Pages version:
+Online, use the GitHub HTML preview version:
 
 ```text
-https://szqzs.github.io/Pairing-matrix-r5-d1-h22/audit_notebook/
+https://htmlpreview.github.io/?https://github.com/szqzs/Pairing-matrix-r5-d1-h22/blob/main/audit_notebook/index.html
 ```
 
 Locally, after cloning or downloading the repository, open:
@@ -18,11 +18,13 @@ audit_notebook/index.html
 ```
 
 GitHub's ordinary file viewer shows HTML source code instead of running the
-notebook, so use the Pages link or open the downloaded HTML file in a browser.
+notebook, so use the preview link or open the downloaded HTML file in a
+browser.
 
 The notebook saves progress in your browser's local storage.  Use the export
 buttons regularly to save a JSON backup or a Markdown audit log.
-Nothing is sent anywhere; the notebook is a static local HTML file.
+The notebook itself does not upload your notes; they stay in your browser
+until you export them.
 
 The checklist is organized from mathematical meaning to source code:
 

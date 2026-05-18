@@ -15,7 +15,7 @@ For a guided reading path, see [How to read this repository](docs/HOW_TO_READ.md
 For the formula dictionary and implementation checks, see
 [JK formula dictionary and implementation checks](docs/JK_VERIFICATION.md).
 For a personal checklist while reading the code, use the
-[online human audit notebook](https://szqzs.github.io/Pairing-matrix-r5-d1-h22/audit_notebook/)
+[online human audit notebook](https://htmlpreview.github.io/?https://github.com/szqzs/Pairing-matrix-r5-d1-h22/blob/main/audit_notebook/index.html)
 or the [notebook folder](audit_notebook/) after downloading the repository.
 
 ## C12 Relation Candidate
