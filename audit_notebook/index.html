@@ -204,6 +204,7 @@
 
     .phase {
       margin-bottom: 1.2rem;
+      scroll-margin-top: 8.5rem;
     }
 
     .phase h2 {
@@ -899,6 +900,25 @@
       return state.tasks[taskId];
     }
 
+    function phaseAnchor(phase) {
+      return "phase-" + phase.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    }
+
+    function setActivePhaseButton(phase) {
+      document.querySelectorAll(".phase-button").forEach((button) => {
+        button.classList.toggle("active", button.dataset.phase === phase);
+      });
+    }
+
+    function scrollToPhase(phase) {
+      const target = phase === "all"
+        ? document.getElementById("taskMount")
+        : document.getElementById(phaseAnchor(phase));
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
     function renderPhaseControls() {
       const phaseFilter = document.getElementById("phaseFilter");
       for (const phase of phases) {
@@ -927,10 +947,11 @@
       phaseList.addEventListener("click", (event) => {
         const button = event.target.closest("button[data-phase]");
         if (!button) return;
-        document.querySelectorAll(".phase-button").forEach((item) => item.classList.remove("active"));
-        button.classList.add("active");
-        phaseFilter.value = button.dataset.phase;
+        const phase = button.dataset.phase;
+        phaseFilter.value = "all";
         renderTasks();
+        setActivePhaseButton(phase);
+        requestAnimationFrame(() => scrollToPhase(phase));
       });
     }
 
@@ -963,6 +984,7 @@
 
         const section = document.createElement("section");
         section.className = "phase";
+        section.id = phaseAnchor(phase);
         section.innerHTML = "<h2>" + escapeHtml(phase) + "</h2>";
 
         for (const task of phaseTasks) {
