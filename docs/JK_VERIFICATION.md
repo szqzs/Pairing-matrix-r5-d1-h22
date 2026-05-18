@@ -460,6 +460,37 @@ uses the same factorization as the symbolic formula:
 | One-variable residue transitions for the four ordered residues | [`fast_modular.py` lines 756-969](../src/jk_only_v5_relation_frozen/fast_modular.py#L756-L969) |
 | Final modular pairing value, including prefactor `5` and `prod nu_r!` | [`fast_modular.py` lines 996-1010](../src/jk_only_v5_relation_frozen/fast_modular.py#L996-L1010) |
 
+### Modular Primes
+
+The prime is not part of the JK formula; it is part of the finite-field
+implementation of the same rational formula.  The published certificates use
+the following primes:
+
+| Role | Prime | Use |
+|---|---:|---|
+| Primary prime | `2305843009213693951 = 2^61 - 1` | Main modular column evaluation, rank search, and selected-minor certificate |
+| Second prime | `1000033` | Independent recomputation of the selected minor as an arithmetic guard |
+
+The primary prime is the default in
+[`fast_modular.py` line 17](../src/jk_only_v5_relation_frozen/fast_modular.py#L17).
+Both primes are checked by the rank-search code using deterministic
+Miller-Rabin for integers below `2^64`; see
+[`modular_rank_search.py` lines 148-189](../src/jk_only_v5_relation_frozen/modular_rank_search.py#L148-L189).
+
+For the finite ordinary-degree-22 computations published here, these primes
+do not divide any denominator that occurs in the implemented JK coefficient
+extractions.  The fixed coordinate denominators come from the rank-5
+simple-root substitution and include powers of `5`; the remaining denominators
+come from the finite Taylor/exponential and exterior-Gaussian coefficient
+extractions actually used by this degree range.  All such factorial orders are
+far below `1000033`, hence also far below `2^61 - 1`.  If a denominator were
+zero modulo the chosen prime, the modular evaluator would fail at the modular
+inverse step rather than silently produce a certificate.
+
+This is a finite-computation statement.  It should not be read as a claim
+that the same two primes avoid every denominator appearing in the infinite JK
+generating series.
+
 The key computational trick is that the factor
 
 $$
