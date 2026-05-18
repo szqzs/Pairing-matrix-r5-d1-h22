@@ -66,8 +66,8 @@ annihilation check against all `1039` `W26` columns.
 - [`src/jk_only_v5_c16_frozen`](src/jk_only_v5_c16_frozen/) is the frozen
   source copy used for the verified `c16`, `c17`, and `c18` milestones.
 - [`src/jk_only_v5_relation_frozen`](src/jk_only_v5_relation_frozen/) is the
-  relation-capable source copy used for the verified `c11`, `c13`, `c15`,
-  `c19`, `c20`, `c21`, and `c22` milestones, and for the `c12`
+  relation-capable source copy used for the verified `c11`, `c13`, `c14`,
+  `c15`, `c19`, `c20`, `c21`, and `c22` milestones, and for the `c12`
   theorem-assisted candidate extractor.
 
 The frozen source folders are intended to be runnable snapshots as well as hash
