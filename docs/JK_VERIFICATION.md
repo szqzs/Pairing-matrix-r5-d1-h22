@@ -166,7 +166,7 @@ D(X)^{2g-2}
 \\
 &\hspace{8em}\cdot
 \int_{T^{2g}}
-\exp\!\left(
+\exp\left(
 -\sum_{a,b=1}^{n-1}\sum_{j=1}^{g}
 \zeta_a^j\zeta_b^{j+g}
 \partial^2q_X(\hat u_a,\hat u_b)
