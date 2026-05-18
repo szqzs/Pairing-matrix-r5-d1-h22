@@ -132,7 +132,8 @@ $$
   coroot basis.
 - $H_q(X)$ is the Hessian matrix of $q$ at $X$ in the $\hat u_a$ basis, so it
   is an $(n-1)\times(n-1)$ matrix with entries in the same formal coefficient
-  ring as $q$.
+  ring as $q$.  The notation $(H_q(X)^{-1})_{ab}$ means the row-$a$,
+  column-$b$ entry of its inverse matrix.
 - $\zeta_a^k$ is an exterior variable on the torus factor $T^{2g}$, with
   $a=1,\ldots,n-1$ and $k=1,\ldots,2g$.
 - $s_r^k$ is an auxiliary exterior variable used in Lemma 10.11.  It
@@ -198,6 +199,9 @@ s_r^j s_s^{j+g}
 (d\tau_s)_X(\hat u_b)
 \bigl(H_q(X)^{-1}\bigr)_{ab}.
 $$
+
+Here the subscripts $a,b$ on $H_q(X)^{-1}$ are matrix indices in the
+$\hat u_1,\ldots,\hat u_{n-1}$ basis.
 
 Equivalently, the odd part of the JK pairing is obtained by extracting the
 coefficient of the corresponding monomial in the auxiliary odd parameters
