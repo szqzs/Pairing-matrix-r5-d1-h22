@@ -148,7 +148,7 @@ $$
 \prod_{r=2}^n\prod_{k=1}^{2g}(b_r^k)^{p_{r,k}}
 \\
 &\quad =
-\frac{(-1)^{n_+(g-1)}n^g}{n!}
+\frac{(-1)^{n_+(g-1)}}{n!}
 \sum_{w\in W_{n-1}}
 \mathrm{Res}_{Y_1=0}\cdots
 \mathrm{Res}_{Y_{n-1}=0}
@@ -182,8 +182,8 @@ We write the iterated residue in the same order as the paper.  In code the
 same nested iterated residue operator is applied inside-out, so the rank-5
 evaluator applies the residues in the order $Y_4,Y_3,Y_2,Y_1$.
 
-Lemma 9.10 packages the $T^{2g}$ integral into an exterior Gaussian.  In the
-form used by the code, this says:
+Lemma 9.10 packages the odd insertions in the $T^{2g}$ integral into an
+exterior Gaussian.  In the form used by the code, this says:
 
 $$
 \widehat{\tau}(X)=
@@ -198,16 +198,21 @@ Equivalently, the odd part of the JK pairing is obtained by extracting the
 coefficient of the corresponding monomial in the auxiliary odd parameters
 $s_r^j$ from $\exp(\widehat{\tau})$.
 
-In the JK normalization used here, the same Gaussian evaluation also
-contributes the Hessian determinant normalization
+When the $T^{2g}$ integral is evaluated, the Gaussian part also contributes
+the scalar $n^g$ and, in the JK normalization used here, the Hessian
+determinant normalization
 
 $$
 \left(\frac{\det H_q(X)}{\det H_{\tau_2}(X)}\right)^g.
 $$
 
-Thus the inverse-Hessian contractions in $\widehat{\tau}$ encode the odd
-insertions, while this determinant ratio is the even Gaussian prefactor.  In
-our genus-2 specialization this ratio is squared.  The denominator
+The distinction is visible already in Theorem 9.6: part (a), displayed above,
+keeps the $T^{2g}$ integral and has prefactor $1/n!$, while part (b), after
+evaluating the no-odd-insertion torus integral, has the prefactor $n^g/n!$ and
+the Hessian determinant.  Thus the inverse-Hessian contractions in
+$\widehat{\tau}$ encode the odd insertions, while $n^g$ and this determinant
+ratio come from the Gaussian evaluation.  In our genus-2 specialization this
+ratio is squared.  The denominator
 $\det H_{\tau_2}$ is the JK normalization at the base quadratic form
 $q=\tau_2$, so the ratio is `1` when $\delta_3=\cdots=\delta_n=0$.  This is
 why the automated checks include the identity "determinant ratio equals `1` at
@@ -219,7 +224,8 @@ The main factors are therefore:
 |---|---|
 | $\exp((dq)_X(\widetilde{w c_{\mathrm{JK}}}))$ | determinant-degree and Weyl-summand exponential |
 | $\prod_r \tau_r(X)^{m_r}$ | insertions of the even classes $a_r$ |
-| coefficient of $e^{\widehat{\tau}(X)}$ | insertions of the odd classes $b_r^j$ |
+| coefficient of $e^{\widehat{\tau}(X)}$ | insertions of the odd classes $b_r^k$ |
+| $n^g$ | scalar from evaluating the $T^{2g}$ Gaussian |
 | $(\det H_q(X)/\det H_{\tau_2}(X))^g$ | Gaussian determinant normalization |
 | $D(X)^{2g-2}$ | positive-root denominator |
 | $\prod_j(1-\exp(-B_j(X)))$ | simple-root denominator from the JK residue |
