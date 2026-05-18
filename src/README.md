@@ -4,6 +4,12 @@ The folders here are reader-facing source snapshots.  They are included so that
 the committed certificates can be tied to a concrete version of the JK-only
 implementation.
 
+The frozen files use the historical TeX-source label convention from the
+arXiv source: `t9.6` and `l9.10`.  In the compiled arXiv PDF these are printed
+as Theorem 9.11 and Lemma 10.11.  We keep the frozen filenames and bytes
+unchanged because certificate hashes refer to them; the reader-facing numbering
+guide is [`docs/JK_VERIFICATION.md`](../docs/JK_VERIFICATION.md).
+
 ## Folders
 
 - [`jk_only_v5_c16_frozen`](jk_only_v5_c16_frozen/) is the frozen source used

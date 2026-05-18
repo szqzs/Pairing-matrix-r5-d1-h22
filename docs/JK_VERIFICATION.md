@@ -1,7 +1,7 @@
 # JK Formula Dictionary and Implementation Checks
 
-This page records the dictionary between Jeffrey-Kirwan Theorem 9.6, Lemma
-9.10, and the frozen v5 evaluator used in this repository.  It explains which
+This page records the dictionary between Jeffrey-Kirwan Theorem 9.11, Lemma
+10.11, and the frozen v5 evaluator used in this repository.  It explains which
 JK formula is implemented, how it specializes to rank `5`, genus `2`,
 determinant degree `1`, and where the corresponding factors appear in source.
 
@@ -16,9 +16,12 @@ variables $b_r^k$, and the JK residue formula below is applied termwise.
 
 The source paper is Jeffrey and Kirwan, *Intersection theory on moduli spaces
 of holomorphic bundles of arbitrary rank on a Riemann surface*,
-arXiv:alg-geom/9608029, especially Theorem 9.6 and Lemma 9.10.  The frozen
-formula ledger is
+arXiv:alg-geom/9608029, especially Theorem 9.11 and Lemma 10.11 in the printed
+arXiv PDF.  The arXiv TeX source labels these as `t9.6` and `l9.10`; that
+source-label convention explains the historical frozen ledger filename
 [`src/jk_only_v5_relation_frozen/JK_THEOREM_9_6_RANK5_G2.md`](../src/jk_only_v5_relation_frozen/JK_THEOREM_9_6_RANK5_G2.md).
+The frozen source files are left byte-for-byte as the certificates recorded
+them, so this page is the corrected reader-facing numbering guide.
 
 Roadmap:
 
@@ -113,7 +116,7 @@ n_+=\frac{n(n-1)}2.
 $$
 
 - $W_{n-1}$ is the symmetric group $S_{n-1}$ that appears as the finite
-  Weyl-summation set in Theorem 9.6 after the fixed-determinant reduction.
+  Weyl-summation set in Theorem 9.11 after the fixed-determinant reduction.
   This is JK's summation set, not the full $S_n$ Weyl group notation.  In our
   rank-5 specialization it has `24` elements.  This $W_{n-1}$ is unrelated to
   the repository's `W26` test basis.
@@ -130,14 +133,14 @@ $$
   ring as $q$.
 - $\zeta_a^k$ is an exterior variable on the torus factor $T^{2g}$, with
   $a=1,\ldots,n-1$ and $k=1,\ldots,2g$.
-- $s_r^k$ is an auxiliary exterior variable used in Lemma 9.10.  It
+- $s_r^k$ is an auxiliary exterior variable used in Lemma 10.11.  It
   represents the paper odd class $b_r^k$ during coefficient extraction.
-- The symbol $\int_{T^{2g}}$ in Theorem 9.6 is the exterior-algebra integral,
+- The symbol $\int_{T^{2g}}$ in Theorem 9.11 is the exterior-algebra integral,
   meaning the top-degree coefficient extraction in the $\zeta$ variables.
 
 ## Paper Formula
 
-With this notation fixed, Theorem 9.6 gives the following residue form for a
+With this notation fixed, Theorem 9.11 gives the following residue form for a
 monomial in the universal generators:
 
 $$
@@ -182,7 +185,7 @@ We write the iterated residue in the same order as the paper.  In code the
 same nested iterated residue operator is applied inside-out, so the rank-5
 evaluator applies the residues in the order $Y_4,Y_3,Y_2,Y_1$.
 
-Lemma 9.10 packages the odd insertions in the $T^{2g}$ integral into an
+Lemma 10.11 packages the odd insertions in the $T^{2g}$ integral into an
 exterior Gaussian.  In the form used by the code, this says:
 
 $$
@@ -206,7 +209,7 @@ $$
 \left(\frac{\det H_q(X)}{\det H_{\tau_2}(X)}\right)^g.
 $$
 
-The distinction is visible already in Theorem 9.6: part (a), displayed above,
+The distinction is visible already in Theorem 9.11: part (a), displayed above,
 keeps the $T^{2g}$ integral and has prefactor $1/n!$, while part (b), after
 evaluating the no-odd-insertion torus integral, has the prefactor $n^g/n!$ and
 the Hessian determinant.  Thus the inverse-Hessian contractions in
