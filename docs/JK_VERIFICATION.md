@@ -25,14 +25,18 @@ $$
 =\{X=(x_1,\ldots,x_n)\in\mathbb C^n:x_1+\cdots+x_n=0\}.
 $$
 
-- `X` is a point of `\mathfrak t_{\mathbb C}`, and `x_i` is its `i`th
-  coordinate.
-- `Y_i` is the `i`th simple-root coordinate:
+- `X` is the residue variable: a formal point of
+  `\mathfrak t_{\mathbb C}`.  Writing
+  `X=(x_1,\ldots,x_n)` means that `x_i` is the `i`th coordinate function
+  evaluated on this variable point.  Thus the `x_i` are not fixed numbers;
+  later they are rewritten in the simple-root coordinates `Y_i`.
+- `Y_i` is the `i`th simple-root coordinate of the same variable point `X`:
 
 $$
 Y_i=x_i-x_{i+1},\qquad i=1,\ldots,n-1.
 $$
 
+- The vector `e_i` is the `i`th standard coordinate vector in `\mathbb C^n`.
 - `h_i` is the corresponding simple coroot direction:
 
 $$
