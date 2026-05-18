@@ -181,6 +181,13 @@ D(X)^{2g-2}
 \end{aligned}
 $$
 
+The final exponent $p_{r,k}$ in the rightmost product is the same exponent as
+the one on $(b_r^k)^{p_{r,k}}$ on the left side.  It records whether the odd
+class $b_r^k$ is present in the monomial being paired.  Since $b_r^k$ is an odd
+exterior class, surviving terms have $p_{r,k}=0$ or $1$: exponent `0` means
+that factor is omitted, and exponent `1` inserts the displayed linear form in
+the $\zeta$ variables.
+
 We write the iterated residue in the same order as the paper.  In code the
 same nested iterated residue operator is applied inside-out, so the rank-5
 evaluator applies the residues in the order $Y_4,Y_3,Y_2,Y_1$.
