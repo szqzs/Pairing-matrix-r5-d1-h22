@@ -1,7 +1,12 @@
 # Result Folder Schema
 
-Each Chern-degree folder is a verified milestone record, not a raw artifact
-dump.
+Each Chern-degree folder is a verified or pending milestone record, not a raw
+artifact dump.
+
+The root [`summary.json`](../summary.json) mirrors the status table in
+machine-readable form.  It is intended for quick inspection and for the
+lightweight validator; the authoritative per-degree proof objects remain the
+degree-folder certificates.
 
 ## Required Fields
 
@@ -83,6 +88,12 @@ repository. Prefer generating `certificate.json` with
 
 The extractor rejects non-final reduce artifacts by default. Do not publish
 from an intermediate `--allow-in-progress` verification artifact.
+
+Run the public-record validator after adding or editing committed artifacts:
+
+```bash
+python scripts/validate_publication.py --all
+```
 
 ## Computed Column Exports
 

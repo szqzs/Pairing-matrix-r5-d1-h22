@@ -244,8 +244,14 @@ def validate_and_extract(args: argparse.Namespace) -> Dict[str, Any]:
 
 
 def write_result_readme(folder: str, certificate: Dict[str, Any]) -> None:
-    rows = ", ".join(item["row_name"] for item in certificate["selected_rows"]) or "(none)"
-    cols = ", ".join(item["w_name"] for item in certificate["selected_columns"]) or "(none)"
+    rows = "\n".join(
+        f"- `{item['row_name']}`"
+        for item in certificate["selected_rows"]
+    ) or "- none"
+    cols = "\n".join(
+        f"- `{item['w_name']}`"
+        for item in certificate["selected_columns"]
+    ) or "- none"
     command_lines = "\n".join(
         f"- `{name}`: `{command}`"
         for name, command in certificate["commands"].items()
@@ -254,16 +260,23 @@ def write_result_readme(folder: str, certificate: Dict[str, Any]) -> None:
 
 Status: verified modular JK relation certificate
 
+## What This Certifies
+
+The committed relation certificate proves a corank-one modular JK pairing
+statement for Chern degree `{certificate['chern_degree']}`.  It records a
+nonzero selected rank `{certificate['rank']}` minor and a normalized modular
+left-kernel vector that the relation verifier checked against all
+`{certificate['w_basis_dimension']}` `W26` columns.
+
 | Field | Value |
 |---|---|
 | Rank | {certificate['rank']} |
-| Nullity | {certificate['nullity']} |
+| Source-side nullity | {certificate['nullity']} |
 | Source dimension | {certificate['source_dimension']} |
 | W-basis dimension | {certificate['w_basis_dimension']} |
 | Primary prime | {certificate['prime']} |
 | Second prime | {certificate.get('second_prime') or 'not used'} |
-| Selected rows | {rows} |
-| Selected columns | {cols} |
+| Selected minor size | {certificate['rank']} x {certificate['rank']} |
 | Relation certificate | [relation_certificate.json](relation_certificate.json) |
 | Manifest SHA256 | `{certificate['manifest_sha256']}` |
 | Relation reduce SHA256 | `{certificate['relation_reduce_output_sha256']}` |
@@ -273,9 +286,26 @@ The kernel vector is recorded modulo the primary prime.  Publish an exact
 rational relation only after adding a reconstruction/exact-verification
 artifact.
 
-## Exact Commands
+<details>
+<summary>Selected rows</summary>
+
+{rows}
+
+</details>
+
+<details>
+<summary>Selected columns</summary>
+
+{cols}
+
+</details>
+
+<details>
+<summary>Exact commands</summary>
 
 {command_lines}
+
+</details>
 """
     with open(os.path.join(folder, "README.md"), "w", encoding="utf-8") as handle:
         handle.write(text)

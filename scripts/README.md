@@ -62,3 +62,39 @@ Use `export_computed_columns.py` to publish the matrix columns actually
 computed for a verified certificate.  The export is intentionally scoped as
 `computed_shards_only`; it is a full matrix only when `full_w_basis_covered`
 is true.
+
+After extracting a new verified full-rank degree, the publication sequence is:
+
+1. run `extract_verified_result.py`;
+2. run `export_computed_columns.py`;
+3. update `summary.json`;
+4. run `refresh_degree_readmes.py`;
+5. run `validate_publication.py --all`.
+
+This keeps the root table, summary, degree README, certificate, and computed
+column export in sync.
+
+For c12, publish the modular relation certificate separately from any later
+rational/integer relation coefficient artifact.  The relation folder should
+also get a relation-compatible committed column export so readers can inspect
+the modular annihilation data without rerunning the full computation.
+
+Use `validate_publication.py` for a lightweight check of the committed public
+record:
+
+```bash
+python scripts/validate_publication.py --all
+```
+
+This validates `summary.json`, the root status table, degree READMEs,
+certificates, and computed-column exports.  It does not recompute JK entries.
+
+Use `refresh_degree_readmes.py` after changing the verified-degree README
+template:
+
+```bash
+python scripts/refresh_degree_readmes.py --all
+```
+
+This rewrites only verified `cXX/README.md` files from committed certificates
+and computed-column exports.

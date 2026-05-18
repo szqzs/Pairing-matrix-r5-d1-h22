@@ -13,7 +13,7 @@ from that selected minor.  The verifier then checks `u^T M[:,j] = 0` for every
 Together, these prove corank one modulo that prime.
 
 The second-prime check repeats the selected-minor and full-annihilation
-certificate at a different prime.  It is a strong independent consistency
+certificate at a different prime.  It is a strong second-prime consistency
 check.  It is not by itself a rational reconstruction of the relation vector;
 an exact rational relation should be published with a separate
 reconstruction/exact-verification artifact.

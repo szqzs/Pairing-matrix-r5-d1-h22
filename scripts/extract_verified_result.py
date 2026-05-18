@@ -215,8 +215,14 @@ def validate_and_extract(args: argparse.Namespace) -> Dict[str, Any]:
 
 
 def write_result_readme(folder: str, certificate: Dict[str, Any]) -> None:
-    rows = ", ".join(item["row_name"] for item in certificate["selected_rows"]) or "(none)"
-    cols = ", ".join(item["w_name"] for item in certificate["selected_columns"]) or "(none)"
+    rows = "\n".join(
+        f"- `{item['row_name']}`"
+        for item in certificate["selected_rows"]
+    ) or "- none"
+    cols = "\n".join(
+        f"- `{item['w_name']}`"
+        for item in certificate["selected_columns"]
+    ) or "- none"
     command_lines = "\n".join(
         f"- `{name}`: `{command}`"
         for name, command in certificate["commands"].items()
@@ -225,24 +231,51 @@ def write_result_readme(folder: str, certificate: Dict[str, Any]) -> None:
 
 Status: verified
 
+## What This Certifies
+
+The committed certificate proves a full-rank modular JK pairing result for
+Chern degree `{certificate['chern_degree']}`.  The selected
+`{certificate['rank']} x {certificate['rank']}` minor has nonzero determinant
+modulo the primary prime, and the certificate was checked again at the second
+prime recorded below.
+
 | Field | Value |
 |---|---|
 | Rank | {certificate['rank']} |
-| Nullity | {certificate['nullity']} |
+| Source-side nullity | {certificate['nullity']} |
 | Source dimension | {certificate['source_dimension']} |
 | W-basis dimension | {certificate['w_basis_dimension']} |
 | Primary prime | {certificate['prime']} |
 | Second prime | {certificate.get('second_prime') or 'not used'} |
-| Selected rows | {rows} |
-| Selected columns | {cols} |
+| Selected minor size | {certificate['rank']} x {certificate['rank']} |
 | Certificate | [certificate.json](certificate.json) |
 | Manifest SHA256 | `{certificate['manifest_sha256']}` |
 | Reduce SHA256 | `{certificate['reduce_output_sha256']}` |
 | Verification SHA256 | `{certificate['verification_output_sha256']}` |
 
-## Exact Commands
+The full selected row and column lists, determinant, hashes, and exact command
+provenance are in [certificate.json](certificate.json).
+
+<details>
+<summary>Selected rows</summary>
+
+{rows}
+
+</details>
+
+<details>
+<summary>Selected columns</summary>
+
+{cols}
+
+</details>
+
+<details>
+<summary>Exact commands</summary>
 
 {command_lines}
+
+</details>
 """
     with open(os.path.join(folder, "README.md"), "w", encoding="utf-8") as handle:
         handle.write(text)

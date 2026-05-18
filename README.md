@@ -3,11 +3,21 @@
 This repository is the clean public record for Jeffrey-Kirwan pairing
 computations in ordinary degree 22 for rank 5, genus 2, determinant degree 1.
 
-The main purpose is reader verification: every committed milestone should have
-enough code, hashes, commands, and compact data for another reader to reproduce
-the same certificate locally or on a cluster.
+Rows are Sp-invariant source classes of fixed Chern degree.  Columns are the
+Sp-invariant `W26` test basis.  Entries are Jeffrey-Kirwan pairings.  For the
+full-rank degrees, the proof object is a verified nonzero selected minor modulo
+the recorded prime, with a second-prime consistency check.  For `c12`, the
+target object is different: a corank-one modular relation certificate, followed
+later by exact rational reconstruction.
+
+For a guided reading path, see [How to read this repository](docs/HOW_TO_READ.md).
 
 ## Status
+
+In this table, `verified` means a verified modular certificate over the
+recorded prime(s), and `Nullity` means source-side/left nullity.  `Full W?`
+refers to the committed matrix-column export, not to whether the rank
+certificate is complete.
 
 | Chern degree | Folder | Status | Rank | Nullity | Computed W columns | Full W? | Certificate |
 |---:|---|---|---:|---:|---:|:---:|---|
@@ -24,6 +34,11 @@ the same certificate locally or on a cluster.
 | 21 | [c21](c21/) | verified | 1 | 0 | 8/1039 | no | [certificate.json](c21/certificate.json) |
 | 22 | [c22](c22/) | verified | 1 | 0 | 8/1039 | no | [certificate.json](c22/certificate.json) |
 
+`Computed W columns` records the committed modular columns, not necessarily the
+full pairing matrix.  For full-rank certificates, `Full W? = no` is not a
+defect: a verified nonzero selected minor is enough to certify the displayed
+rank.  The machine-readable version of this table is [summary.json](summary.json).
+
 ## Mathematical Scope
 
 The code evaluates the Jeffrey-Kirwan pairing directly from the JK formula,
@@ -35,8 +50,8 @@ column.
 
 For full-rank degrees, the certificate is a selected square minor with nonzero
 determinant modulo a certified prime, then a direct recomputation of that minor
-from the JK evaluator.  A second prime is used as an independent guard against
-bad-prime or implementation mistakes.
+from the JK evaluator.  A second prime is used as an additional guard against
+bad-prime accidents or arithmetic mistakes.
 
 For `c12`, the expected object is different: a corank-one relation line.  The
 planned modular certificate will record a nonzero rank-43 minor, a normalized
@@ -52,7 +67,9 @@ artifact.
 - [`src/jk_only_v5_c16_frozen`](src/jk_only_v5_c16_frozen/) is the frozen
   source copy used for the verified `c16`, `c17`, and `c18` milestones.
 - [`src/jk_only_v5_relation_frozen`](src/jk_only_v5_relation_frozen/) is the
-  relation-capable source copy prepared for the c12 corank-one certificate.
+  relation-capable source copy used for the verified `c11`, `c19`, `c20`,
+  `c21`, and `c22` milestones, and prepared for the `c12` corank-one
+  certificate.
 
 The frozen source folders are intended to be runnable snapshots as well as hash
 references.  A reader may either run from the original workspace layout or copy
@@ -66,8 +83,14 @@ matrices.  Each degree folder states whether the full `W26` basis was covered.
 
 ## Reproduce Locally
 
-From the workspace containing this repository and the v5 source tree, or from a
-copy of the appropriate frozen source folder:
+To validate the committed publication files without recomputing JK entries:
+
+```bash
+python scripts/validate_publication.py --all
+```
+
+To recompute a certificate, run from the workspace containing this repository
+and the v5 source tree, or from a copy of the appropriate frozen source folder:
 
 ```bash
 RUN_ROOT="/absolute/path/to/jk_v5_runs/$(date -u +%Y%m%dT%H%M%SZ)"
@@ -100,6 +123,7 @@ python sp_invariant_fast_algorithm_v5/jk_only/strict_relation_runner.py run-rela
 
 ## More Details
 
+- [How to read this repository](docs/HOW_TO_READ.md)
 - [Result schema](docs/RESULT_SCHEMA.md)
 - [Relation verification notes](docs/RELATION_CERTIFICATE.md)
 - [Cluster reproduction notes](docs/CLUSTER.md)
