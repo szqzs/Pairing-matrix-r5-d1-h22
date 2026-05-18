@@ -1,8 +1,18 @@
-# JK Formula Implementation Checks
+# JK Formula Dictionary and Implementation Checks
 
-This page explains what Jeffrey-Kirwan formula is being implemented, how it
-specializes to rank `5`, genus `2`, determinant degree `1`, and where the
-corresponding factors appear in the frozen v5 source.
+This page records the dictionary between Jeffrey-Kirwan Theorem 9.6, Lemma
+9.10, and the frozen v5 evaluator used in this repository.  It explains which
+JK formula is implemented, how it specializes to rank `5`, genus `2`,
+determinant degree `1`, and where the corresponding factors appear in source.
+
+This page is not itself a rank certificate.  The degree folders certify the
+published rank claims.  This page explains why the evaluator used in those
+certificates follows the JK formula with the conventions stated here.
+
+A published matrix entry is obtained as follows.  One source-row class and one
+`W26` test class are multiplied, expanded in the universal classes
+$a_r,f_r,\gamma_{rs}$, each $\gamma_{rs}$ is expanded into the paper odd
+variables $b_r^k$, and the JK residue formula below is applied termwise.
 
 The source paper is Jeffrey and Kirwan, *Intersection theory on moduli spaces
 of holomorphic bundles of arbitrary rank on a Riemann surface*,
@@ -10,14 +20,23 @@ arXiv:alg-geom/9608029, especially Theorem 9.6 and Lemma 9.10.  The frozen
 formula ledger is
 [`src/jk_only_v5_relation_frozen/JK_THEOREM_9_6_RANK5_G2.md`](../src/jk_only_v5_relation_frozen/JK_THEOREM_9_6_RANK5_G2.md).
 
+Roadmap:
+
+1. introduce the objects in the paper formula;
+2. state the JK residue formula in paper notation;
+3. explain how the torus integral becomes the Hessian and odd-variable
+   factors used by code;
+4. specialize to rank `5`, genus `2`, determinant degree `1`;
+5. map the factors to source files and list the checks.
+
 ## Notation Before The Formula
 
 We first list the objects that occur in the Jeffrey-Kirwan residue formula.
 
-- `C` is a compact Riemann surface of genus `g`.
-- `\mathcal M(n,d)` is the fixed-determinant moduli space of stable bundles
+- $C$ is a compact Riemann surface of genus $g$.
+- $\mathcal M(n,d)$ is the fixed-determinant moduli space of stable bundles
   of rank `n` and determinant degree `d`, with `gcd(n,d)=1`.
-- `T` is the maximal torus used in the JK localization calculation.  Its
+- $T$ is the maximal torus used in the JK localization calculation.  Its
   complexified Lie algebra is the hyperplane
 
 $$
@@ -25,93 +44,98 @@ $$
 =\{X=(x_1,\ldots,x_n)\in\mathbb C^n:x_1+\cdots+x_n=0\}.
 $$
 
-- `X` is the residue variable: a point of
-  `\mathfrak t_{\mathbb C}`.  Writing
-  `X=(x_1,\ldots,x_n)` means that `x_i` is the `i`th coordinate function
-  evaluated on this variable point.  Thus the `x_i` are not fixed numbers;
-  later they are rewritten in the simple-root coordinates `Y_i`.
-- `Y_i` is the `i`th simple-root coordinate of the same variable point `X`:
+- $X$ is the residue variable: a point of
+  $\mathfrak t_{\mathbb C}$.  Writing
+  $X=(x_1,\ldots,x_n)$ means that $x_i$ is the `i`th coordinate function
+  evaluated on this variable point.  Thus the $x_i$ are not fixed numbers;
+  later they are rewritten in the simple-root coordinates $Y_i$.
+- $Y_i$ is the `i`th simple-root coordinate of the same variable point $X$:
 
 $$
 Y_i=x_i-x_{i+1},\qquad i=1,\ldots,n-1.
 $$
 
-- The vector `e_i` is the `i`th standard coordinate vector in `\mathbb C^n`.
-- `h_i` is the corresponding simple coroot direction:
+- The vector $e_i$ is the `i`th standard coordinate vector in $\mathbb C^n$.
+- $h_i$ is the corresponding simple coroot direction:
 
 $$
 h_i=e_i-e_{i+1}\in\mathfrak t_{\mathbb C}.
 $$
 
-- `tau_r` is the `r`th elementary symmetric invariant polynomial in the
-  coordinates of `X`.  Thus `tau_r` is an element of the invariant polynomial
-  ring on `\mathfrak t_{\mathbb C}`:
+- $\tau_r$ is the `r`th elementary symmetric invariant polynomial in the
+  coordinates of $X$.  Thus $\tau_r$ is an element of the invariant polynomial
+  ring on $\mathfrak t_{\mathbb C}$:
 
 $$
 \tau_r(X)=e_r(x_1,\ldots,x_n),\qquad r=2,\ldots,n.
 $$
 
-- `a_r`, `b_r^k`, and `f_r` are the universal cohomology classes in the JK
+- $a_r$, $b_r^k$, and $f_r$ are the universal cohomology classes in the JK
   paper:
 
 $$
 a_r\in H^{2r},\qquad b_r^k\in H^{2r-1},\qquad f_r\in H^{2r-2}.
 $$
 
-  The exponents `m_r`, `p_{r,k}`, and `nu_r` below record a monomial in
-  those classes.  In the odd `b` sector, `p_{r,k}` is effectively `0` or `1`
+  The exponents $m_r$, $p_{r,k}$, and $\nu_r$ below record a monomial in
+  those classes.  In the odd $b$ sector, $p_{r,k}$ is effectively `0` or `1`
   after exterior-algebra reduction.
-- `delta_r` is a formal even parameter used to extract powers of `f_r`.
-  It is not a cohomology class; it is the bookkeeping variable dual to `f_r`
+- $\delta_r$ is a formal even parameter used to extract powers of $f_r$.
+  It is not a cohomology class; it is the bookkeeping variable dual to $f_r$
   in the exponential generating function.  Algebraically, the formula is
-  expanded in the formal polynomial variables `delta_3,...,delta_n`.
-- `q` is the formal invariant polynomial
+  expanded in the formal polynomial variables $\delta_3,\ldots,\delta_n$.
+- $q$ is the formal invariant polynomial
 
 $$
 q(X)=\tau_2(X)+\delta_3\tau_3(X)+\cdots+\delta_n\tau_n(X).
 $$
 
-- `dq_X` is the cotangent vector obtained by differentiating `q` at `X`, so
-  `dq_X(v)` is the directional derivative of `q` in the tangent direction `v`.
-- `B_i(X)` is the JK simple-root denominator input:
+- $(dq)_X$ is the cotangent vector obtained by differentiating $q$ at $X$, so
+  $(dq)_X(v)$ is the directional derivative of $q$ in the tangent direction
+  $v$.
+- $B_i(X)$ is the JK simple-root denominator input:
 
 $$
 B_i(X)=-(dq)_X(h_i).
 $$
 
-- `D(X)` is the product of the positive roots, hence a polynomial function of
-  `X`:
+- $D(X)$ is the product of the positive roots, hence a polynomial function of
+  $X$:
 
 $$
 D(X)=\prod_{1\le i\lt j\le n}(x_i-x_j).
 $$
 
-- `n_+` is the number of positive roots:
+- $n_+$ is the number of positive roots:
 
 $$
 n_+=\frac{n(n-1)}2.
 $$
 
-- `W_{n-1}` is the symmetric group `S_{n-1}` that appears as the finite
-  Weyl-summation set in Theorem 9.6.  In our rank-5 specialization it has
-  `24` elements.
-- `c` records the determinant degree, and `\widetilde{w c}` is the JK lift of
-  the Weyl-translated determinant vector into the simple-root fundamental
-  domain.
-- `\hat u_a`, for `a=1,...,n-1`, is the tangent basis used by JK for the
+- $W_{n-1}$ is the symmetric group $S_{n-1}$ that appears as the finite
+  Weyl-summation set in Theorem 9.6 after the fixed-determinant reduction.
+  This is JK's summation set, not the full $S_n$ Weyl group notation.  In our
+  rank-5 specialization it has `24` elements.  This $W_{n-1}$ is unrelated to
+  the repository's `W26` test basis.
+- $c_{\mathrm{JK}}$ records the determinant parameter in the JK theorem, and
+  $\widetilde{w c_{\mathrm{JK}}}$ is the JK lift of the Weyl-translated
+  determinant vector into the simple-root fundamental domain.  This
+  determinant parameter is not the repository's Chern-degree label `c12`,
+  `c13`, and so on.
+- $\hat u_a$, for $a=1,\ldots,n-1$, is the tangent basis used by JK for the
   Hessian and gradient terms.  In the code it is represented by the simple
   coroot basis.
-- `H_q(X)` is the Hessian matrix of `q` at `X` in the `\hat u_a` basis, so it
-  is an `(n-1) x (n-1)` matrix with entries in the same formal coefficient
-  ring as `q`.
-- `\zeta_a^k` is an exterior variable on the torus factor `T^{2g}`, with
-  `a=1,...,n-1` and `k=1,...,2g`.
-- `s_r^k` is an auxiliary exterior variable used in Lemma 9.10.  It
-  represents the paper odd class `b_r^k` during coefficient extraction.
-- The symbol `\int_{T^{2g}}` in Theorem 9.6 is the exterior-algebra integral,
-  meaning the top-degree coefficient extraction in the `\zeta` variables.
+- $H_q(X)$ is the Hessian matrix of $q$ at $X$ in the $\hat u_a$ basis, so it
+  is an $(n-1)\times(n-1)$ matrix with entries in the same formal coefficient
+  ring as $q$.
+- $\zeta_a^k$ is an exterior variable on the torus factor $T^{2g}$, with
+  $a=1,\ldots,n-1$ and $k=1,\ldots,2g$.
+- $s_r^k$ is an auxiliary exterior variable used in Lemma 9.10.  It
+  represents the paper odd class $b_r^k$ during coefficient extraction.
+- The symbol $\int_{T^{2g}}$ in Theorem 9.6 is the exterior-algebra integral,
+  meaning the top-degree coefficient extraction in the $\zeta$ variables.
 
-## Full Formula First
+## Paper Formula
 
 With this notation fixed, Theorem 9.6 gives the following residue form for a
 monomial in the universal generators:
@@ -124,13 +148,13 @@ $$
 \prod_{r=2}^n\prod_{k=1}^{2g}(b_r^k)^{p_{r,k}}
 \\
 &\quad =
-\frac{(-1)^{n_+(g-1)}}{n!}
+\frac{(-1)^{n_+(g-1)}n^g}{n!}
 \sum_{w\in W_{n-1}}
 \mathrm{Res}_{Y_1=0}\cdots
 \mathrm{Res}_{Y_{n-1}=0}
 \Biggl[
 \frac{
-e^{(dq)_X(\widetilde{w c})}
+e^{(dq)_X(\widetilde{w c_{\mathrm{JK}}})}
 \prod_{r=2}^n \tau_r(X)^{m_r}
 }{
 D(X)^{2g-2}
@@ -154,7 +178,11 @@ D(X)^{2g-2}
 \end{aligned}
 $$
 
-Lemma 9.10 packages the `T^{2g}` integral into an exterior Gaussian.  In the
+We write the iterated residue in the same order as the paper.  In code the
+same nested iterated residue operator is applied inside-out, so the rank-5
+evaluator applies the residues in the order $Y_4,Y_3,Y_2,Y_1$.
+
+Lemma 9.10 packages the $T^{2g}$ integral into an exterior Gaussian.  In the
 form used by the code, this says:
 
 $$
@@ -166,119 +194,37 @@ s_r^j s_s^{j+g}
 \bigl(H_q(X)^{-1}\bigr)_{ab}.
 $$
 
-Equivalently, the odd part of the JK pairing is obtained by differentiating
-`exp(hat_tau)` in the auxiliary odd parameters `s_r^j`, then setting all
-`s_r^j=0`.
+Equivalently, the odd part of the JK pairing is obtained by extracting the
+coefficient of the corresponding monomial in the auxiliary odd parameters
+$s_r^j$ from $\exp(\widehat{\tau})$.
 
-With that convention, the same formula can be read as:
-
-$$
-\begin{aligned}
-&\int_{\mathcal M(n,d)}
-\exp(f_2+\delta_3 f_3+\cdots+\delta_n f_n)
-\prod_{r=2}^n a_r^{m_r}
-\prod_{r,k}(b_r^k)^{p_{r,k}}
-\\
-&\quad =
-\frac{(-1)^{n_+(g-1)}}{n!}
-\sum_{w\in W_{n-1}}
-\mathrm{Res}_{Y_1=0}\cdots
-\mathrm{Res}_{Y_{n-1}=0}
-\left[
-\frac{
-e^{(dq)_X(\widetilde{w c})}
-\prod_{r=2}^n \tau_r(X)^{m_r}
-\mathrm{Coeff}_{\prod(b_r^k)^{p_{r,k}}}
-\bigl(e^{\widehat{\tau}(X)}\bigr)
-}{
-D(X)^{2g-2}
-\prod_{j=1}^{n-1}(1-e^{-B_j(X)})
-}
-\right].
-\end{aligned}
-$$
-
-The rest of this document explains every factor in this formula and then
-points to the exact source lines implementing it.
-
-## Dissecting The Paper Formula
-
-Theorem 9.6 computes pairings on the fixed-determinant moduli space `M(n,d)`
-by an iterated residue in simple-root coordinates
+In the JK normalization used here, the same Gaussian evaluation also
+contributes the Hessian determinant normalization
 
 $$
-Y_i=X_i-X_{i+1},\qquad i=1,\ldots,n-1.
+\left(\frac{\det H_q(X)}{\det H_{\tau_2}(X)}\right)^g.
 $$
 
-Let
+Thus the inverse-Hessian contractions in $\widehat{\tau}$ encode the odd
+insertions, while this determinant ratio is the even Gaussian prefactor.  In
+our genus-2 specialization this ratio is squared.  The denominator
+$\det H_{\tau_2}$ is the JK normalization at the base quadratic form
+$q=\tau_2$, so the ratio is `1` when $\delta_3=\cdots=\delta_n=0$.  This is
+why the automated checks include the identity "determinant ratio equals `1` at
+$\delta=0$."
 
-$$
-q(X)=\tau_2(X)+\delta_3\tau_3(X)+\cdots+\delta_n\tau_n(X),
-$$
+The main factors are therefore:
 
-where `tau_r` is the elementary symmetric invariant polynomial in the
-coordinates `x_1,...,x_n` with `sum x_i = 0`.  The paper defines
-
-$$
-B_j(X)=-(dq)_X(h_j),\qquad h_j=e_j-e_{j+1}.
-$$
-
-For a monomial in the even classes `a_r`, `f_r` and odd classes `b_r^j`, the
-formula has this shape:
-
-$$
-\begin{aligned}
-&\int_{\mathcal M(n,d)}
-\exp(f_2+\delta_3 f_3+\cdots+\delta_n f_n)
-\prod_r a_r^{m_r}
-\prod_{r,j}(b_r^j)^{p_{r,j}}
-\\
-&\quad =
-\frac{(-1)^{n_+(g-1)}}{n!}
-\sum_{w\in W_{n-1}}
-\mathrm{Res}_{Y_1=0}\cdots
-\mathrm{Res}_{Y_{n-1}=0}
-\left[
-\frac{
-\exp((dq)_X(\widetilde{w c}))
-\prod_r \tau_r(X)^{m_r}
-\mathrm{OddPart}(X,\delta,b)
-}{
-D(X)^{2g-2}
-\prod_{j=1}^{n-1}(1-\exp(-B_j(X)))
-}
-\right].
-\end{aligned}
-$$
-
-Here `n_+ = n(n-1)/2`, `D(X)` is the product of the positive roots, and
-`tilde{w c}` is the representative used by Jeffrey-Kirwan in the simple-root
-fundamental domain.  The `OddPart` is the integral over `T^{2g}` in Theorem
-9.6(a).  Lemma 9.10 rewrites that torus integral as the coefficient extraction
-from an exterior Gaussian:
-
-$$
-\widehat{\tau}(X)=
--\sum_{a,b=1}^{n-1}\sum_{r,s=2}^{n}\sum_{j=1}^{g}
-s_r^j s_s^{j+g}
-(d\tau_r)_X(\hat u_a)
-(d\tau_s)_X(\hat u_b)
-\bigl(H_q(X)^{-1}\bigr)_{ab}.
-$$
-
-Thus the odd-class contribution is obtained by taking the coefficient of the
-requested `b`-monomial in `exp(hat_tau)`.
-
-The main pieces are therefore:
-
-- `exp((dq)_X(tilde{w c}))`: the determinant-degree and Weyl-summand
-  exponential;
-- `prod tau_r(X)^m_r`: the `a_r` classes;
-- `Coeff(exp(hat_tau))`: the odd `b_r^j` classes;
-- `D(X)^{2g-2}`: the positive-root denominator;
-- `prod_j(1-exp(-B_j(X)))`: the simple-root denominator from the JK residue;
-- extracting powers of `delta_r`: the `f_r` classes for `r>=3`;
-- the initial `exp(f_2)`: the source of the `f_2` factorial.
+| Formula factor | Meaning in the pairing |
+|---|---|
+| $\exp((dq)_X(\widetilde{w c_{\mathrm{JK}}}))$ | determinant-degree and Weyl-summand exponential |
+| $\prod_r \tau_r(X)^{m_r}$ | insertions of the even classes $a_r$ |
+| coefficient of $e^{\widehat{\tau}(X)}$ | insertions of the odd classes $b_r^j$ |
+| $(\det H_q(X)/\det H_{\tau_2}(X))^g$ | Gaussian determinant normalization |
+| $D(X)^{2g-2}$ | positive-root denominator |
+| $\prod_j(1-\exp(-B_j(X)))$ | simple-root denominator from the JK residue |
+| coefficient extraction in $\delta_r$ | insertions of $f_r$ for $r\ge 3$ |
+| the initial $\exp(f_2)$ | source of the $f_2$ factorial |
 
 ## Rank 5, Genus 2, Degree 1
 
@@ -288,7 +234,7 @@ $$
 n=5,\qquad g=2,\qquad d=1.
 $$
 
-There are four simple-root variables, and the `x_i` are
+There are four simple-root variables, and the $x_i$ are
 
 $$
 \begin{aligned}
@@ -325,14 +271,24 @@ $$
 \widetilde c=\left(\frac15,\frac15,\frac15,\frac15,-\frac45\right).
 $$
 
-At `delta = 0`,
+At $\delta=0$,
 
 $$
 (dq)_X(\widetilde c)=
 -\frac{Y_1+2Y_2+3Y_3+4Y_4}{5}.
 $$
 
-Because `c` is central, the `W_4` summands coincide.  The factor
+This displayed $\delta=0$ value is a normalization check.  The computation
+keeps the full $\delta$-dependent exponent before extracting the requested
+coefficient.
+
+For determinant degree `1`, the chosen lift $\widetilde c$ has its first four
+coordinates equal.  The JK $W_4$ summation in this specialization
+permutes those first four coordinates, so the summands are identical and the
+Weyl sum contributes $|W_4|=24$ with no additional signs or permutation
+factors.  This is the rank-5, degree-1 specialization recorded in the frozen
+formula ledger, not a general simplification of every JK residue.  The scalar
+prefactor is therefore
 
 $$
 \frac{n^g}{n!}\,|W_4|
@@ -340,8 +296,7 @@ $$
 =5
 $$
 
-is the scalar prefactor used in the code.  The sign is positive because
-`n_+(g-1) = 10`.
+The sign is positive because $n_+(g-1)=10$.
 
 For a monomial
 
@@ -351,7 +306,12 @@ $$
 \prod_{r\le s}\gamma_{rs}^{e_{rs}},
 $$
 
-the implemented pairing is:
+the implemented pairing is obtained from the exponential generating function.
+For $r\ge 3$, the power $f_r^{\nu_r}$ is recovered by extracting the
+$\delta_r^{\nu_r}$ coefficient and multiplying by $\nu_r!$.  The class $f_2$
+is already present in the initial $\exp(f_2)$ term, so the monomial
+$f_2^{\nu_2}$ contributes the remaining factorial $\nu_2!$.  Thus the
+implemented pairing is:
 
 $$
 \begin{aligned}
@@ -386,23 +346,26 @@ D(X)^2
 \end{aligned}
 $$
 
-The `f_2` class is already present through `exp(f_2)`, so an `f_2^nu_2`
-factor contributes only the factorial `nu_2!`; there is no `delta_2`.
-The term `Gamma_e(X,delta)` denotes the coefficient of the requested product
-of `gamma_rs` classes after expanding each `gamma_rs` into JK `b_r^j`
-variables and taking the corresponding coefficient in `exp(hat_tau)`.
+As above, this residue product is displayed in paper order; the code applies
+the same nested operator inside-out.
+
+The term $\Gamma_{\mathbf e}(X,\delta)$ denotes the coefficient of the
+requested product of $\gamma_{rs}$ classes after expanding each $\gamma_{rs}$
+into JK $b_r^k$ variables and taking the corresponding coefficient of the
+auxiliary $s$-monomial in $\exp(\widehat{\tau})$.
 
 ## Odd Variables And Gamma
 
-The paper's odd classes are
+The paper's odd classes are indexed by a chosen symplectic basis
+$\alpha_1,\ldots,\alpha_4$ of $H_1(C)$:
 
 $$
-b_r^j=(\alpha_j,\tau_r(U)),
-\qquad 2\le r\le 5,\quad 1\le j\le 4.
+b_r^k=(\alpha_k,\tau_r(U)),
+\qquad 2\le r\le 5,\quad 1\le k\le 4.
 $$
 
-The symbols `gamma_rs` are only Sp-invariant abbreviations in the exterior
-algebra on these `b_r^j`; they are not extra generators and are not rescaled.
+The symbols $\gamma_{rs}$ are only Sp-invariant abbreviations in the exterior
+algebra on these $b_r^k$; they are not extra generators and are not rescaled.
 The convention is recorded in
 [`src/jk_only_v5_relation_frozen/GAMMA_CONVENTION.md`](../src/jk_only_v5_relation_frozen/GAMMA_CONVENTION.md):
 
@@ -411,8 +374,12 @@ $$
 =b_r^1b_s^3-b_r^3b_s^1+b_r^2b_s^4-b_r^4b_s^2.
 $$
 
-Every `gamma` product is expanded into signed paper-level `b` monomials before
-the `exp(hat_tau)` coefficient is evaluated.
+Every $\gamma$ product is expanded into signed paper-level $b$ monomials before
+the $\exp(\widehat{\tau})$ coefficient is evaluated.
+
+The mathematical formula dictionary ends here.  The remaining sections are for
+readers who want to audit how these factors are represented and checked in the
+frozen source.
 
 ## Code Map
 
@@ -421,12 +388,13 @@ The symbolic paper-first implementation is
 modular implementation is
 [`fast_modular.py`](../src/jk_only_v5_relation_frozen/fast_modular.py).  The
 modular code is not a different formula; it is a sparse-polynomial and modular
-residue implementation of the same factors.
+residue implementation of the same rational factors after finite-field
+reduction.
 
 | Formula piece | Source location |
 |---|---|
 | `n=5`, `g=2`, top degree, scalar prefactor `5` | [`jk_formula.py` lines 20-26](../src/jk_only_v5_relation_frozen/jk_formula.py#L20-L26) |
-| JK odd labels `b_r^j`, gamma labels, simple coroot directions `h_j` | [`jk_formula.py` lines 39-50](../src/jk_only_v5_relation_frozen/jk_formula.py#L39-L50) |
+| JK odd labels `b_r^k`, gamma labels, simple coroot directions `h_j` | [`jk_formula.py` lines 39-50](../src/jk_only_v5_relation_frozen/jk_formula.py#L39-L50) |
 | Simple-root coordinates `x_i(Y)` | [`jk_formula.py` lines 69-77](../src/jk_only_v5_relation_frozen/jk_formula.py#L69-L77) |
 | `tau_r = e_r(x_1,...,x_5)` | [`jk_formula.py` lines 80-90](../src/jk_only_v5_relation_frozen/jk_formula.py#L80-L90) |
 | `q = tau_2 + delta_3 tau_3 + delta_4 tau_4 + delta_5 tau_5` | [`jk_formula.py` lines 103-105](../src/jk_only_v5_relation_frozen/jk_formula.py#L103-L105) |
@@ -469,7 +437,7 @@ the following primes:
 | Role | Prime | Use |
 |---|---:|---|
 | Primary prime | `2305843009213693951 = 2^61 - 1` | Main modular column evaluation, rank search, and selected-minor certificate |
-| Second prime | `1000033` | Independent recomputation of the selected minor as an arithmetic guard |
+| Second prime | `1000033` | Second-prime recomputation of the selected minor as an arithmetic guard |
 
 The primary prime is the default in
 [`fast_modular.py` line 17](../src/jk_only_v5_relation_frozen/fast_modular.py#L17).
@@ -477,15 +445,16 @@ Both primes are checked by the rank-search code using deterministic
 Miller-Rabin for integers below `2^64`; see
 [`modular_rank_search.py` lines 148-189](../src/jk_only_v5_relation_frozen/modular_rank_search.py#L148-L189).
 
-For the finite ordinary-degree-22 computations published here, these primes
-do not divide any denominator that occurs in the implemented JK coefficient
-extractions.  The fixed coordinate denominators come from the rank-5
-simple-root substitution and include powers of `5`; the remaining denominators
-come from the finite Taylor/exponential and exterior-Gaussian coefficient
-extractions actually used by this degree range.  All such factorial orders are
-far below `1000033`, hence also far below `2^61 - 1`.  If a denominator were
-zero modulo the chosen prime, the modular evaluator would fail at the modular
-inverse step rather than silently produce a certificate.
+For the finite ordinary/cohomological degree-22 computations published here,
+all modular inversions actually required by the evaluator exist at these
+primes.  The
+fixed coordinate denominators come from the rank-5 simple-root substitution
+and include powers of `5`; the remaining inversions come from the finite
+Taylor/exponential and exterior-Gaussian coefficient extractions used by this
+degree range, and all required factorial/Taylor orders are far below
+`1000033`, hence also far below `2^61 - 1`.  If a denominator were zero modulo
+the chosen prime, the modular evaluator would fail at the modular inverse step
+rather than silently produce a certificate.
 
 This is a finite-computation statement.  It should not be read as a claim
 that the same two primes avoid every denominator appearing in the infinite JK
@@ -497,8 +466,9 @@ $$
 \frac{1}{1-\exp(-B_j)}
 $$
 
-is written as a Taylor expansion around `B_j = Y_j`.  The derivative orders of
-the base function
+is written as a finite formal Taylor expansion around `B_j = Y_j`, truncated to
+the degree needed for the requested coefficient and residue.  This is not an
+analytic convergence argument.  The derivative orders of the base function
 
 $$
 F(Y_j)=\frac{1}{1-\exp(-Y_j)}
@@ -532,14 +502,15 @@ convention error:
 - gamma expansion in the exterior algebra, including symmetry in `r,s`, the
   documented `gamma22` simplification, products of gamma classes, and exterior
   nilpotence;
-- agreement between the fast modular setup and the slower symbolic
-  paper-derived setup for mixed and higher delta terms;
+- representative agreement checks between the fast modular setup and the
+  slower symbolic paper-derived setup for mixed and higher delta terms;
 - batched residue evaluation against termwise residue evaluation, including
   real pairing polynomials and a gamma-heavy sample;
-- cluster manifest, worker, reducer, previous-reduce, and verifier guardrails,
-  including second-prime selected-minor verification.
+- certificate infrastructure guardrails for manifests, workers, reducers,
+  previous reductions, and verifiers, including second-prime selected-minor
+  verification.
 
-The independent sample script
+The separate sample script
 [`sample_certificate.py`](../src/jk_only_v5_relation_frozen/sample_certificate.py)
 evaluates several top-degree sample pairings at multiple primes and rationally
 reconstructs the answers, including no-gamma, mixed-delta, single-gamma, and
@@ -548,7 +519,7 @@ double-gamma samples.
 ## What The Degree Certificates Add
 
 The checks above support the formula implementation.  The per-degree
-certificates are the actual computational proof objects for the published rank
+certificates are computational proof objects for the stated modular rank
 claims.  For a verified full-rank degree, the certificate records a selected
 minor, its nonzero determinant modulo the primary prime, and a final verifier
 that recomputes the selected minor from the JK evaluator.  A second-prime
@@ -562,7 +533,8 @@ It should not be read as a full-W modular annihilation certificate.
 ## Limitations
 
 These checks do not replace a line-by-line human proof of the implementation.
-They document the formula dictionary, prevent known wrong conventions from
+They document the formula dictionary, guard against known wrong conventions
 entering the v5 path, and make each published certificate reproducible from a
-hashed source snapshot.  Exact rational relation coefficients require their
-own reconstruction and exact or independent-prime verification artifact.
+hashed source snapshot.  Exact rational relation coefficients require their own
+reconstruction and exact verification, or a bounded rational-reconstruction
+argument with additional-prime checks.

@@ -12,7 +12,7 @@ annihilation certificate.
 
 For a guided reading path, see [How to read this repository](docs/HOW_TO_READ.md).
 For the formula dictionary and implementation checks, see
-[JK formula implementation checks](docs/JK_VERIFICATION.md).
+[JK formula dictionary and implementation checks](docs/JK_VERIFICATION.md).
 
 ## Status
 
@@ -127,7 +127,7 @@ python sp_invariant_fast_algorithm_v5/jk_only/strict_relation_runner.py run-rela
 ## More Details
 
 - [How to read this repository](docs/HOW_TO_READ.md)
-- [JK formula implementation checks](docs/JK_VERIFICATION.md)
+- [JK formula dictionary and implementation checks](docs/JK_VERIFICATION.md)
 - [c12 theorem-assisted candidate](docs/C12_THEOREM_ASSISTED_CANDIDATE.md)
 - [Result schema](docs/RESULT_SCHEMA.md)
 - [Full relation certificate notes](docs/RELATION_CERTIFICATE.md)
