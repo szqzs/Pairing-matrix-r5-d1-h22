@@ -223,17 +223,48 @@ $\delta=0$."
 
 The main factors are therefore:
 
-| Formula factor | Meaning in the pairing |
-|---|---|
-| $\exp((dq)_X(\widetilde{w c_{\mathrm{JK}}}))$ | determinant-degree and Weyl-summand exponential |
-| $\prod_r \tau_r(X)^{m_r}$ | insertions of the even classes $a_r$ |
-| coefficient of $e^{\widehat{\tau}(X)}$ | insertions of the odd classes $b_r^k$ |
-| $n^g$ | scalar from evaluating the $T^{2g}$ Gaussian |
-| $(\det H_q(X)/\det H_{\tau_2}(X))^g$ | Gaussian determinant normalization |
-| $D(X)^{2g-2}$ | positive-root denominator |
-| $\prod_j(1-\exp(-B_j(X)))$ | simple-root denominator from the JK residue |
-| coefficient extraction in $\delta_r$ | insertions of $f_r$ for $r\ge 3$ |
-| the initial $\exp(f_2)$ | source of the $f_2$ factorial |
+- The determinant-degree and Weyl-summand exponential is
+
+$$
+\exp((dq)_X(\widetilde{w c_{\mathrm{JK}}})).
+$$
+
+- The insertions of the even classes $a_r$ give
+
+$$
+\prod_r \tau_r(X)^{m_r}.
+$$
+
+- The insertions of the odd classes $b_r^k$ are obtained from the requested
+  coefficient of
+
+$$
+\exp(\widehat{\tau}(X)).
+$$
+
+- Evaluating the $T^{2g}$ Gaussian contributes the scalar $n^g$ and the
+  determinant normalization
+
+$$
+\left(\frac{\det H_q(X)}{\det H_{\tau_2}(X)}\right)^g.
+$$
+
+- The positive-root denominator is
+
+$$
+D(X)^{2g-2}.
+$$
+
+- The simple-root denominator from the JK residue is
+
+$$
+\prod_j(1-\exp(-B_j(X))).
+$$
+
+- The classes $f_r$ for $r\ge 3$ are inserted by coefficient extraction in the
+  variables $\delta_r$.
+
+- The initial exponential $\exp(f_2)$ supplies the $f_2$ factorial.
 
 ## Rank 5, Genus 2, Degree 1
 
@@ -294,15 +325,19 @@ coefficient.
 For determinant degree `1`, the chosen lift $\widetilde c$ has its first four
 coordinates equal.  The JK $W_4$ summation in this specialization
 permutes those first four coordinates, so the summands are identical and the
-Weyl sum contributes $|W_4|=24$ with no additional signs or permutation
+Weyl sum contributes `24` terms with no additional signs or permutation
 factors.  This is the rank-5, degree-1 specialization recorded in the frozen
 formula ledger, not a general simplification of every JK residue.  The scalar
 prefactor is therefore
 
 $$
-\frac{n^g}{n!}\,|W_4|
-=\frac{25}{120}\cdot 24
-=5
+\frac{n^g}{n!}\cdot \#W_4
+=
+\frac{5^2}{5!}\cdot 24
+=
+\frac{25}{120}\cdot 24
+=
+5.
 $$
 
 The sign is positive because $n_+(g-1)=10$.
