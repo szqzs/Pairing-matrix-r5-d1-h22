@@ -79,7 +79,7 @@ $$
   `X`:
 
 $$
-D(X)=\prod_{1\le i<j\le n}(x_i-x_j).
+D(X)=\prod_{1\le i\lt j\le n}(x_i-x_j).
 $$
 
 - `n_+` is the number of positive roots:
@@ -306,13 +306,13 @@ The ten positive roots are
 
 $$
 x_i-x_j=Y_i+Y_{i+1}+\cdots+Y_{j-1},
-\qquad 1\le i<j\le 5,
+\qquad 1\le i\lt j\le 5,
 $$
 
 so, since `g=2`, the root denominator is
 
 $$
-D(X)^2=\prod_{1\le i<j\le 5}(x_i-x_j)^2.
+D(X)^2=\prod_{1\le i\lt j\le 5}(x_i-x_j)^2.
 $$
 
 For determinant degree `1`, we use
