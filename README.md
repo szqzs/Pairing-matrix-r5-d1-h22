@@ -14,6 +14,8 @@ annihilation certificate against every degree-26 test class.
 For a guided reading path, see [How to read this repository](docs/HOW_TO_READ.md).
 For the formula dictionary and implementation checks, see
 [JK formula dictionary and implementation checks](docs/JK_VERIFICATION.md).
+For a personal checklist while reading the code, open the
+[human audit notebook](audit_notebook/).
 
 ## C12 Relation Candidate
 

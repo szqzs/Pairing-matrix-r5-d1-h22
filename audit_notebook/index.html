@@ -1,0 +1,1166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JK Human Audit Notebook</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #0f1720;
+      --panel: #16212d;
+      --panel-2: #1d2b39;
+      --text: #edf4fb;
+      --muted: #aebdcc;
+      --line: #314354;
+      --accent: #66d9c9;
+      --accent-2: #f2c94c;
+      --danger: #ff7a90;
+      --ok: #8ee68e;
+      --shadow: rgba(0, 0, 0, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      line-height: 1.5;
+      background:
+        linear-gradient(140deg, rgba(102, 217, 201, 0.10), transparent 28rem),
+        linear-gradient(40deg, rgba(242, 201, 76, 0.08), transparent 24rem),
+        var(--bg);
+      color: var(--text);
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 1rem;
+      background: rgba(15, 23, 32, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    h1 {
+      margin: 0 0 0.25rem;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      letter-spacing: 0;
+    }
+
+    h2, h3 {
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      max-width: 900px;
+    }
+
+    .top-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 1rem;
+      align-items: center;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .progress-card {
+      min-width: 230px;
+      padding: 0.8rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 16px 40px var(--shadow);
+    }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .bar {
+      width: 100%;
+      height: 0.7rem;
+      overflow: hidden;
+      border-radius: 999px;
+      margin-top: 0.55rem;
+      background: #0b1118;
+      border: 1px solid var(--line);
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition: width 180ms ease;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: minmax(180px, 1fr) 180px 180px auto auto auto;
+      gap: 0.6rem;
+      margin: 1rem 0;
+      align-items: center;
+    }
+
+    input, select, textarea, button {
+      font: inherit;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--text);
+      background: #0c141d;
+    }
+
+    input, select {
+      min-height: 2.5rem;
+      padding: 0.55rem 0.7rem;
+    }
+
+    textarea {
+      min-height: 7rem;
+      resize: vertical;
+      padding: 0.7rem;
+    }
+
+    button {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      min-height: 2.5rem;
+      padding: 0.55rem 0.8rem;
+      color: var(--text);
+      background: var(--panel-2);
+      cursor: pointer;
+    }
+
+    button:hover {
+      border-color: var(--accent);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 7.7rem;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(22, 33, 45, 0.88);
+    }
+
+    .phase-list {
+      display: grid;
+      gap: 0.45rem;
+      margin-top: 0.75rem;
+    }
+
+    .phase-button {
+      width: 100%;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      background: #101a24;
+    }
+
+    .phase-button.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .scratch {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .phase {
+      margin-bottom: 1.2rem;
+    }
+
+    .phase h2 {
+      margin: 0 0 0.6rem;
+      padding: 0.65rem 0.2rem;
+      border-bottom: 1px solid var(--line);
+      font-size: 1.35rem;
+    }
+
+    .task {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin: 0 0 0.8rem;
+      background: rgba(22, 33, 45, 0.94);
+      box-shadow: 0 14px 32px var(--shadow);
+      overflow: hidden;
+    }
+
+    .task.done {
+      border-color: rgba(142, 230, 142, 0.65);
+    }
+
+    .task.needs {
+      border-color: rgba(255, 122, 144, 0.75);
+    }
+
+    .task-header {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) 160px 120px;
+      gap: 0.75rem;
+      align-items: center;
+      padding: 0.8rem;
+      background: rgba(29, 43, 57, 0.9);
+    }
+
+    .task-number {
+      width: 2rem;
+      height: 2rem;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #061018;
+      font-weight: 800;
+      background: var(--accent);
+    }
+
+    .task-title {
+      min-width: 0;
+    }
+
+    .task-title h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .task-title p {
+      margin: 0.2rem 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .task-body {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .task-body h4 {
+      margin: 0.1rem 0 0.35rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      color: var(--accent-2);
+      letter-spacing: 0.05em;
+    }
+
+    .meta-list {
+      margin: 0 0 0.75rem;
+      padding-left: 1rem;
+    }
+
+    .meta-list li {
+      margin: 0.2rem 0;
+    }
+
+    .notes-grid {
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 6.5rem;
+      border-radius: 999px;
+      padding: 0.25rem 0.55rem;
+      font-size: 0.82rem;
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .status-pill.checked {
+      color: var(--ok);
+      border-color: var(--ok);
+    }
+
+    .status-pill.needs-discussion {
+      color: var(--danger);
+      border-color: var(--danger);
+    }
+
+    .footer-note {
+      margin: 2rem 0 1rem;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      padding-top: 1rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      .top-grid, .layout, .task-body {
+        grid-template-columns: 1fr;
+      }
+
+      .controls {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .task-header {
+        grid-template-columns: auto minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="top-grid">
+      <div>
+        <h1>JK Human Audit Notebook</h1>
+        <p class="subtitle">
+          A proof-checking quest log for the rank 5, genus 2 Jeffrey-Kirwan
+          pairing code.  Mark progress, record your understanding, and keep a
+          clean list of questions for later.
+        </p>
+      </div>
+      <section class="progress-card" aria-label="Progress">
+        <div class="progress-row">
+          <strong id="progressText">0/0 checked</strong>
+          <span id="levelText">Level 0</span>
+        </div>
+        <div class="bar" aria-hidden="true"><span id="progressBar"></span></div>
+      </section>
+    </div>
+  </header>
+
+  <main>
+    <section class="controls" aria-label="Notebook controls">
+      <input id="searchBox" type="search" placeholder="Search tasks, files, formulas">
+      <select id="phaseFilter" aria-label="Filter by phase">
+        <option value="all">All phases</option>
+      </select>
+      <select id="statusFilter" aria-label="Filter by status">
+        <option value="all">All statuses</option>
+        <option value="not-started">Not started</option>
+        <option value="reading">Reading</option>
+        <option value="checked">Checked</option>
+        <option value="needs-discussion">Needs discussion</option>
+      </select>
+      <button id="exportJson">Export JSON</button>
+      <button id="exportMd">Export Markdown</button>
+      <button id="importButton">Import JSON</button>
+      <input id="importFile" class="hidden" type="file" accept="application/json">
+    </section>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <strong>Audit route</strong>
+        <div id="phaseList" class="phase-list"></div>
+        <div class="scratch">
+          <h3>Global Scratchpad</h3>
+          <p class="subtitle">Use this for big-picture thoughts, possible mistakes, or things to ask later.</p>
+          <textarea id="globalNotes" placeholder="Example: I understand the Hessian ratio now, but I want to re-check the sign in hat_tau."></textarea>
+        </div>
+      </aside>
+
+      <section id="taskMount" aria-label="Audit tasks"></section>
+    </div>
+
+    <p class="footer-note">
+      Progress is saved in this browser.  Export often.  A useful audit note is
+      short, mathematical, and honest: "I checked X against Y; I am confident
+      because Z; remaining question Q."
+    </p>
+  </main>
+
+  <script id="task-data" type="application/json">
+[
+  {
+    "id": "repo-claim-readme",
+    "phase": "Orientation",
+    "title": "Understand the repository claim",
+    "subtitle": "Rows, columns, degree 22, degree 26, and c12 status.",
+    "files": [{"label": "README.md", "path": "../README.md"}],
+    "verify": "Write in your own words what a matrix entry means, why rows have ordinary degree 22, and why columns are degree-26 W26 test classes.",
+    "done": "You can explain the status table and the special c12 theorem-assisted status without using internal code words."
+  },
+  {
+    "id": "how-to-read",
+    "phase": "Orientation",
+    "title": "Read the repository guide",
+    "subtitle": "Separate mathematical claims from raw computation artifacts.",
+    "files": [{"label": "docs/HOW_TO_READ.md", "path": "../docs/HOW_TO_READ.md"}],
+    "verify": "Check that the guide tells a reader what certificates prove and what they do not prove.",
+    "done": "You know where to look for a degree folder, a certificate, and computed columns."
+  },
+  {
+    "id": "printed-numbering",
+    "phase": "Orientation",
+    "title": "Check JK paper numbering",
+    "subtitle": "Printed Theorem 9.11 and Lemma 10.11 versus TeX labels.",
+    "files": [{"label": "docs/JK_VERIFICATION.md", "path": "../docs/JK_VERIFICATION.md"}],
+    "verify": "Confirm that the page uses the printed arXiv PDF numbering and explains the old source-label filenames.",
+    "done": "You are comfortable that readers will not look for nonexistent Theorem 9.6 or Lemma 9.10 in the PDF."
+  },
+  {
+    "id": "notation-x-y-tau",
+    "phase": "JK Formula",
+    "title": "Residue variables and tau classes",
+    "subtitle": "X, Y_j, x_i, and tau_r.",
+    "files": [{"label": "docs/JK_VERIFICATION.md", "path": "../docs/JK_VERIFICATION.md#notation-before-the-formula"}],
+    "verify": "Check that X is a point of the complexified Cartan, Y_j are simple-root coordinates, x_i are diagonal coordinates with sum zero, and tau_r is the elementary symmetric polynomial.",
+    "done": "You can say which variables live in the residue calculation and which are cohomology classes."
+  },
+  {
+    "id": "universal-classes",
+    "phase": "JK Formula",
+    "title": "Universal classes and monomial exponents",
+    "subtitle": "a_r, b_r^k, f_r, m_r, p_{r,k}, and nu_r.",
+    "files": [{"label": "docs/JK_VERIFICATION.md", "path": "../docs/JK_VERIFICATION.md#notation-before-the-formula"}],
+    "verify": "Check the cohomological degrees and the statement that p_{r,k} is 0 or 1 after exterior reduction.",
+    "done": "You can explain the rightmost p_{r,k} in Theorem 9.11 as the same odd-class exponent from the left-hand monomial."
+  },
+  {
+    "id": "delta-q",
+    "phase": "JK Formula",
+    "title": "Formal q and delta variables",
+    "subtitle": "How f_r insertions are encoded.",
+    "files": [{"label": "docs/JK_VERIFICATION.md", "path": "../docs/JK_VERIFICATION.md#notation-before-the-formula"}],
+    "verify": "Check that delta_r is bookkeeping for f_r and that q = tau_2 + sum delta_r tau_r.",
+    "done": "You can explain why coefficient extraction in delta recovers powers of f_r."
+  },
+  {
+    "id": "weyl-and-determinant",
+    "phase": "JK Formula",
+    "title": "Weyl summation and determinant parameter",
+    "subtitle": "W_{n-1}, c_JK, and the warning about Chern-degree labels.",
+    "files": [{"label": "docs/JK_VERIFICATION.md", "path": "../docs/JK_VERIFICATION.md#notation-before-the-formula"}],
+    "verify": "Check that W_{n-1} is the JK Weyl-summation set and is not the repository W26 basis.",
+    "done": "You will not confuse determinant degree, Chern degree c12, and W26."
+  },
+  {
+    "id": "hessian-indices",
+    "phase": "JK Formula",
+    "title": "Hessian matrix and inverse entries",
+    "subtitle": "Meaning of (H_q(X)^-1)_{ab}.",
+    "files": [{"label": "docs/JK_VERIFICATION.md", "path": "../docs/JK_VERIFICATION.md#notation-before-the-formula"}],
+    "verify": "Check that H_q is the Hessian in the hat u_a basis and that ab means row a, column b of the inverse matrix.",
+    "done": "You can explain the inverse-Hessian contraction in Lemma 10.11."
+  },
+  {
+    "id": "theorem-left-side",
+    "phase": "JK Formula",
+    "title": "Theorem 9.11 left-hand side",
+    "subtitle": "Which monomial is being paired.",
+    "files": [{"label": "docs/JK_VERIFICATION.md", "path": "../docs/JK_VERIFICATION.md#paper-formula"}],
+    "verify": "Check that the displayed formula is for exp(f_2 + delta_3 f_3 + ...) times a monomial in a_r and b_r^k.",
+    "done": "You can identify where a, b, and f inputs appear in the formula."
+  },
+  {
+    "id": "residue-order",
+    "phase": "JK Formula",
+    "title": "Iterated residue order",
+    "subtitle": "Paper order versus implementation order.",
+    "files": [{"label": "docs/JK_VERIFICATION.md", "path": "../docs/JK_VERIFICATION.md#paper-formula"}],
+    "verify": "Check the statement that the code applies the same nested residue operator inside-out as Y_4, Y_3, Y_2, Y_1 for rank 5.",
+    "done": "You can explain why the written order and execution order agree."
+  },
+  {
+    "id": "root-denominators",
+    "phase": "JK Formula",
+    "title": "Root and simple-root denominators",
+    "subtitle": "D(X) and product_j (1-exp(-B_j)).",
+    "files": [{"label": "docs/JK_VERIFICATION.md", "path": "../docs/JK_VERIFICATION.md#paper-formula"}],
+    "verify": "Check which denominator comes from positive roots and which comes from the JK residue expansion.",
+    "done": "You can point to both denominators in the theorem formula and in the rank-5 specialization."
+  },
+  {
+    "id": "torus-integral",
+    "phase": "JK Formula",
+    "title": "Torus exterior integral",
+    "subtitle": "zeta variables and top-degree coefficient extraction.",
+    "files": [{"label": "docs/JK_VERIFICATION.md", "path": "../docs/JK_VERIFICATION.md#paper-formula"}],
+    "verify": "Check that int_{T^{2g}} is treated as exterior-algebra coefficient extraction in zeta variables.",
+    "done": "You can explain why odd insertions are handled by exterior algebra."
+  },
+  {
+    "id": "lemma-odd-gaussian",
+    "phase": "JK Formula",
+    "title": "Lemma 10.11 odd Gaussian",
+    "subtitle": "hat_tau and s variables.",
+    "files": [{"label": "docs/JK_VERIFICATION.md", "path": "../docs/JK_VERIFICATION.md#paper-formula"}],
+    "verify": "Check the sign, the sums over a,b,r,s,j, and the inverse-Hessian entry in the displayed hat_tau formula.",
+    "done": "You can say how a gamma coefficient is obtained from exp(hat_tau)."
+  },
+  {
+    "id": "det-ratio-ng",
+    "phase": "JK Formula",
+    "title": "Gaussian determinant and n^g",
+    "subtitle": "What comes from evaluating the torus Gaussian.",
+    "files": [{"label": "docs/JK_VERIFICATION.md", "path": "../docs/JK_VERIFICATION.md#paper-formula"}],
+    "verify": "Check the distinction between Theorem 9.11(a) with the torus integral and part (b) after Gaussian evaluation.",
+    "done": "You can explain why n^g and det(H_q)/det(H_tau2) appear."
+  },
+  {
+    "id": "rank5-x-coordinates",
+    "phase": "Rank 5 Specialization",
+    "title": "Rank-5 simple-root coordinates",
+    "subtitle": "The five x_i in terms of Y_1,...,Y_4.",
+    "files": [{"label": "docs/JK_VERIFICATION.md", "path": "../docs/JK_VERIFICATION.md#rank-5-genus-2-degree-1"}],
+    "verify": "Check that x_i - x_{i+1} = Y_i and that x_1+...+x_5 = 0.",
+    "done": "You have manually checked at least these two identities."
+  },
+  {
+    "id": "rank5-root-product",
+    "phase": "Rank 5 Specialization",
+    "title": "Positive roots and D(X)^2",
+    "subtitle": "The ten roots for rank 5.",
+    "files": [{"label": "docs/JK_VERIFICATION.md", "path": "../docs/JK_VERIFICATION.md#rank-5-genus-2-degree-1"}],
+    "verify": "Check that x_i-x_j = Y_i+...+Y_{j-1} and that genus 2 gives the square denominator.",
+    "done": "You know where the ten positive roots enter the residue."
+  },
+  {
+    "id": "ctilde-degree-one",
+    "phase": "Rank 5 Specialization",
+    "title": "Degree-one determinant lift",
+    "subtitle": "c_tilde and the delta=0 normalization check.",
+    "files": [{"label": "docs/JK_VERIFICATION.md", "path": "../docs/JK_VERIFICATION.md#rank-5-genus-2-degree-1"}],
+    "verify": "Check c_tilde = (1/5,1/5,1/5,1/5,-4/5) and the displayed value of (dq)_X(c_tilde) at delta=0.",
+    "done": "You can reproduce the displayed linear expression in the Y variables."
+  },
+  {
+    "id": "scalar-prefactor",
+    "phase": "Rank 5 Specialization",
+    "title": "Scalar prefactor 5",
+    "subtitle": "The Weyl sum and n^g/n! factor.",
+    "files": [{"label": "docs/JK_VERIFICATION.md", "path": "../docs/JK_VERIFICATION.md#rank-5-genus-2-degree-1"}],
+    "verify": "Check that the W_4 summands are identical for determinant degree 1 and that (25/120)*24 = 5.",
+    "done": "You can explain why this is a specialization, not a general simplification."
+  },
+  {
+    "id": "final-pairing-formula",
+    "phase": "Rank 5 Specialization",
+    "title": "Final implemented pairing formula",
+    "subtitle": "Factorials, delta extraction, residues, gamma piece.",
+    "files": [{"label": "docs/JK_VERIFICATION.md", "path": "../docs/JK_VERIFICATION.md#rank-5-genus-2-degree-1"}],
+    "verify": "Check each factor in the displayed JK_{5,2,1} formula against the preceding explanations.",
+    "done": "You can narrate the formula from left to right without looking at code."
+  },
+  {
+    "id": "gamma-convention",
+    "phase": "Rank 5 Specialization",
+    "title": "Gamma is only an abbreviation",
+    "subtitle": "No hidden rescaling of odd variables.",
+    "files": [
+      {"label": "docs/JK_VERIFICATION.md", "path": "../docs/JK_VERIFICATION.md#odd-variables-and-gamma"},
+      {"label": "GAMMA_CONVENTION.md", "path": "../src/jk_only_v5_relation_frozen/GAMMA_CONVENTION.md"}
+    ],
+    "verify": "Check that gamma_rs is expanded into JK b variables and that no Newstead/HT rescaling is used.",
+    "done": "You can explain how gamma is handled before entering the evaluator."
+  },
+  {
+    "id": "code-constants",
+    "phase": "Symbolic Code",
+    "title": "Constants and labels in jk_formula.py",
+    "subtitle": "Rank, genus, top degree, b-labels, gamma labels.",
+    "files": [{"label": "jk_formula.py", "path": "../src/jk_only_v5_relation_frozen/jk_formula.py"}],
+    "verify": "Check that the constants and label sets match rank 5, genus 2, determinant degree 1 and the JK odd labels.",
+    "done": "You know which constants would have to change for another rank or genus."
+  },
+  {
+    "id": "code-x-tau",
+    "phase": "Symbolic Code",
+    "title": "x_i(Y) and tau_r in code",
+    "subtitle": "Simple-root coordinate implementation.",
+    "files": [{"label": "jk_formula.py lines 69-90", "path": "../src/jk_only_v5_relation_frozen/jk_formula.py#L69-L90"}],
+    "verify": "Compare the code x_i formulas and tau function with the displayed rank-5 formula.",
+    "done": "You can match each Python expression to the mathematical x_i and tau_r."
+  },
+  {
+    "id": "code-q-bj",
+    "phase": "Symbolic Code",
+    "title": "q, c_tilde, and B_j in code",
+    "subtitle": "The exponent and simple-root denominators.",
+    "files": [{"label": "jk_formula.py lines 103-129", "path": "../src/jk_only_v5_relation_frozen/jk_formula.py#L103-L129"}],
+    "verify": "Check q, c_tilde, (dq)(c_tilde), and B_j = -(dq)(h_j) against the formula page.",
+    "done": "You can identify the code line for each of those four objects."
+  },
+  {
+    "id": "code-roots-hessian",
+    "phase": "Symbolic Code",
+    "title": "Roots, D(X)^2, and Hessian",
+    "subtitle": "Root product and Hessian matrix.",
+    "files": [{"label": "jk_formula.py lines 140-165", "path": "../src/jk_only_v5_relation_frozen/jk_formula.py#L140-L165"}],
+    "verify": "Check positive_roots, denominator_root_product_squared, hessian_y_basis, and det ratio.",
+    "done": "You can say why the Hessian is taken in the Y/simple-coroot basis."
+  },
+  {
+    "id": "code-hat-tau",
+    "phase": "Symbolic Code",
+    "title": "hat_tau pair coefficient",
+    "subtitle": "- grad tau_r^T H_q^-1 grad tau_s.",
+    "files": [{"label": "jk_formula.py lines 168-173", "path": "../src/jk_only_v5_relation_frozen/jk_formula.py#L168-L173"}],
+    "verify": "Check that the code's matrix product matches the Lemma 10.11 contraction including the sign.",
+    "done": "You can connect the ab-sum in the formula to the matrix product in code."
+  },
+  {
+    "id": "code-exterior",
+    "phase": "Symbolic Code",
+    "title": "Exterior algebra machinery",
+    "subtitle": "Odd multiplication and coefficient extraction.",
+    "files": [{"label": "jk_formula.py lines 180-248", "path": "../src/jk_only_v5_relation_frozen/jk_formula.py#L180-L248"}],
+    "verify": "Check that repeated odd labels vanish, signs are handled, and exp(hat_tau) is coefficient-extracted.",
+    "done": "You understand enough of the exterior-algebra code to trust the sign convention or flag a question."
+  },
+  {
+    "id": "code-gamma-expansion",
+    "phase": "Symbolic Code",
+    "title": "Gamma expansion into b variables",
+    "subtitle": "Sp-invariant gamma monomials are converted before evaluation.",
+    "files": [{"label": "jk_formula.py lines 251-296", "path": "../src/jk_only_v5_relation_frozen/jk_formula.py#L251-L296"}],
+    "verify": "Check the gamma_rs expansion formula and compare it with GAMMA_CONVENTION.md.",
+    "done": "You can explain why gamma is not a primitive input variable to the JK paper formula."
+  },
+  {
+    "id": "code-integrand-residue",
+    "phase": "Symbolic Code",
+    "title": "Symbolic integrand and residues",
+    "subtitle": "Delta extraction, factorials, and ordered residues.",
+    "files": [{"label": "jk_formula.py lines 314-360", "path": "../src/jk_only_v5_relation_frozen/jk_formula.py#L314-L360"}],
+    "verify": "Check the product of nu_r! factors, the symbolic generating integrand, and residue order.",
+    "done": "You can identify the exact symbolic implementation of the final JK_{5,2,1} formula."
+  },
+  {
+    "id": "sample-checks",
+    "phase": "Symbolic Code",
+    "title": "Small formula checks",
+    "subtitle": "Run checks that avoid heavy computations.",
+    "files": [
+      {"label": "run_checks.py", "path": "../src/jk_only_v5_relation_frozen/run_checks.py"},
+      {"label": "sample_certificate.py", "path": "../src/jk_only_v5_relation_frozen/sample_certificate.py"}
+    ],
+    "verify": "Read what the small checks claim: structural identities, sample residues, and symbolic versus modular comparisons.",
+    "done": "You know which tests are mathematical checks and which are engineering guardrails."
+  },
+  {
+    "id": "basis-source-rows",
+    "phase": "Basis and Columns",
+    "title": "Source row basis",
+    "subtitle": "Sp-invariant ordinary-degree-22 classes by Chern degree.",
+    "files": [{"label": "basis.py", "path": "../src/jk_only_v5_relation_frozen/basis.py"}],
+    "verify": "Check how rows are enumerated, how ordinary degree and Chern degree are enforced, and how gamma products are represented.",
+    "done": "You can explain what one source row name means."
+  },
+  {
+    "id": "w26-columns",
+    "phase": "Basis and Columns",
+    "title": "Degree-26 W26 test basis",
+    "subtitle": "What the matrix columns are.",
+    "files": [
+      {"label": "README.md", "path": "../README.md"},
+      {"label": "basis.py", "path": "../src/jk_only_v5_relation_frozen/basis.py"}
+    ],
+    "verify": "Check that W26 means Sp-invariant ordinary-degree-26 test classes and is not JK's Weyl group W.",
+    "done": "You can explain a pairing column to a mathematician without the word 'internal'."
+  },
+  {
+    "id": "modular-primes",
+    "phase": "Fast Modular Code",
+    "title": "Modular primes and denominator avoidance",
+    "subtitle": "Why the chosen primes are valid for the modular path.",
+    "files": [
+      {"label": "docs/JK_VERIFICATION.md modular primes", "path": "../docs/JK_VERIFICATION.md#modular-primes"},
+      {"label": "fast_modular.py", "path": "../src/jk_only_v5_relation_frozen/fast_modular.py"}
+    ],
+    "verify": "Check that the primes avoid the fixed small denominators and that modular inverse failure would stop the computation.",
+    "done": "You can state what modular arithmetic proves and what extra rational interpretation requires."
+  },
+  {
+    "id": "fast-x-tau-kernel",
+    "phase": "Fast Modular Code",
+    "title": "Fast modular even kernel",
+    "subtitle": "x_i, tau_r, exponent, denominators, determinant ratio.",
+    "files": [{"label": "fast_modular.py lines 155-571", "path": "../src/jk_only_v5_relation_frozen/fast_modular.py#L155-L571"}],
+    "verify": "Compare each fast modular factor with the code map in JK_VERIFICATION.md.",
+    "done": "You have a list of which fast functions correspond to which symbolic formula functions."
+  },
+  {
+    "id": "fast-gamma",
+    "phase": "Fast Modular Code",
+    "title": "Fast modular gamma expansion",
+    "subtitle": "Shared kernel-gamma factors and exp(hat_tau) coefficient.",
+    "files": [{"label": "fast_modular.py lines 630-725", "path": "../src/jk_only_v5_relation_frozen/fast_modular.py#L630-L725"}],
+    "verify": "Check that fast gamma logic is backed by the same paper-derived hat_tau/gamma convention.",
+    "done": "You know what symbolic oracle comparison protects this part."
+  },
+  {
+    "id": "fast-residue-transitions",
+    "phase": "Fast Modular Code",
+    "title": "Fast one-variable residue transitions",
+    "subtitle": "Residue truncation and ordered application.",
+    "files": [{"label": "fast_modular.py lines 756-969", "path": "../src/jk_only_v5_relation_frozen/fast_modular.py#L756-L969"}],
+    "verify": "Check that residue transitions preserve the same iterated residue order as the formula layer.",
+    "done": "You can say which part is mathematical and which part is speed engineering."
+  },
+  {
+    "id": "fast-final-value",
+    "phase": "Fast Modular Code",
+    "title": "Final modular pairing value",
+    "subtitle": "Prefactor 5, factorials, and returned column entries.",
+    "files": [{"label": "fast_modular.py lines 996-1010", "path": "../src/jk_only_v5_relation_frozen/fast_modular.py#L996-L1010"}],
+    "verify": "Check that the final scale matches the displayed JK_{5,2,1} formula.",
+    "done": "You can account for every multiplicative factor in a modular entry."
+  },
+  {
+    "id": "c12-coefficients",
+    "phase": "C12 Relation",
+    "title": "Read the c12 relation coefficients",
+    "subtitle": "The human-facing relation line.",
+    "files": [
+      {"label": "c12/relation_coefficients.md", "path": "../c12/relation_coefficients.md"},
+      {"label": "c12/theorem_assisted_candidate.json", "path": "../c12/theorem_assisted_candidate.json"}
+    ],
+    "verify": "Check the primitive integer normalization and compare the coefficient table with the JSON artifact.",
+    "done": "You can find and quote the relation candidate quickly."
+  },
+  {
+    "id": "c12-logical-status",
+    "phase": "C12 Relation",
+    "title": "Check the c12 logical status",
+    "subtitle": "Theorem-assisted candidate versus full annihilation certificate.",
+    "files": [
+      {"label": "c12/README.md", "path": "../c12/README.md"},
+      {"label": "docs/C12_THEOREM_ASSISTED_CANDIDATE.md", "path": "../docs/C12_THEOREM_ASSISTED_CANDIDATE.md"}
+    ],
+    "verify": "Check the exact claim: external theorem gives existence/uniqueness; selected rank-43 minor identifies the line.",
+    "done": "You can explain what is proved, what is assumed externally, and what is not claimed."
+  },
+  {
+    "id": "certificates-full-rank",
+    "phase": "Certificates",
+    "title": "Full-rank certificate structure",
+    "subtitle": "Selected minors, source hashes, and second-prime checks.",
+    "files": [
+      {"label": "c14/certificate.json", "path": "../c14/certificate.json"},
+      {"label": "docs/RESULT_SCHEMA.md", "path": "../docs/RESULT_SCHEMA.md"}
+    ],
+    "verify": "Pick one degree and check that selected rows/columns, determinant, primes, commands, and source hashes are recorded.",
+    "done": "You understand why a selected nonzero minor certifies the displayed modular rank."
+  },
+  {
+    "id": "computed-columns-export",
+    "phase": "Certificates",
+    "title": "Computed column exports",
+    "subtitle": "What data was actually published.",
+    "files": [
+      {"label": "computed_entries.README example", "path": "../c14/computed_entries.README.md"},
+      {"label": "scripts/export_computed_columns.py", "path": "../scripts/export_computed_columns.py"}
+    ],
+    "verify": "Check the distinction between computed columns and a full pairing matrix.",
+    "done": "You can tell a reader what a computed_columns_mod_p.json.gz file contains."
+  },
+  {
+    "id": "publication-validator",
+    "phase": "Certificates",
+    "title": "Publication validator",
+    "subtitle": "Lightweight public artifact consistency checks.",
+    "files": [{"label": "scripts/validate_publication.py", "path": "../scripts/validate_publication.py"}],
+    "verify": "Read what the validator checks and what it intentionally does not recompute.",
+    "done": "You can use the validator as a public-record check without mistaking it for a JK recomputation."
+  },
+  {
+    "id": "final-audit-summary",
+    "phase": "Wrap-up",
+    "title": "Write your final audit summary",
+    "subtitle": "A short human statement of what you checked.",
+    "files": [{"label": "Export Markdown from this notebook", "path": "#"}],
+    "verify": "Summarize: formula checked, source layer checked, fast layer guarded by comparisons, certificates checked, open questions listed.",
+    "done": "You have a concise audit log that another mathematician can read."
+  }
+]
+  </script>
+
+  <script>
+    const TASKS = JSON.parse(document.getElementById("task-data").textContent);
+    const STORAGE_KEY = "jk-human-audit-notebook-v1";
+    const STATUS_LABELS = {
+      "not-started": "Not started",
+      "reading": "Reading",
+      "checked": "Checked",
+      "needs-discussion": "Needs discussion"
+    };
+    const LEVELS = [
+      "Level 0",
+      "Level 1: Oriented",
+      "Level 2: Formula Reader",
+      "Level 3: Code Mapper",
+      "Level 4: Certificate Checker",
+      "Level 5: Audit Captain"
+    ];
+
+    const byId = new Map(TASKS.map((task) => [task.id, task]));
+    const phases = [...new Set(TASKS.map((task) => task.phase))];
+
+    function emptyTaskState() {
+      const tasks = {};
+      for (const task of TASKS) {
+        tasks[task.id] = {
+          status: "not-started",
+          confidence: "0",
+          notes: "",
+          questions: ""
+        };
+      }
+      return {
+        version: 1,
+        savedAt: new Date().toISOString(),
+        globalNotes: "",
+        tasks
+      };
+    }
+
+    function loadState() {
+      const fresh = emptyTaskState();
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return fresh;
+      try {
+        const parsed = JSON.parse(raw);
+        const merged = emptyTaskState();
+        merged.globalNotes = parsed.globalNotes || "";
+        for (const task of TASKS) {
+          merged.tasks[task.id] = {
+            ...merged.tasks[task.id],
+            ...(parsed.tasks && parsed.tasks[task.id] ? parsed.tasks[task.id] : {})
+          };
+        }
+        return merged;
+      } catch (error) {
+        console.warn("Could not read saved audit state", error);
+        return fresh;
+      }
+    }
+
+    let state = loadState();
+
+    function saveState() {
+      state.savedAt = new Date().toISOString();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      updateProgress();
+    }
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "\"": "&quot;",
+        "'": "&#039;"
+      })[char]);
+    }
+
+    function taskState(taskId) {
+      if (!state.tasks[taskId]) {
+        state.tasks[taskId] = emptyTaskState().tasks[taskId];
+      }
+      return state.tasks[taskId];
+    }
+
+    function renderPhaseControls() {
+      const phaseFilter = document.getElementById("phaseFilter");
+      for (const phase of phases) {
+        const option = document.createElement("option");
+        option.value = phase;
+        option.textContent = phase;
+        phaseFilter.appendChild(option);
+      }
+
+      const phaseList = document.getElementById("phaseList");
+      const allButton = document.createElement("button");
+      allButton.className = "phase-button active";
+      allButton.dataset.phase = "all";
+      allButton.innerHTML = "<span>All phases</span><span>" + TASKS.length + "</span>";
+      phaseList.appendChild(allButton);
+
+      for (const phase of phases) {
+        const count = TASKS.filter((task) => task.phase === phase).length;
+        const button = document.createElement("button");
+        button.className = "phase-button";
+        button.dataset.phase = phase;
+        button.innerHTML = "<span>" + escapeHtml(phase) + "</span><span>" + count + "</span>";
+        phaseList.appendChild(button);
+      }
+
+      phaseList.addEventListener("click", (event) => {
+        const button = event.target.closest("button[data-phase]");
+        if (!button) return;
+        document.querySelectorAll(".phase-button").forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+        phaseFilter.value = button.dataset.phase;
+        renderTasks();
+      });
+    }
+
+    function renderTasks() {
+      const mount = document.getElementById("taskMount");
+      const query = document.getElementById("searchBox").value.trim().toLowerCase();
+      const phaseFilter = document.getElementById("phaseFilter").value;
+      const statusFilter = document.getElementById("statusFilter").value;
+
+      mount.innerHTML = "";
+      let index = 0;
+
+      for (const phase of phases) {
+        const phaseTasks = TASKS.filter((task) => {
+          const saved = taskState(task.id);
+          const haystack = [
+            task.phase,
+            task.title,
+            task.subtitle,
+            task.verify,
+            task.done,
+            ...task.files.map((file) => file.label + " " + file.path)
+          ].join(" ").toLowerCase();
+          return (phaseFilter === "all" || task.phase === phase)
+            && (statusFilter === "all" || saved.status === statusFilter)
+            && (!query || haystack.includes(query));
+        });
+
+        if (phaseTasks.length === 0) continue;
+
+        const section = document.createElement("section");
+        section.className = "phase";
+        section.innerHTML = "<h2>" + escapeHtml(phase) + "</h2>";
+
+        for (const task of phaseTasks) {
+          index += 1;
+          section.appendChild(renderTask(task, index));
+        }
+        mount.appendChild(section);
+      }
+
+      if (index === 0) {
+        mount.innerHTML = "<section class='task'><div class='task-body'><p>No tasks match this filter.</p></div></section>";
+      }
+    }
+
+    function renderTask(task, visibleIndex) {
+      const saved = taskState(task.id);
+      const article = document.createElement("article");
+      article.className = "task";
+      article.dataset.id = task.id;
+      if (saved.status === "checked") article.classList.add("done");
+      if (saved.status === "needs-discussion") article.classList.add("needs");
+
+      const files = task.files.map((file) => (
+        "<li><a href='" + escapeHtml(file.path) + "' target='_blank' rel='noreferrer'>" +
+        escapeHtml(file.label) + "</a></li>"
+      )).join("");
+
+      article.innerHTML = `
+        <div class="task-header">
+          <div class="task-number">${visibleIndex}</div>
+          <div class="task-title">
+            <h3>${escapeHtml(task.title)}</h3>
+            <p>${escapeHtml(task.subtitle)}</p>
+          </div>
+          <select data-field="status" aria-label="Status for ${escapeHtml(task.title)}">
+            ${Object.entries(STATUS_LABELS).map(([value, label]) =>
+              `<option value="${value}" ${saved.status === value ? "selected" : ""}>${label}</option>`
+            ).join("")}
+          </select>
+          <select data-field="confidence" aria-label="Confidence for ${escapeHtml(task.title)}">
+            ${["0", "1", "2", "3", "4", "5"].map((value) =>
+              `<option value="${value}" ${String(saved.confidence) === value ? "selected" : ""}>Confidence ${value}</option>`
+            ).join("")}
+          </select>
+        </div>
+        <div class="task-body">
+          <div>
+            <h4>Files</h4>
+            <ul class="meta-list">${files}</ul>
+            <h4>Check</h4>
+            <p>${escapeHtml(task.verify)}</p>
+            <h4>Done when</h4>
+            <p>${escapeHtml(task.done)}</p>
+            <span class="status-pill ${escapeHtml(saved.status)}">${escapeHtml(STATUS_LABELS[saved.status] || saved.status)}</span>
+          </div>
+          <div class="notes-grid">
+            <label>
+              <h4>My understanding</h4>
+              <textarea data-field="notes" placeholder="Write the mathematical sentence you can now defend.">${escapeHtml(saved.notes)}</textarea>
+            </label>
+            <label>
+              <h4>Questions or red flags</h4>
+              <textarea data-field="questions" placeholder="Anything unclear, suspicious, or worth asking later.">${escapeHtml(saved.questions)}</textarea>
+            </label>
+          </div>
+        </div>
+      `;
+
+      article.addEventListener("input", handleTaskInput);
+      article.addEventListener("change", handleTaskInput);
+      return article;
+    }
+
+    function handleTaskInput(event) {
+      const field = event.target.dataset.field;
+      if (!field) return;
+      const taskElement = event.target.closest(".task");
+      const saved = taskState(taskElement.dataset.id);
+      saved[field] = event.target.value;
+      saveState();
+      if (field === "status") renderTasks();
+    }
+
+    function updateProgress() {
+      const checked = TASKS.filter((task) => taskState(task.id).status === "checked").length;
+      const needs = TASKS.filter((task) => taskState(task.id).status === "needs-discussion").length;
+      const percent = TASKS.length ? Math.round((checked / TASKS.length) * 100) : 0;
+      const levelIndex = Math.min(LEVELS.length - 1, Math.floor((percent / 100) * LEVELS.length));
+      document.getElementById("progressText").textContent =
+        checked + "/" + TASKS.length + " checked" + (needs ? " ; " + needs + " flagged" : "");
+      document.getElementById("progressBar").style.width = percent + "%";
+      document.getElementById("levelText").textContent = LEVELS[levelIndex];
+    }
+
+    function download(filename, content, type) {
+      const blob = new Blob([content], { type });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function exportJson() {
+      download(
+        "jk-human-audit-notebook.json",
+        JSON.stringify(state, null, 2),
+        "application/json"
+      );
+    }
+
+    function exportMarkdown() {
+      const lines = [];
+      lines.push("# JK Human Audit Log");
+      lines.push("");
+      lines.push("Exported: " + new Date().toISOString());
+      lines.push("");
+      if (state.globalNotes.trim()) {
+        lines.push("## Global Notes");
+        lines.push("");
+        lines.push(state.globalNotes.trim());
+        lines.push("");
+      }
+      for (const phase of phases) {
+        lines.push("## " + phase);
+        lines.push("");
+        for (const task of TASKS.filter((item) => item.phase === phase)) {
+          const saved = taskState(task.id);
+          lines.push("### " + task.title);
+          lines.push("");
+          lines.push("- Status: " + (STATUS_LABELS[saved.status] || saved.status));
+          lines.push("- Confidence: " + saved.confidence + "/5");
+          lines.push("- Files: " + task.files.map((file) => file.label + " (" + file.path + ")").join(", "));
+          lines.push("");
+          lines.push("Check: " + task.verify);
+          lines.push("");
+          lines.push("My understanding:");
+          lines.push(saved.notes.trim() || "_Not written yet._");
+          lines.push("");
+          lines.push("Questions or red flags:");
+          lines.push(saved.questions.trim() || "_None recorded._");
+          lines.push("");
+        }
+      }
+      download("jk-human-audit-log.md", lines.join("\n"), "text/markdown");
+    }
+
+    function importJsonFile(file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const imported = JSON.parse(reader.result);
+          state = {
+            ...emptyTaskState(),
+            ...imported,
+            tasks: {
+              ...emptyTaskState().tasks,
+              ...(imported.tasks || {})
+            }
+          };
+          saveState();
+          document.getElementById("globalNotes").value = state.globalNotes || "";
+          renderTasks();
+        } catch (error) {
+          alert("Could not import that JSON file: " + error.message);
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    document.getElementById("searchBox").addEventListener("input", renderTasks);
+    document.getElementById("phaseFilter").addEventListener("change", () => {
+      document.querySelectorAll(".phase-button").forEach((button) => {
+        button.classList.toggle("active", button.dataset.phase === document.getElementById("phaseFilter").value);
+      });
+      renderTasks();
+    });
+    document.getElementById("statusFilter").addEventListener("change", renderTasks);
+    document.getElementById("exportJson").addEventListener("click", exportJson);
+    document.getElementById("exportMd").addEventListener("click", exportMarkdown);
+    document.getElementById("importButton").addEventListener("click", () => document.getElementById("importFile").click());
+    document.getElementById("importFile").addEventListener("change", (event) => {
+      const file = event.target.files[0];
+      if (file) importJsonFile(file);
+      event.target.value = "";
+    });
+    document.getElementById("globalNotes").addEventListener("input", (event) => {
+      state.globalNotes = event.target.value;
+      saveState();
+    });
+
+    document.getElementById("globalNotes").value = state.globalNotes || "";
+    renderPhaseControls();
+    renderTasks();
+    updateProgress();
+  </script>
+</body>
+</html>
