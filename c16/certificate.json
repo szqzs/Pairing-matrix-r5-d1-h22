@@ -1,0 +1,490 @@
+{
+  "chern_degree": 16,
+  "commands": {
+    "manifest": "/opt/anaconda3/bin/python /Users/siqingzhang/Documents/Playground/sp_invariant_fast_algorithm_v5/jk_only/cluster_rank_driver.py manifest --chern-degrees 16 --column-order cheap-probe --columns-per-task 16 --wave-size 64 --shard-mode task --source-degree 22 --w-degree 26 --output /Users/siqingzhang/Documents/Playground/jk_v5_runs/long_20260517T223207Z/c16/manifest.json",
+    "reduce": "/opt/anaconda3/bin/python /Users/siqingzhang/Documents/Playground/sp_invariant_fast_algorithm_v5/jk_only/cluster_rank_driver.py reduce --manifest /Users/siqingzhang/Documents/Playground/jk_v5_runs/long_20260517T223207Z/c16/manifest.json --shard-dir /Users/siqingzhang/Documents/Playground/jk_v5_runs/long_20260517T223207Z/c16/shards --shard-mode task --output /Users/siqingzhang/Documents/Playground/jk_v5_runs/long_20260517T223207Z/c16/reduce_final.json",
+    "verify_certificate": "/opt/anaconda3/bin/python /Users/siqingzhang/Documents/Playground/sp_invariant_fast_algorithm_v5/jk_only/cluster_rank_driver.py verify-certificate --manifest /Users/siqingzhang/Documents/Playground/jk_v5_runs/long_20260517T223207Z/c16/manifest.json --reduce-output /Users/siqingzhang/Documents/Playground/jk_v5_runs/long_20260517T223207Z/c16/reduce_final.json --second-prime 1000033 --output /Users/siqingzhang/Documents/Playground/jk_v5_runs/long_20260517T223207Z/c16/verification_final.json",
+    "worker": "/opt/anaconda3/bin/python /Users/siqingzhang/Documents/Playground/sp_invariant_fast_algorithm_v5/jk_only/cluster_rank_driver.py worker --manifest /Users/siqingzhang/Documents/Playground/jk_v5_runs/long_20260517T223207Z/c16/manifest.json --task-index '<task_index_spec>' --shard-dir /Users/siqingzhang/Documents/Playground/jk_v5_runs/long_20260517T223207Z/c16/shards --shard-mode task --no-repair-existing --output '<per-batch-worker-summary.json>'; exact per-batch commands are recorded in the raw strict-run ledger"
+  },
+  "elapsed_seconds": {
+    "manifest": 15.276103019714355,
+    "reduce": 2.9713470935821533,
+    "verify_certificate": 3106.9369218349457,
+    "workers_total": null
+  },
+  "manifest_sha256": "0e1fed76bd3f0f78f9ab52bec544a6f569a305db68d250799d7b6397935c3c9c",
+  "nullity": 0,
+  "prime": "2305843009213693951",
+  "rank": 53,
+  "raw_artifacts": {
+    "manifest": {
+      "label": "raw c16 manifest artifact, not committed",
+      "sha256": "0e1fed76bd3f0f78f9ab52bec544a6f569a305db68d250799d7b6397935c3c9c"
+    },
+    "reduce": {
+      "label": "raw c16 final reduce artifact, not committed",
+      "sha256": "3d778cb04fd6aa6070de8f128b44132438bd6e9fd6ab5ce00e74f67e514627af"
+    },
+    "run_ledger": {
+      "label": "raw c16 strict-run ledger publication snapshot, not committed",
+      "sha256": "2234b1280f1dbc491f62fbe66fc0c126ac6da660eb8d1acdb50b15ab25fd80a7"
+    },
+    "run_provenance": {
+      "label": "raw c16 strict-run provenance, not committed",
+      "sha256": "5bbe28470c484b551decc7177285ae965e17d4d7c6638fd79808d00b4472bbd2"
+    },
+    "verification": {
+      "label": "raw c16 final verification artifact, not committed",
+      "sha256": "dfa1d1f033c7bcb89f3253603f43170c95c475720a9ce2f4d4d50d578b0ea3f6"
+    }
+  },
+  "reduce_output_sha256": "3d778cb04fd6aa6070de8f128b44132438bd6e9fd6ab5ce00e74f67e514627af",
+  "second_prime": "1000033",
+  "selected_columns": [
+    {
+      "w_index": 760,
+      "w_name": "f2^13"
+    },
+    {
+      "w_index": 306,
+      "w_name": "a2 f2^11"
+    },
+    {
+      "w_index": 525,
+      "w_name": "a3 f2^10"
+    },
+    {
+      "w_index": 112,
+      "w_name": "a2^2 f2^9"
+    },
+    {
+      "w_index": 644,
+      "w_name": "a4 f2^9"
+    },
+    {
+      "w_index": 206,
+      "w_name": "a2 a3 f2^8"
+    },
+    {
+      "w_index": 715,
+      "w_name": "a5 f2^8"
+    },
+    {
+      "w_index": 36,
+      "w_name": "a2^3 f2^7"
+    },
+    {
+      "w_index": 257,
+      "w_name": "a2 a4 f2^7"
+    },
+    {
+      "w_index": 462,
+      "w_name": "a3^2 f2^7"
+    },
+    {
+      "w_index": 73,
+      "w_name": "a2^2 a3 f2^6"
+    },
+    {
+      "w_index": 287,
+      "w_name": "a2 a5 f2^6"
+    },
+    {
+      "w_index": 494,
+      "w_name": "a3 a4 f2^6"
+    },
+    {
+      "w_index": 10,
+      "w_name": "a2^4 f2^5"
+    },
+    {
+      "w_index": 94,
+      "w_name": "a2^2 a4 f2^5"
+    },
+    {
+      "w_index": 183,
+      "w_name": "a2 a3^2 f2^5"
+    },
+    {
+      "w_index": 514,
+      "w_name": "a3 a5 f2^5"
+    },
+    {
+      "w_index": 626,
+      "w_name": "a4^2 f2^5"
+    },
+    {
+      "w_index": 23,
+      "w_name": "a2^3 a3 f2^4"
+    },
+    {
+      "w_index": 105,
+      "w_name": "a2^2 a5 f2^4"
+    },
+    {
+      "w_index": 195,
+      "w_name": "a2 a3 a4 f2^4"
+    },
+    {
+      "w_index": 449,
+      "w_name": "a3^3 f2^4"
+    },
+    {
+      "w_index": 637,
+      "w_name": "a4 a5 f2^4"
+    },
+    {
+      "w_index": 2,
+      "w_name": "a2^5 f2^3"
+    },
+    {
+      "w_index": 30,
+      "w_name": "a2^3 a4 f2^3"
+    },
+    {
+      "w_index": 66,
+      "w_name": "a2^2 a3^2 f2^3"
+    },
+    {
+      "w_index": 202,
+      "w_name": "a2 a3 a5 f2^3"
+    },
+    {
+      "w_index": 251,
+      "w_name": "a2 a4^2 f2^3"
+    },
+    {
+      "w_index": 456,
+      "w_name": "a3^2 a4 f2^3"
+    },
+    {
+      "w_index": 711,
+      "w_name": "a5^2 f2^3"
+    },
+    {
+      "w_index": 6,
+      "w_name": "a2^4 a3 f2^2"
+    },
+    {
+      "w_index": 34,
+      "w_name": "a2^3 a5 f2^2"
+    },
+    {
+      "w_index": 70,
+      "w_name": "a2^2 a3 a4 f2^2"
+    },
+    {
+      "w_index": 179,
+      "w_name": "a2 a3^3 f2^2"
+    },
+    {
+      "w_index": 255,
+      "w_name": "a2 a4 a5 f2^2"
+    },
+    {
+      "w_index": 460,
+      "w_name": "a3^2 a5 f2^2"
+    },
+    {
+      "w_index": 491,
+      "w_name": "a3 a4^2 f2^2"
+    },
+    {
+      "w_index": 0,
+      "w_name": "a2^6 f2"
+    },
+    {
+      "w_index": 8,
+      "w_name": "a2^4 a4 f2"
+    },
+    {
+      "w_index": 21,
+      "w_name": "a2^3 a3^2 f2"
+    },
+    {
+      "w_index": 72,
+      "w_name": "a2^2 a3 a5 f2"
+    },
+    {
+      "w_index": 92,
+      "w_name": "a2^2 a4^2 f2"
+    },
+    {
+      "w_index": 181,
+      "w_name": "a2 a3^2 a4 f2"
+    },
+    {
+      "w_index": 286,
+      "w_name": "a2 a5^2 f2"
+    },
+    {
+      "w_index": 826,
+      "w_name": "f2^4 gamma55"
+    },
+    {
+      "w_index": 804,
+      "w_name": "f2^5 gamma45"
+    },
+    {
+      "w_index": 787,
+      "w_name": "f2^6 gamma35"
+    },
+    {
+      "w_index": 788,
+      "w_name": "f2^6 gamma44"
+    },
+    {
+      "w_index": 777,
+      "w_name": "f2^7 gamma25"
+    },
+    {
+      "w_index": 778,
+      "w_name": "f2^7 gamma34"
+    },
+    {
+      "w_index": 769,
+      "w_name": "f2^8 gamma24"
+    },
+    {
+      "w_index": 770,
+      "w_name": "f2^8 gamma33"
+    },
+    {
+      "w_index": 766,
+      "w_name": "f2^9 gamma23"
+    }
+  ],
+  "selected_minor_determinant_mod_p": "1822378321827871558",
+  "selected_minor_matrix_sha256": "ea05385837b5e4af499fa10defbd9922bf2c86857420f5cbe3aa188c92a098b8",
+  "selected_rows": [
+    {
+      "row_index": 0,
+      "row_name": "a2^3 f2^5"
+    },
+    {
+      "row_index": 1,
+      "row_name": "a2^2 f2^4 f4"
+    },
+    {
+      "row_index": 2,
+      "row_name": "a2^2 f2^4 gamma22"
+    },
+    {
+      "row_index": 3,
+      "row_name": "a2^2 f2^3 f3^2"
+    },
+    {
+      "row_index": 4,
+      "row_name": "a2 a3 f2^4 f3"
+    },
+    {
+      "row_index": 5,
+      "row_name": "a2 a4 f2^5"
+    },
+    {
+      "row_index": 6,
+      "row_name": "a2 f2^4 gamma24"
+    },
+    {
+      "row_index": 8,
+      "row_name": "a2 f2^3 f3 f5"
+    },
+    {
+      "row_index": 9,
+      "row_name": "a2 f2^3 f3 gamma23"
+    },
+    {
+      "row_index": 10,
+      "row_name": "a2 f2^3 f4^2"
+    },
+    {
+      "row_index": 11,
+      "row_name": "a2 f2^3 f4 gamma22"
+    },
+    {
+      "row_index": 12,
+      "row_name": "a2 f2^3 gamma22^2"
+    },
+    {
+      "row_index": 13,
+      "row_name": "a2 f2^2 f3^2 f4"
+    },
+    {
+      "row_index": 14,
+      "row_name": "a2 f2^2 f3^2 gamma22"
+    },
+    {
+      "row_index": 15,
+      "row_name": "a2 f2 f3^4"
+    },
+    {
+      "row_index": 16,
+      "row_name": "a3^2 f2^5"
+    },
+    {
+      "row_index": 17,
+      "row_name": "a3 f2^4 f5"
+    },
+    {
+      "row_index": 18,
+      "row_name": "a3 f2^4 gamma23"
+    },
+    {
+      "row_index": 19,
+      "row_name": "a3 f2^3 f3 f4"
+    },
+    {
+      "row_index": 20,
+      "row_name": "a3 f2^3 f3 gamma22"
+    },
+    {
+      "row_index": 21,
+      "row_name": "a3 f2^2 f3^3"
+    },
+    {
+      "row_index": 22,
+      "row_name": "a4 f2^4 f4"
+    },
+    {
+      "row_index": 24,
+      "row_name": "a4 f2^3 f3^2"
+    },
+    {
+      "row_index": 25,
+      "row_name": "a5 f2^4 f3"
+    },
+    {
+      "row_index": 28,
+      "row_name": "f2^3 f3 gamma25"
+    },
+    {
+      "row_index": 30,
+      "row_name": "f2^3 f4 gamma24"
+    },
+    {
+      "row_index": 32,
+      "row_name": "f2^3 f5^2"
+    },
+    {
+      "row_index": 33,
+      "row_name": "f2^3 f5 gamma23"
+    },
+    {
+      "row_index": 34,
+      "row_name": "f2^3 gamma22 gamma24"
+    },
+    {
+      "row_index": 37,
+      "row_name": "f2^2 f3^2 gamma24"
+    },
+    {
+      "row_index": 39,
+      "row_name": "f2^2 f3 f4 f5"
+    },
+    {
+      "row_index": 40,
+      "row_name": "f2^2 f3 f4 gamma23"
+    },
+    {
+      "row_index": 41,
+      "row_name": "f2^2 f3 f5 gamma22"
+    },
+    {
+      "row_index": 42,
+      "row_name": "f2^2 f3 gamma22 gamma23"
+    },
+    {
+      "row_index": 43,
+      "row_name": "f2^2 f4^3"
+    },
+    {
+      "row_index": 44,
+      "row_name": "f2^2 f4^2 gamma22"
+    },
+    {
+      "row_index": 45,
+      "row_name": "f2^2 f4 gamma22^2"
+    },
+    {
+      "row_index": 46,
+      "row_name": "f2 f3^3 f5"
+    },
+    {
+      "row_index": 47,
+      "row_name": "f2 f3^3 gamma23"
+    },
+    {
+      "row_index": 48,
+      "row_name": "f2 f3^2 f4^2"
+    },
+    {
+      "row_index": 49,
+      "row_name": "f2 f3^2 f4 gamma22"
+    },
+    {
+      "row_index": 50,
+      "row_name": "f2 f3^2 gamma22^2"
+    },
+    {
+      "row_index": 51,
+      "row_name": "f3^4 f4"
+    },
+    {
+      "row_index": 52,
+      "row_name": "f3^4 gamma22"
+    },
+    {
+      "row_index": 7,
+      "row_name": "a2 f2^4 gamma33"
+    },
+    {
+      "row_index": 23,
+      "row_name": "a4 f2^4 gamma22"
+    },
+    {
+      "row_index": 26,
+      "row_name": "f2^4 gamma35"
+    },
+    {
+      "row_index": 27,
+      "row_name": "f2^4 gamma44"
+    },
+    {
+      "row_index": 29,
+      "row_name": "f2^3 f3 gamma34"
+    },
+    {
+      "row_index": 31,
+      "row_name": "f2^3 f4 gamma33"
+    },
+    {
+      "row_index": 35,
+      "row_name": "f2^3 gamma22 gamma33"
+    },
+    {
+      "row_index": 36,
+      "row_name": "f2^3 gamma23^2"
+    },
+    {
+      "row_index": 38,
+      "row_name": "f2^2 f3^2 gamma33"
+    }
+  ],
+  "shard_mode": "task",
+  "source_basis_digest": "cf846f89301021d0c1eacb67be32109a64c2b455feaf6a87acb1efc06de8d4da",
+  "source_dimension": 53,
+  "source_file_sha256": {
+    "GAMMA_CONVENTION.md": "8a1b9e6999245610ae8b579fbb3825fe725a18ff72f1d2dd4e30d8553fbcc4d8",
+    "JK_THEOREM_9_6_RANK5_G2.md": "9213054373640b6d29cf0e9f70f2892511569dfec9f7bc41c59316c8af78109b",
+    "basis.py": "2255929c964608fe52fd5b9b618b1dcfbfabc6a68348c3b85e747cfc7d45fa46",
+    "cluster_rank_driver.py": "7e3faaf7ab641dba30cd3e702728caee806efc2a121e5a8f2418a38e0c32c45d",
+    "fast_modular.py": "5cf9cc0277cf3ba4155c7bf014d67b6754d0636f07eae57011f60e93e16bbb63",
+    "jk_formula.py": "c951d805b542b835de232a223863f3a7e97ab40d71f8efebb0571d364394d6b6",
+    "modular_rank_search.py": "82bb5ae1a73ffe1214a6a3eca00e983dc5472b4c1fe8f91e4a2ea32745adae26"
+  },
+  "status": "verified",
+  "target_rank": 53,
+  "verification_output_sha256": "dfa1d1f033c7bcb89f3253603f43170c95c475720a9ce2f4d4d50d578b0ea3f6",
+  "w_basis_digest": "6ea7a66c1bb34e5bd07fcf41cb6e7abd75ad4f654d87bb291b8cad2ad63e28fe",
+  "w_basis_dimension": 1039
+}
